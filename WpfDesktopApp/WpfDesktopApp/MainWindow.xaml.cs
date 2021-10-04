@@ -23,6 +23,7 @@ namespace WpfDesktopApp
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }

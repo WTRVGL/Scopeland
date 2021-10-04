@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDesktopApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600">
+    
     <Grid>
+        <!--Main Grid Definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
         
+        <!--Menu-->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Gebruikers"/>
+            <MenuItem Header="Producten"/>
+        </Menu>
+        
+        <!--Centrale content-->
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Label Content="Content"/>
+        </Grid>
+        
+        <!--StatusBar-->
+        <StatusBar Grid.Row="2">
+            <Label Content="PXL Digital – PRW v1.0"/>
+        </StatusBar>
     </Grid>
+    
 </Window>
