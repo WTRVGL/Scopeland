@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace WpfDesktopApp
         public MainWindow()
         {
             InitializeComponent();
+            Databank db = new Databank();
+            var products = db.GetProducts();
             
         }
     }
