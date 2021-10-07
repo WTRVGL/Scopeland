@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library
 {
-    public class Instellingen
+    public class Configuration
     {
     }
 }

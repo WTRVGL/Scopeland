@@ -26,6 +26,7 @@
               HorizontalAlignment="Center"
               VerticalAlignment="Center">
             <Label Content="Content"/>
+
         </Grid>
         
         <!--StatusBar-->

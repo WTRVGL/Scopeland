@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Library
 {
-    public class Databank : IDataContext
+    public class Database : IDataContext
     {
         private SqlConnection SqlConnection { get; set; }
 
-        public Databank()
+        public Database()
         {
             SqlConnection = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=wpl_db;Trusted_Connection=True;");
         }
