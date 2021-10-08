@@ -26,6 +26,7 @@ namespace Library
             {
                 product.ProductID = reader.GetInt32(0);
                 product.ProductNaam = reader.GetString(1);
+                product.ProductPrijs = reader.GetInt32(2);
             }
 
             return product;
@@ -40,10 +41,11 @@ namespace Library
             while (reader.Read())
             {
                 products.Add(
-                    new Product 
-                        { ProductID = reader.GetInt32(0), ProductNaam = reader.GetString(1) 
-                        }
-                    );
+                    new Product {
+                        ProductID = reader.GetInt32(0), 
+                        ProductNaam = reader.GetString(1), 
+                        ProductPrijs = reader.GetDecimal(2)
+                    });
             }
 
             return products;

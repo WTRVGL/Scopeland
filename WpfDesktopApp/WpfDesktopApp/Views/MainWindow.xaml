@@ -4,8 +4,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDesktopApp"
+        xmlns:vm="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="450">
+
+    <!--Sets DataContext to an instance of MainwindowViewModel-->
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+
+
+        <Style TargetType="ListBox">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Rectangle Height="30px"
+                                       Width="30px"
+                                       Margin="0 0 10 0"
+                                       Stroke="Black"/>
+                            <TextBlock Text="{Binding ProductNaam}"
+                                       Margin="0 0 10 0"/>
+                            <TextBlock Text="{Binding ProductPrijs}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     
     <Grid>
         <!--Main Grid Definitions-->
@@ -22,10 +50,14 @@
         </Menu>
         
         <!--Centrale content-->
-        <Grid Grid.Row="1"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <Label Content="Content"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <ListBox ItemsSource="{Binding Products}"
+                     Grid.Row="1"/>
 
         </Grid>
         
