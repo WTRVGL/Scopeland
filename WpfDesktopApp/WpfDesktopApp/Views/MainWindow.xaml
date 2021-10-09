@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDesktopApp"
-        xmlns:vm="clr-namespace:WpfDesktopApp.ViewModels"
+        xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="450">
 
     <!--Sets DataContext to an instance of MainwindowViewModel-->
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <viewmodels:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
 
@@ -53,11 +53,11 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <ContentControl Content="{Binding SelectedViewModel}"/>
+
             
-            <ListBox ItemsSource="{Binding Products}"
-                     Grid.Row="1"/>
 
         </Grid>
         

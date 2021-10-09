@@ -11,7 +11,7 @@ namespace Library
 
         public Database()
         {
-            SqlConnection = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=wpl_db;Trusted_Connection=True;");
+            SqlConnection = new SqlConnection(@"Data Source=WTRVGL-LENO\SQLEXPRESS;Initial Catalog=PXLDigital_PRW_WPL;Integrated Security=True;");
         }
 
 

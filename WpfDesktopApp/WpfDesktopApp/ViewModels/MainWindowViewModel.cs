@@ -3,15 +3,14 @@ using System.Collections.ObjectModel;
 
 namespace WpfDesktopApp.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         public MainWindowViewModel()
         {
-            Data = new Database();
-            Products = new ObservableCollection<Product>(Data.GetProducts());
+            SelectedViewModel = new ProductsViewModel();
         }
 
-        public ObservableCollection<Product> Products { get; set; }
-        public Database Data { get; set; }
+        
+        public BaseViewModel SelectedViewModel { get; set; }
     }
 }
