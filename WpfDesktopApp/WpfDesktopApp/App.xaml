@@ -4,12 +4,15 @@
              xmlns:local="clr-namespace:WpfDesktopApp"
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
              xmlns:views="clr-namespace:WpfDesktopApp.Views"
-             StartupUri="Views/MainWindow.xaml">
+             Startup="AppStartup">
     
     <Application.Resources>
+        
         <DataTemplate DataType="{x:Type viewmodels:ProductsViewModel}">
             <views:ProductsView/>
         </DataTemplate>
+        
+        
     </Application.Resources>
     
     

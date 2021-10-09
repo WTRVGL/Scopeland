@@ -6,11 +6,31 @@
              xmlns:views="clr-namespace:WpfDesktopApp.Views"
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="450">
+             d:DesignHeight="200" d:DesignWidth="450">
     
     <UserControl.DataContext>
         <viewmodels:ProductsViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Rectangle Height="30px"
+                                       Width="30px"
+                                       Margin="0 0 10 0"
+                                       Stroke="Black"/>
+                            <TextBlock Text="{Binding ProductNaam}"
+                                       Margin="0 0 10 0"/>
+                            <TextBlock Text="{Binding ProductPrijs}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     
     <Grid>
         <ListBox ItemsSource="{Binding Products}"/>

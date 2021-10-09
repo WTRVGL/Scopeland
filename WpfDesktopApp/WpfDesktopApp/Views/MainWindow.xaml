@@ -47,6 +47,8 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Gebruikers"/>
             <MenuItem Header="Producten"/>
+            <TextBlock Text="User"
+                       Margin="250 0 0 0"/>
         </Menu>
         
         <!--Centrale content-->

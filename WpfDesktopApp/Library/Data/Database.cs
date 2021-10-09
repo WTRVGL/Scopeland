@@ -27,6 +27,8 @@ namespace Library
                 product.ProductID = reader.GetInt32(0);
                 product.ProductNaam = reader.GetString(1);
                 product.ProductPrijs = reader.GetInt32(2);
+                product.ProductOmschrijving = reader.GetString(3);
+                product.ProductMerk = reader.GetString(4);
             }
 
             return product;
@@ -44,8 +46,10 @@ namespace Library
                     new Product {
                         ProductID = reader.GetInt32(0), 
                         ProductNaam = reader.GetString(1), 
-                        ProductPrijs = reader.GetDecimal(2)
-                    });
+                        ProductPrijs = reader.GetDecimal(2),
+                        ProductOmschrijving = reader.GetString(3),
+                        ProductMerk = reader.GetString(4)
+            });
             }
 
             return products;
