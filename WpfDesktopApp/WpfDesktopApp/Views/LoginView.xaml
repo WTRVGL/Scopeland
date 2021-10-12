@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfDesktopApp.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDesktopApp.Views"
+        xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="LoginView" Height="450" Width="600"
+        FontSize="26">
+
+
+    <Window.DataContext>
+        <viewmodels:LoginViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Padding" Value="2 5 2 5"/>
+            <Setter Property="Margin" Value="0 20 0 20"/>
+            <Setter Property="MaxWidth" Value="350"/>
+        </Style>
+
+    </Window.Resources>
+    
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+
+            <TextBox Text="{Binding LoginName}"/>
+            <TextBox Text="{Binding LoginPassword}"/>
+            
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Registreren"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+                <Button Content="Login"
+                        Padding="15 10 15 10"
+                        Margin="50 0 0 0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

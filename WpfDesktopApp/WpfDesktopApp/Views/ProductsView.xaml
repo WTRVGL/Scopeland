@@ -33,6 +33,8 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListBox ItemsSource="{Binding Products}"/>
+        <ListBox ItemsSource="{Binding Products}" 
+                 SelectionChanged="ListBox_SelectionChanged"
+                 x:Name="ProductListBox"/>
     </Grid>
 </UserControl>

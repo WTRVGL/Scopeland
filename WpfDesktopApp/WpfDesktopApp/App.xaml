@@ -11,8 +11,11 @@
         <DataTemplate DataType="{x:Type viewmodels:ProductsViewModel}">
             <views:ProductsView/>
         </DataTemplate>
-        
-        
+
+        <DataTemplate DataType="{x:Type viewmodels:ProductDetailViewModel}">
+            <views:ProductDetailView/>
+        </DataTemplate>
+
     </Application.Resources>
     
     

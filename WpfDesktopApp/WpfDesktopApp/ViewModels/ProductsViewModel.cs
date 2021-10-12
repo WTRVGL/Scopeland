@@ -17,6 +17,7 @@ namespace WpfDesktopApp.ViewModels
         }
         
         public ObservableCollection<Product> Products { get; set; }
+        public Product SelectedProduct { get; set; }
         public Database Data { get; set; }
     }
 }

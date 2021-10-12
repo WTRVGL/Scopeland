@@ -7,7 +7,7 @@ namespace WpfDesktopApp.ViewModels
     {
         public MainWindowViewModel()
         {
-            SelectedViewModel = new ProductsViewModel();
+            SelectedViewModel = new ProductDetailViewModel(new Product());
         }
 
         

@@ -16,6 +16,7 @@ namespace WpfDesktopApp
     {
         private void AppStartup(object sender, StartupEventArgs e)
         {
+           
             new MainWindow().ShowDialog();
         }
     }
