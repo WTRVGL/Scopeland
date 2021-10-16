@@ -10,6 +10,7 @@ namespace Library
         public string Naam { get; set; }
         public string Voornaam { get; set; }
         public string Email { get; set; }
-        public string Passwoord { get; set; }
+        public byte[] PasswoordHash { get; set; }
+        public int PasswoordSalt { get; set; }
     }
 }

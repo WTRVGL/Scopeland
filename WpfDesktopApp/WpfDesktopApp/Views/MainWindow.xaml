@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="auto" Width="auto">
+        Title="MainWindow" Height="600" Width="800">
 
     <!--Sets DataContext to an instance of MainwindowViewModel-->
     <Window.DataContext>
@@ -32,6 +32,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
     </Window.Resources>
     
     <Grid>
@@ -42,18 +47,76 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        <!--Menu-->
-        <Menu Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Sidebar navigation menu-->
+
+        <!--<Menu Grid.Column="0" 
+              Grid.ColumnSpan="2"
+              Grid.Row="0"
+              Grid.RowSpan="3">
+            
             <MenuItem Header="Gebruikers"/>
             <MenuItem Header="Producten"
                       Command="{Binding ShowProductsCommand}"
                       />
             <TextBlock Text="User"
                        Margin="250 0 0 0"/>
-        </Menu>
+        </Menu>-->
+
+        <DockPanel Grid.Column="0" 
+                   Grid.ColumnSpan="2"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Background="{StaticResource PrimarySolidColorBrush}">
+            <StackPanel>
+                <Grid>
+                    <Ellipse Height="50"
+                             Width="50"
+                             Margin="5 10 5 20"
+                             Stroke="Black"/>
+                </Grid>
+                <Button Command="{Binding ShowHomeCommand}"
+                        Height="50"
+                        Background="Transparent">
+
+                    <TextBlock FontSize="26" 
+                               FontWeight="Bold"
+                               Text="Home"
+                               />
+                </Button>
+                <Button Command="{Binding ShowProductsCommand}"
+                        Height="50"
+                        Background="Transparent">
+                    <TextBlock FontSize="26" 
+                               FontWeight="Bold"
+                               Text="Producten"/>
+                </Button>
+                <Button Height="50"
+                        Background="Transparent">
+                    <TextBlock FontSize="26" 
+                               FontWeight="Bold"
+                               Text="Gebruikers"/>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
         
+
         <!--Centrale content-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Column="2"
+              Grid.ColumnSpan="6"
+              Grid.Row="0"
+              Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -65,8 +128,12 @@
         </Grid>
         
         <!--StatusBar-->
-        <StatusBar Grid.Row="2">
-            <Label Content="PXL Digital – PRW v1.0"/>
+        <StatusBar Grid.ColumnSpan="2" 
+                   Background="Transparent"
+                   Grid.Row="2"
+                   HorizontalAlignment="Center">
+            <Label Content="PXL Digital – PRW v1.0"
+                   FontWeight="ExtraBlack"/>
         </StatusBar>
     </Grid>
     

@@ -5,18 +5,25 @@
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
              xmlns:views="clr-namespace:WpfDesktopApp.Views"
              Startup="AppStartup">
-    
+
     <Application.Resources>
         
-        <DataTemplate DataType="{x:Type viewmodels:ProductsViewModel}">
-            <views:ProductsView/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Common.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <DataTemplate DataType="{x:Type viewmodels:ProductDetailViewModel}">
-            <views:ProductDetailView/>
-        </DataTemplate>
-
+            <DataTemplate DataType="{x:Type viewmodels:ProductsViewModel}">
+                <views:ProductsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ProductDetailViewModel}">
+                <views:ProductDetailView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+        </ResourceDictionary>
+        
     </Application.Resources>
-    
     
 </Application>

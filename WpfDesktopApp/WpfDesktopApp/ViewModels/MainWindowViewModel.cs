@@ -14,7 +14,9 @@ namespace WpfDesktopApp.ViewModels
 
         public ICommand ShowProductsCommand { get; set; }
         public ICommand ShowProductDetailCommand { get; set; }
-        public ICommand TestCommand { get; set; }
+        public ICommand ShowHomeCommand { get; set; }
+
+        public Gebruiker CurrentUser { get; set; }
 
         public BaseViewModel SelectedViewModel
         {
@@ -25,12 +27,16 @@ namespace WpfDesktopApp.ViewModels
 
         public MainWindowViewModel()
         {
-            SelectedViewModel = new ProductsViewModel();
+            SelectedViewModel = new HomeViewModel();
+
             ShowProductsCommand = new DelegateCommand(
                 () => SelectedViewModel = new ProductsViewModel());
             ShowProductDetailCommand = new DelegateCommand<Product>(
                 product => SelectedViewModel = new ProductDetailViewModel(product));
-            TestCommand = new DelegateCommand(() => MessageBox.Show("Clicked"));
+            ShowHomeCommand = new DelegateCommand(
+                () => SelectedViewModel = new HomeViewModel());
+
+            CurrentUser = new Gebruiker { Naam = "Vangeel", Voornaam = "Wouter" };
         }
 
        
