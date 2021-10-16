@@ -7,15 +7,14 @@
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="auto" Width="auto">
 
     <!--Sets DataContext to an instance of MainwindowViewModel-->
     <Window.DataContext>
         <viewmodels:MainWindowViewModel/>
     </Window.DataContext>
+    
     <Window.Resources>
-
-
         <Style TargetType="ListBox">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -46,7 +45,9 @@
         <!--Menu-->
         <Menu Grid.Row="0">
             <MenuItem Header="Gebruikers"/>
-            <MenuItem Header="Producten"/>
+            <MenuItem Header="Producten"
+                      Command="{Binding ShowProductsCommand}"
+                      />
             <TextBlock Text="User"
                        Margin="250 0 0 0"/>
         </Menu>

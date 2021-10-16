@@ -9,9 +9,9 @@
         Background="White"
         d:DesignHeight="200" d:DesignWidth="450">
 
-    <UserControl.DataContext>
-        <viewmodels:ProductsViewModel/>
-    </UserControl.DataContext>
+    <!--<UserControl.DataContext>
+        <viewmodels:ProductDetailViewModel/>
+    </UserControl.DataContext>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -49,9 +49,9 @@
                 <TextBlock Text="Product naam"/>
                 <!--Product naam Textbox-->
                 <TextBox Text="{Binding Product.ProductNaam}"/>
-                <TextBlock Text="Productprijs"/>
+                
                 <StackPanel Orientation="Horizontal">
-                    <TextBox  Width="100"/>
+                    <TextBox Text="{Binding Product.ProductPrijs}"/>
                     <TextBlock Text="Euro"/>
                 </StackPanel>
             </StackPanel>
@@ -59,7 +59,8 @@
             <StackPanel Grid.Row="2"
                         Grid.ColumnSpan="2">
                 <TextBlock Text="Productomschrijving"/>
-                <TextBox Height="100"/>
+                <TextBox Text="{Binding Product.ProductOmschrijving}" 
+                         Height="100"/>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Edit"/>
                     <Button Content="Save"/>
@@ -71,7 +72,7 @@
             <StackPanel Grid.Column="1" 
                         Grid.Row="1">
                 <TextBlock Text="Product merk"/>
-                <TextBox Margin="0 0 0 0"/>
+                <TextBox Text="{Binding Product.ProductMerk}"/>
             </StackPanel>
 
 

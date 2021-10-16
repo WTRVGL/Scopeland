@@ -36,7 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\DataContext.cs" />
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Configuration.cs" />

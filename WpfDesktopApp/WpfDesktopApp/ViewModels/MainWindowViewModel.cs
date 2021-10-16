@@ -1,16 +1,38 @@
 ﻿using Library;
+using Prism.Commands;
+using System;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace WpfDesktopApp.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public MainWindowViewModel()
+
+        private BaseViewModel _selectedViewModel;
+
+        public ICommand ShowProductsCommand { get; set; }
+        public ICommand ShowProductDetailCommand { get; set; }
+        public ICommand TestCommand { get; set; }
+
+        public BaseViewModel SelectedViewModel
         {
-            SelectedViewModel = new ProductDetailViewModel(new Product());
+            get { return _selectedViewModel; }
+            set { SetProperty(ref _selectedViewModel, value); }
         }
 
-        
-        public BaseViewModel SelectedViewModel { get; set; }
+
+        public MainWindowViewModel()
+        {
+            SelectedViewModel = new ProductsViewModel();
+            ShowProductsCommand = new DelegateCommand(
+                () => SelectedViewModel = new ProductsViewModel());
+            ShowProductDetailCommand = new DelegateCommand<Product>(
+                product => SelectedViewModel = new ProductDetailViewModel(product));
+            TestCommand = new DelegateCommand(() => MessageBox.Show("Clicked"));
+        }
+
+       
     }
 }

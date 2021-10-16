@@ -26,9 +26,6 @@ namespace WpfDesktopApp.Views
             InitializeComponent();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selectedProduct = ProductListBox.SelectedItem;
-        }
+       
     }
 }

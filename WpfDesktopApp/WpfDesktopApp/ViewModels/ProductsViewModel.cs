@@ -10,14 +10,23 @@ namespace WpfDesktopApp.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
+
+        private Product _selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set { SetProperty(ref _selectedProduct, value); }
+        }
+
         public ProductsViewModel()
         {
-            Data = new Database();
+            Data = new DataContext();
             Products = new ObservableCollection<Product>(Data.GetProducts());
         }
         
         public ObservableCollection<Product> Products { get; set; }
-        public Product SelectedProduct { get; set; }
-        public Database Data { get; set; }
+        
+        public DataContext Data { get; set; }
     }
 }

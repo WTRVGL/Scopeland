@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Library
 {
-    public class Database : IDataContext
+    public class DataContext : IDataContext
     {
         private SqlConnection SqlConnection { get; set; }
 
-        public Database()
+        public DataContext()
         {
             SqlConnection = new SqlConnection(@"Data Source=WTRVGL-LENO\SQLEXPRESS;Initial Catalog=PXLDigital_PRW_WPL;Integrated Security=True;");
         }

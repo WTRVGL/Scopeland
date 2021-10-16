@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:WpfDesktopApp.Views"
+             xmlns:prism="http://prismlibrary.com/"
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="200" d:DesignWidth="450">
     
@@ -33,8 +35,18 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListBox ItemsSource="{Binding Products}" 
-                 SelectionChanged="ListBox_SelectionChanged"
-                 x:Name="ProductListBox"/>
-    </Grid>
+        <ListBox ItemsSource="{Binding Products}"
+                 x:Name="ListBoxProductsList"
+                 SelectedItem="{Binding SelectedProduct}">
+                
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction   
+                        Command="{Binding DataContext.ShowProductDetailCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding SelectedProduct}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+        
+   </Grid>
 </UserControl>
