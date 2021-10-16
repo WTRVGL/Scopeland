@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -57,12 +58,42 @@ namespace Library
 
         public Gebruiker GetUser(int id)
         {
-            throw new NotImplementedException();
+            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Id = {id}", SqlConnection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            var gebruiker = new Gebruiker();
+            while (reader.Read())
+            {
+                gebruiker.GebruikerID = reader.GetInt32(0);
+                gebruiker.Voornaam = reader.GetString(1);
+                gebruiker.Naam = reader.GetString(2);
+                gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
+                gebruiker.PasswoordSalt = reader.GetString(4);
+            }
+
+            return gebruiker;
         }
 
         public List<Gebruiker> GetUsers()
         {
             throw new NotImplementedException();
         }
+
+        public void CreateUser(string voornaam, string achternaam, string passwoord)
+        {
+            var user = new Gebruiker { Naam = achternaam, Voornaam = voornaam };
+
+            var service = new HashPasswordService(passwoord);
+            user.PasswoordHash = service.HashBase64;
+            user.PasswoordSalt = service.SaltBase64;
+
+
+            var command = new SqlCommand($"INSERT INTO Gebruikers(Voornaam, Achternaam, PasswoordHash, PasswoordSalt) VALUES('{voornaam}', '{achternaam}', '{user.PasswoordHash}', '{user.PasswoordSalt}')", SqlConnection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+
+
+        }
+
     }
 }

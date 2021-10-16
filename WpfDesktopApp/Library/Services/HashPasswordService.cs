@@ -7,41 +7,44 @@ namespace Core.Services
 {
     public class HashPasswordService
     {
-        private string Password { get; set; }
-        private int Salt { get; set; }
-        private Byte[] Hash { get; set; }
 
-
-        public int GetSalt()
-        {
-            return Salt;
-        }
-
-        public Byte[] GetHash()
-        {
-            return Hash;
-        }
-
+        public string HashBase64 { get; }
+        public string SaltBase64 { get; }
 
         public HashPasswordService(string password)
         {
-            Password = password;
-            Salt = new Random().Next(10000000, 99999999);
-            var x = new Rfc2898DeriveBytes(Password, Salt);
-            Hash = x.GetBytes(20);
+            var rng = new RNGCryptoServiceProvider();
+            var saltBytes = new byte[14];
+            rng.GetBytes(saltBytes);
+
+            var rfc = new Rfc2898DeriveBytes(password, saltBytes);
+            var hashBytes = rfc.GetBytes(20);
+
+            HashBase64 = Convert.ToBase64String(hashBytes);
+            SaltBase64 = Convert.ToBase64String(saltBytes);
+
         }
 
-        public bool CheckPassword(int salt, byte[] hash, string password)
+        public HashPasswordService()
         {
-            var x = new Rfc2898DeriveBytes(password, salt);
-            var bytes = x.GetBytes(20);
 
-            if (bytes == hash)
+        }
+
+        public bool checkHash(string password, string hashBase64, string saltBase64)
+        {
+            var rfc = new Rfc2898DeriveBytes(password, Convert.FromBase64String(saltBase64));
+            var checkBytes = rfc.GetBytes(20);
+            var checkBytesBase64 = Convert.ToBase64String(checkBytes);
+
+            if (hashBase64 == checkBytesBase64)
             {
                 return true;
             }
 
             return false;
         }
+
+        
+
     }
 }

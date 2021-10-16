@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WpfDesktopApp.Views;
 using Core.Services;
+using Library;
 
 namespace WpfDesktopApp
 {
@@ -17,7 +18,6 @@ namespace WpfDesktopApp
     {
         private void AppStartup(object sender, StartupEventArgs e)
         {
-
             new MainWindow().ShowDialog();
             
         }
