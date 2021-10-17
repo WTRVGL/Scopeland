@@ -18,6 +18,7 @@ namespace WpfDesktopApp
     {
         private void AppStartup(object sender, StartupEventArgs e)
         {
+            new LoginView().ShowDialog();
             new MainWindow().ShowDialog();
             
         }

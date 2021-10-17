@@ -79,6 +79,8 @@ namespace Library
             throw new NotImplementedException();
         }
 
+
+
         public void CreateUser(string voornaam, string achternaam, string passwoord)
         {
             var user = new Gebruiker { Naam = achternaam, Voornaam = voornaam };
@@ -93,6 +95,25 @@ namespace Library
             var reader = command.ExecuteReader();
 
 
+        }
+
+        public Gebruiker GetUserByUserName(string username)
+        {
+            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Voornaam = '{username}'", SqlConnection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            var gebruiker = new Gebruiker();
+            while (reader.Read())
+            {
+                gebruiker.GebruikerID = reader.GetInt32(0);
+                gebruiker.Voornaam = reader.GetString(1);
+                gebruiker.Naam = reader.GetString(2);
+                gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
+                gebruiker.PasswoordSalt = reader.GetString(4);
+            }
+
+
+            return gebruiker;
         }
 
     }

@@ -10,6 +10,7 @@ namespace Library
         Product GetProduct(int id);
         List<Gebruiker> GetUsers();
         Gebruiker GetUser(int id);
+        Gebruiker GetUserByUserName(string username);
         void CreateUser(string voornaam, string achternaam, string passwoord);
     }
 }

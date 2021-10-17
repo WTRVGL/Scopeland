@@ -32,6 +32,10 @@ namespace Core.Services
 
         public bool checkHash(string password, string hashBase64, string saltBase64)
         {
+            if (password == null)
+            {
+                return false;
+            }
             var rfc = new Rfc2898DeriveBytes(password, Convert.FromBase64String(saltBase64));
             var checkBytes = rfc.GetBytes(20);
             var checkBytesBase64 = Convert.ToBase64String(checkBytes);
