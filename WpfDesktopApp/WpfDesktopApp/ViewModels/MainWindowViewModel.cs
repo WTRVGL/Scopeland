@@ -11,12 +11,21 @@ namespace WpfDesktopApp.ViewModels
     {
 
         private BaseViewModel _selectedViewModel;
+        private Gebruiker _currentUser;
+
 
         public ICommand ShowProductsCommand { get; set; }
         public ICommand ShowProductDetailCommand { get; set; }
         public ICommand ShowHomeCommand { get; set; }
 
-        public Gebruiker CurrentUser { get; set; }
+        
+
+        public Gebruiker CurrentUser
+        {
+            get { return _currentUser; }
+            set { SetProperty(ref _currentUser, value); }
+        }
+
 
         public BaseViewModel SelectedViewModel
         {
@@ -27,7 +36,7 @@ namespace WpfDesktopApp.ViewModels
 
         public MainWindowViewModel()
         {
-            SelectedViewModel = new HomeViewModel();
+            
 
             ShowProductsCommand = new DelegateCommand(
                 () => SelectedViewModel = new ProductsViewModel());
@@ -36,7 +45,7 @@ namespace WpfDesktopApp.ViewModels
             ShowHomeCommand = new DelegateCommand(
                 () => SelectedViewModel = new HomeViewModel());
 
-            CurrentUser = new Gebruiker { Naam = "Vangeel", Voornaam = "Wouter" };
+            SelectedViewModel = new HomeViewModel();
         }
 
        

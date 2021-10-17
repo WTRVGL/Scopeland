@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Library.Services
 {
@@ -31,6 +32,8 @@ namespace Library.Services
             }
             var passwordService = new HashPasswordService();
             var result = passwordService.checkHash(Password, CurrentUser.PasswoordHash, CurrentUser.PasswoordSalt);
+
+           
             return result;
         }
 

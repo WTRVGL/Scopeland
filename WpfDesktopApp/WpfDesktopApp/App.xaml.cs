@@ -8,6 +8,7 @@ using System.Windows;
 using WpfDesktopApp.Views;
 using Core.Services;
 using Library;
+using WpfDesktopApp.ViewModels;
 
 namespace WpfDesktopApp
 {
@@ -16,10 +17,32 @@ namespace WpfDesktopApp
     /// </summary>
     public partial class App : Application
     {
+        public Gebruiker AuthenticatedUser { get; set; }
+
         private void AppStartup(object sender, StartupEventArgs e)
         {
-            new LoginView().ShowDialog();
-            new MainWindow().ShowDialog();
+
+            this.MainWindow = new MainWindow();
+
+            var loginView = new LoginView();
+            var result = loginView.ShowDialog();
+            loginView.Close();
+
+            var user = (Gebruiker)App.Current.Properties["CurrentAuthenticatedUser"];
+            if (result == false)
+            {
+                App.Current.Shutdown();
+            }
+            else
+                
+                MainWindow.DataContext = new MainWindowViewModel
+                {
+                    CurrentUser = user
+                };
+
+            MainWindow.ShowDialog();
+            
+            
             
         }
     }

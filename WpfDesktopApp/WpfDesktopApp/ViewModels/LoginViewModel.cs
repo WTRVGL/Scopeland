@@ -46,11 +46,15 @@ namespace WpfDesktopApp.ViewModels
             {
                 return new DelegateCommand(() =>
                 {
+                    
                     LoginService loginService = new LoginService(LoginName, LoginPassword);
+                    
+                    ///TODO: Make a custom response object that contains the authenticated user.
                     var result = loginService.authenticateUser();
 
                     if (result)
                     {
+                        App.Current.Properties["CurrentAuthenticatedUser"] = new Gebruiker { Voornaam = LoginName};
                         DialogResult = true;   
                     }
                 });
