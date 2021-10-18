@@ -11,6 +11,6 @@ namespace Library
         List<Gebruiker> GetUsers();
         Gebruiker GetUser(int id);
         Gebruiker GetUserByUserName(string username);
-        void CreateUser(string voornaam, string achternaam, string passwoord);
+        void CreateUser(string username, string voornaam, string achternaam, string passwoord);
     }
 }

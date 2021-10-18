@@ -9,8 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TextBlock FontSize="26"
-                   Margin="25">
-            <Run Text="Welkom,"/>
+                   Margin="20">
+            <Run Text="Welkom"/>
             <Run Text="{Binding CurrentUser.Voornaam}"/>
             <Run Text="!"/>
         </TextBlock>

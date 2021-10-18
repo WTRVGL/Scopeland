@@ -81,7 +81,7 @@ namespace Library
 
 
 
-        public void CreateUser(string voornaam, string achternaam, string passwoord)
+        public void CreateUser(string username, string voornaam, string achternaam, string passwoord)
         {
             var user = new Gebruiker { Naam = achternaam, Voornaam = voornaam };
 

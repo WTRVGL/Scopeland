@@ -1,19 +1,13 @@
-﻿using Core.Services;
-using Library;
+﻿using Library;
 using Library.Services;
 using Prism.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WpfDesktopApp.Models;
 
-namespace WpfDesktopApp.ViewModels
+namespace WpfDesktopApp.ViewModels.Login
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : ViewModelBase
     {
         private string _LoginName;
         private string _LoginPassword;
@@ -25,13 +19,11 @@ namespace WpfDesktopApp.ViewModels
             set { SetProperty(ref _dialogResult, value); }
         }
 
-
         public string LoginName
         {
             get { return _LoginName; }
             set { SetProperty(ref _LoginName, value); }
         }
-
 
         public string LoginPassword
         {
@@ -39,14 +31,17 @@ namespace WpfDesktopApp.ViewModels
             set { SetProperty(ref _LoginPassword, value); }
         }
 
-        public Login LoginToken { get; set; }
+
+        public LoginViewModel()
+        {
+
+        }
 
 
         public ICommand VerifyLoginCommand { get
             {
                 return new DelegateCommand(() =>
                 {
-                    
                     LoginService loginService = new LoginService(LoginName, LoginPassword);
                     
                     ///TODO: Make a custom response object that contains the authenticated user.
@@ -59,24 +54,6 @@ namespace WpfDesktopApp.ViewModels
                     }
                 });
             }
-            
-            
         }
-
-        public LoginViewModel()
-        {
-        }
-
-        public Action<string, string> LoginUser = (username, password) =>
-        {
-            
-            var authenticateService = new LoginService(username, password);
-            var result = authenticateService.authenticateUser();
-            if (result)
-            {
-                MessageBox.Show("Authenticated");
-            }
-        };
-
     }
 }

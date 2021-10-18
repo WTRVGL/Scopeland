@@ -9,6 +9,8 @@ using WpfDesktopApp.Views;
 using Core.Services;
 using Library;
 using WpfDesktopApp.ViewModels;
+using WpfDesktopApp.Views.Login;
+using Library.Services;
 
 namespace WpfDesktopApp
 {
@@ -21,6 +23,13 @@ namespace WpfDesktopApp
 
         private void AppStartup(object sender, StartupEventArgs e)
         {
+
+            ///TEST
+            /// var x = new RegistrationService().userAlreadyExists("Wouter");
+            
+            new LoginMainWindow().ShowDialog();
+
+            //TEST
 
             this.MainWindow = new MainWindow();
 

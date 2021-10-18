@@ -22,7 +22,6 @@ namespace Core.Services
 
             HashBase64 = Convert.ToBase64String(hashBytes);
             SaltBase64 = Convert.ToBase64String(saltBytes);
-
         }
 
         public HashPasswordService()
@@ -30,12 +29,20 @@ namespace Core.Services
 
         }
 
+        /// <summary>
+        /// Hashes an inputted password using a supplied Salt and compares it to the supplied Hash
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="hashBase64"></param>
+        /// <param name="saltBase64"></param>
+        /// <returns></returns>
         public bool checkHash(string password, string hashBase64, string saltBase64)
         {
             if (password == null)
             {
                 return false;
             }
+
             var rfc = new Rfc2898DeriveBytes(password, Convert.FromBase64String(saltBase64));
             var checkBytes = rfc.GetBytes(20);
             var checkBytesBase64 = Convert.ToBase64String(checkBytes);

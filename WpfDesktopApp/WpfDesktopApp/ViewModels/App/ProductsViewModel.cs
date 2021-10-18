@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace WpfDesktopApp.ViewModels
 {
-    public class ProductsViewModel : BaseViewModel
+    public class ProductsViewModel : ViewModelBase
     {
-
         private Product _selectedProduct;
 
         public Product SelectedProduct
@@ -19,14 +18,17 @@ namespace WpfDesktopApp.ViewModels
             set { SetProperty(ref _selectedProduct, value); }
         }
 
+        public ObservableCollection<Product> Products { get; set; }
+
+        public DataContext Data { get; set; }
+
+
         public ProductsViewModel()
         {
             Data = new DataContext();
             Products = new ObservableCollection<Product>(Data.GetProducts());
         }
         
-        public ObservableCollection<Product> Products { get; set; }
         
-        public DataContext Data { get; set; }
     }
 }

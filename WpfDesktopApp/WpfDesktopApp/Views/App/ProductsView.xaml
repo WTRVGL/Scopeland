@@ -8,7 +8,8 @@
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
-             d:DesignHeight="200" d:DesignWidth="450">
+             Background="White"
+             d:DesignHeight="400" d:DesignWidth="600">
     
     <UserControl.DataContext>
         <viewmodels:ProductsViewModel/>
@@ -19,15 +20,22 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
+                        <Border BorderBrush="Black" 
+                                Width="600"
+                                BorderThickness="2">
+                            
+                        
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
                             <Rectangle Height="30px"
                                        Width="30px"
                                        Margin="0 0 10 0"
                                        Stroke="Black"/>
                             <TextBlock Text="{Binding ProductNaam}"
-                                       Margin="0 0 10 0"/>
+                                        Margin="0 0 10 0"/>
                             <TextBlock Text="{Binding ProductPrijs}"/>
                         </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
@@ -35,10 +43,15 @@
     </UserControl.Resources>
     
     <Grid>
+        <StackPanel>
+            <TextBlock Text="Producten"
+                   Margin="20"
+                   FontSize="26"/>
+        
         <ListBox ItemsSource="{Binding Products}"
                  x:Name="ListBoxProductsList"
                  SelectedItem="{Binding SelectedProduct}">
-                
+            
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <prism:InvokeCommandAction   
@@ -47,6 +60,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListBox>
-        
-   </Grid>
+        </StackPanel>
+
+    </Grid>
 </UserControl>
