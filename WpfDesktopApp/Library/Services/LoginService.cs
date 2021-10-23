@@ -1,16 +1,12 @@
-﻿using Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+﻿
+using Core.Services;
 
 namespace Library.Services
 {
     public class LoginService
     {
         public Gebruiker CurrentUser { get; set; }
-        public string Password  { get; set; }
-        
+        public string Password { get; set; }
         private DataContext Data { get; set; }
 
         public LoginService(string username, string password)
@@ -30,6 +26,7 @@ namespace Library.Services
             {
                 return false;
             }
+
             var passwordService = new HashPasswordService();
             var result = passwordService.checkHash(Password, CurrentUser.PasswoordHash, CurrentUser.PasswoordSalt);
 

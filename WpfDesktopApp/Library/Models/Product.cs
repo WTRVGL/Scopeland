@@ -12,5 +12,7 @@ namespace Library
         public string ProductOmschrijving { get; set; }
         public string ProductMerk { get; set; }
         public string ProductType { get; set; }
+        public int Stock { get; set; }
+        public int AmountSold { get; set; }
     }
 }

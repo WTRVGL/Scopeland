@@ -15,6 +15,27 @@ namespace Library
             SqlConnection = new SqlConnection(@"Data Source=WTRVGL-LENO\SQLEXPRESS;Initial Catalog=PXLDigital_PRW_WPL;Integrated Security=True;");
         }
 
+        public List<Product> GetProducts()
+        {
+            var command = new SqlCommand($"SELECT * FROM Products", SqlConnection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            var products = new List<Product>();
+            while (reader.Read())
+            {
+                products.Add(
+                    new Product
+                    {
+                        ProductID = reader.GetInt32(0),
+                        ProductNaam = reader.GetString(1),
+                        ProductPrijs = reader.GetDecimal(2),
+                        ProductOmschrijving = reader.GetString(3),
+                        ProductMerk = reader.GetString(4)
+                    });
+            }
+            reader.Close();
+            return products;
+        }
 
 
         public Product GetProduct(int id)
@@ -31,30 +52,11 @@ namespace Library
                 product.ProductOmschrijving = reader.GetString(3);
                 product.ProductMerk = reader.GetString(4);
             }
-
+            reader.Close();
             return product;
         }
 
-        public List<Product> GetProducts()
-        {
-            var command = new SqlCommand($"SELECT * FROM Products", SqlConnection);
-            command.Connection.Open();
-            var reader = command.ExecuteReader();
-            var products = new List<Product>();
-            while (reader.Read())
-            {
-                products.Add(
-                    new Product {
-                        ProductID = reader.GetInt32(0), 
-                        ProductNaam = reader.GetString(1), 
-                        ProductPrijs = reader.GetDecimal(2),
-                        ProductOmschrijving = reader.GetString(3),
-                        ProductMerk = reader.GetString(4)
-            });
-            }
-
-            return products;
-        }
+        
 
         public Gebruiker GetUser(int id)
         {
@@ -64,13 +66,15 @@ namespace Library
             var gebruiker = new Gebruiker();
             while (reader.Read())
             {
-                gebruiker.GebruikerID = reader.GetInt32(0);
-                gebruiker.Voornaam = reader.GetString(1);
-                gebruiker.Naam = reader.GetString(2);
+                gebruiker.GebruikerID = (int)reader["UserId"];
+                gebruiker.Email = (string)reader["Email"];
+                gebruiker.FirstName = (string)reader["FirstName"];
+                gebruiker.LastName = (string)reader["LastName"];
                 gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
-                gebruiker.PasswoordSalt = reader.GetString(4);
+                gebruiker.PasswoordSalt = (string)reader["PasswoordSalt"];
             }
 
+            reader.Close();
             return gebruiker;
         }
 
@@ -83,34 +87,36 @@ namespace Library
 
         public void CreateUser(string username, string voornaam, string achternaam, string passwoord)
         {
-            var user = new Gebruiker { Naam = achternaam, Voornaam = voornaam };
-
             var service = new HashPasswordService(passwoord);
-            user.PasswoordHash = service.HashBase64;
-            user.PasswoordSalt = service.SaltBase64;
+            var passwoordHash = service.HashBase64;
+            var passwoordSalt = service.SaltBase64;
 
 
-            var command = new SqlCommand($"INSERT INTO Gebruikers(Voornaam, Achternaam, PasswoordHash, PasswoordSalt) VALUES('{voornaam}', '{achternaam}', '{user.PasswoordHash}', '{user.PasswoordSalt}')", SqlConnection);
+            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", SqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
+            reader.Close();
 
 
         }
 
         public Gebruiker GetUserByUserName(string username)
         {
-            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Voornaam = '{username}'", SqlConnection);
+            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", SqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var gebruiker = new Gebruiker();
             while (reader.Read())
             {
-                gebruiker.GebruikerID = reader.GetInt32(0);
-                gebruiker.Voornaam = reader.GetString(1);
-                gebruiker.Naam = reader.GetString(2);
+                gebruiker.GebruikerID = (int)reader["UserId"];
+                gebruiker.Email = (string)reader["Email"];
+                gebruiker.FirstName = (string)reader["FirstName"];
+                gebruiker.LastName = (string)reader["LastName"];
                 gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
-                gebruiker.PasswoordSalt = reader.GetString(4);
+                gebruiker.PasswoordSalt = (string)reader["PasswoordSalt"];
             }
+
+            reader.Close();
 
 
             return gebruiker;

@@ -24,12 +24,12 @@ namespace WpfDesktopApp
         private void AppStartup(object sender, StartupEventArgs e)
         {
 
-            ///TEST
-            /// var x = new RegistrationService().userAlreadyExists("Wouter");
-            
-            new LoginMainWindow().ShowDialog();
+            ///TEST SECTION
+            var x = new RegistrationService().createNewUser("yo", "Wouter", "Vangeel", "lol");
+            //new DataContext().CreateUser("11303010@student.pxl.be", "Wouter", "Vangeel", "lol");
+            //new LoginMainWindow().ShowDialog();
 
-            //TEST
+            //TEST SECTION
 
             this.MainWindow = new MainWindow();
 
@@ -37,7 +37,6 @@ namespace WpfDesktopApp
             var result = loginView.ShowDialog();
             loginView.Close();
 
-            var user = (Gebruiker)App.Current.Properties["CurrentAuthenticatedUser"];
             if (result == false)
             {
                 App.Current.Shutdown();
@@ -46,7 +45,7 @@ namespace WpfDesktopApp
                 
                 MainWindow.DataContext = new MainWindowViewModel
                 {
-                    CurrentUser = user
+                    CurrentUser = (Gebruiker)App.Current.Properties["CurrentAuthenticatedUser"]
                 };
 
             MainWindow.ShowDialog();

@@ -49,7 +49,7 @@ namespace WpfDesktopApp.ViewModels.Login
 
                     if (result)
                     {
-                        App.Current.Properties["CurrentAuthenticatedUser"] = new Gebruiker { Voornaam = LoginName};
+                        App.Current.Properties["CurrentAuthenticatedUser"] = loginService.CurrentUser;
                         DialogResult = true;   
                     }
                 });

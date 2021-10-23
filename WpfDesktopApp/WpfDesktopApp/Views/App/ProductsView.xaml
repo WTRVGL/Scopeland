@@ -9,7 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              Background="White"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="1000">
     
     <UserControl.DataContext>
         <viewmodels:ProductsViewModel/>
@@ -20,22 +20,51 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Border BorderBrush="Black" 
-                                Width="600"
-                                BorderThickness="2">
-                            
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            
-                            <Rectangle Height="30px"
-                                       Width="30px"
-                                       Margin="0 0 10 0"
-                                       Stroke="Black"/>
-                            <TextBlock Text="{Binding ProductNaam}"
-                                        Margin="0 0 10 0"/>
-                            <TextBlock Text="{Binding ProductPrijs}"/>
-                        </StackPanel>
-                        </Border>
+                        <Grid>
+                            <Grid.Width>
+                                <Binding Path="ActualWidth" 
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollContentPresenter}}" />
+                            </Grid.Width>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Column="0"
+                                  Grid.ColumnSpan="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Ellipse Width="50px" Height="50px"
+                                     StrokeThickness="1"
+                                     Stroke="Black"/>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="1">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding ProductNaam}"/>
+                                        <TextBlock Text="{Binding ProductMerk}"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding ProductPrijs}"
+                                               Margin="20 0 0 0"/>
+                                </StackPanel>
+
+
+                            </Grid>
+
+                        </Grid>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
@@ -43,15 +72,50 @@
     </UserControl.Resources>
     
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Producten"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Grid.ColumnSpan="2" 
+                   Text="Producten"
                    Margin="20"
                    FontSize="26"/>
-        
-        <ListBox ItemsSource="{Binding Products}"
+
+        <!--Products Header Title-->
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="Omschrijving"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="2"
+                   Text="Huidige stock"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="3"
+                   Text="Aantal verkocht"
+                   HorizontalAlignment="Center"/>
+
+        <ListBox Grid.Row="2" Grid.Column="0"
+                 Grid.ColumnSpan="6"
+                 HorizontalContentAlignment="Center"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding Products}"
                  x:Name="ListBoxProductsList"
                  SelectedItem="{Binding SelectedProduct}">
-            
+
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <prism:InvokeCommandAction   
@@ -60,7 +124,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListBox>
-        </StackPanel>
 
     </Grid>
 </UserControl>

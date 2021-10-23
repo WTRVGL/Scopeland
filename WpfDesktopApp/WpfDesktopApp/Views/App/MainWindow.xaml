@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="600" Width="850">
+        Title="MainWindow" Height="800" Width="1200">
 
     <!--Sets DataContext to an instance of MainwindowViewModel-->
     <Window.DataContext>
@@ -71,7 +71,7 @@
                         Margin="5 10 5 5"
                         Stroke="Black"/>
                 
-                <TextBlock Text="{Binding CurrentUser.Voornaam}"
+                <TextBlock Text="{Binding CurrentUser.FirstName}"
                            HorizontalAlignment="Center"
                            FontSize="20"
                            FontWeight="ExtraBold"

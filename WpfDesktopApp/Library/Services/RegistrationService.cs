@@ -23,9 +23,16 @@ namespace Library.Services
             return true;
         }
 
-        //public Gebruiker createNewUser(Gebruiker user)
-        //{
-            
-        //}
+        public bool createNewUser(string username, string voornaam, string achternaam, string passwoord)
+        {
+            if (userAlreadyExists(username))
+            {
+                return false;
+            }
+            var data = new DataContext();
+            data.CreateUser(username, voornaam, achternaam, passwoord);
+            var createdUser = data.GetUserByUserName(username);
+            return true;
+        }
     }
 }
