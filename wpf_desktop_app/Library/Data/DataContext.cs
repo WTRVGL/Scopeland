@@ -12,7 +12,7 @@ namespace Library
 
         public DataContext()
         {
-            SqlConnection = new SqlConnection(@"Data Source=WTRVGL-LENO\SQLEXPRESS;Initial Catalog=PXLDigital_PRW_WPL;Integrated Security=True;");
+            SqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
         }
 
         public List<Product> GetProducts()
@@ -102,6 +102,7 @@ namespace Library
 
         public Gebruiker GetUserByUserName(string username)
         {
+
             var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", SqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
