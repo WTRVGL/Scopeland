@@ -9,8 +9,9 @@
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels.Login"
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Height="450" Width="600"
         FontSize="20"
+             Width="800"
+             Height="400"
         Background="White">
 
 
@@ -23,14 +24,20 @@
     </UserControl.Resources>
     
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black"
+                BorderThickness="3"
+                CornerRadius="15"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"/>
 
 
-        
+
         <StackPanel Grid.Column="1" 
                     VerticalAlignment="Center">
 

@@ -8,7 +8,9 @@ using System.Windows;
 namespace WpfDesktopApp.Helper
 {
     //Credits https://blog.excastle.com/2010/07/25/mvvm-and-dialogresult-with-no-code-behind/
-
+    /// <summary>
+    /// Helper class used to enable binding to the views DialogResult. 
+    /// </summary>
     public static class DialogCloser
     {
         public static readonly DependencyProperty DialogResultProperty =

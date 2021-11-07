@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WpfDesktopApp.Models
 {
+    /// <summary>
+    /// LoginModel contains properties for the LoginViewModel
+    /// </summary>
     public class RegistrationModel
     {
         public string Email { get; set; }

@@ -167,6 +167,20 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Aeonik-Air.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-AirItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Black.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-BlackItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Bold.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-BoldItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Light.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-LightItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Medium.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-MediumItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Regular.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-RegularItalic.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-Thin.otf" />
+    <Resource Include="Resources\Fonts\Aeonik-ThinItalic.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

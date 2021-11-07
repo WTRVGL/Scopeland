@@ -10,7 +10,7 @@
         helpers:DialogCloser.DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Width="1000" Height="750"
+        WindowState="Maximized"
 
         Title="LoginMainWindow">
 
@@ -29,10 +29,8 @@
         
 
     </Window.Resources>
-    
+
     <Grid>
-        <Border BorderBrush="Black"
-                BorderThickness="1"/>
         <ContentControl Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>
