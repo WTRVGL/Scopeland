@@ -83,10 +83,13 @@
                             Stroke="Black"/>
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="Beheerder" Foreground="#b69191"/>
-                        <TextBlock Text="Wouter Vangeel"
+                        <TextBlock
                            HorizontalAlignment="Center"
                            FontSize="16"
-                           FontWeight="Bold"/>
+                           FontWeight="Bold">
+                            <Run Text="{Binding CurrentUser.FirstName}"/>
+                            <Run Text="{Binding CurrentUser.LastName}"/>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
 
