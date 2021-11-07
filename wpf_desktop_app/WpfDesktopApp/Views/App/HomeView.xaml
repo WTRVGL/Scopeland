@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfDesktopApp.Views"
              mc:Ignorable="d" 
+             xmlns:mockvm="clr-namespace:WpfDesktopApp.ViewModels.MockViewModels"
+             d:DataContext ="{d:DesignInstance {x:Type mockvm:MockHomeViewModel}, IsDesignTimeCreatable=True}"
              Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>

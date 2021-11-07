@@ -128,8 +128,9 @@
                 FontWeight="Bold"
                 Foreground="White"
                 Background="#9523EF"
+                
                 Content="+ Product toevoegen"
-                Margin="10 5 10 5"
+                Margin="30 5 30 5"
                 Width="auto"/>
         
         <!--Products Header Title-->

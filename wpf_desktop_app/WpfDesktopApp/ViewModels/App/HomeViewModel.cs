@@ -12,6 +12,7 @@ namespace WpfDesktopApp.ViewModels
         }
 
 
+
         public HomeViewModel()
         {
             CurrentUser = (Gebruiker)App.Current.Properties["CurrentAuthenticatedUser"];
