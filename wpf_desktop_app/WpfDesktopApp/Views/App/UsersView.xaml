@@ -13,8 +13,11 @@
         <viewmodels:UsersViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <TextBlock Text="Gebruikers"
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Grid.ColumnSpan="2" 
+                   Text="Gebruikers"
                    Margin="20"
-                   FontSize="26"/>
+                   FontSize="32"
+                   FontWeight="Medium"/>
     </Grid>
 </UserControl>

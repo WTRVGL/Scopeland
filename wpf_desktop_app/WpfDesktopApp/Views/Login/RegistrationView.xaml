@@ -19,11 +19,11 @@
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
 
-        <Border BorderBrush="Black"
+        <!--<Border BorderBrush="Black"
                 BorderThickness="3"
                 CornerRadius="15"
                 Grid.ColumnSpan="3"
-                Grid.RowSpan="3"/>
+                Grid.RowSpan="3"/>-->
 
 
 
