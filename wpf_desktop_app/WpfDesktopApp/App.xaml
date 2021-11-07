@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WpfDesktopApp"
              xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
              xmlns:views="clr-namespace:WpfDesktopApp.Views"
+             
              Startup="AppStartup">
 
     <Application.Resources>

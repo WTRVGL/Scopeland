@@ -10,7 +10,8 @@
         helpers:DialogCloser.DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
+        Height="800"
+        Width="1200 "
 
         Title="LoginMainWindow">
 

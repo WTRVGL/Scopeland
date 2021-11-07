@@ -9,7 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              Background="White"
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="800" d:DesignWidth="1000">
     
     <UserControl.DataContext>
         <viewmodels:ProductsViewModel/>
@@ -38,17 +38,20 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
+                            <Border Grid.ColumnSpan="6"  BorderThickness="0 0 0 1"
+                                    BorderBrush="#D1D1D1"/>
                             <Grid Grid.Column="0"
                                   Grid.ColumnSpan="4">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.3*"/>
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Ellipse Width="50px" Height="50px"
                                      StrokeThickness="1"
-                                     Stroke="Black"/>
+                                     Stroke="#D1D1D1"
+                                         Margin="5"/>
 
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Column="1">
@@ -88,29 +91,73 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
+        <!--Title-->
         <TextBlock Grid.Row="0" Grid.Column="0" 
                    Grid.ColumnSpan="2" 
                    Text="Producten"
                    Margin="20"
-                   FontSize="26"/>
-
-        <!--Products Header Title-->
+                   FontSize="32"
+                   FontWeight="Medium"/>
         
-        <TextBlock Grid.Row="1" Grid.Column="0"
+        <!--Searchbar-->
+        <Border Grid.Row="1"
+                Grid.ColumnSpan="6"
+                Background="#f3f3f3"
+                CornerRadius="5"
+                Margin="20 0 20 0"/>
+        
+        <TextBox Grid.Row="1"
+                 Grid.ColumnSpan="3"
+                 Height="35"
+                 Margin="30 5 5 5"
+                 
+                 BorderBrush="#D1D1D1"
+                 BorderThickness="1"/>
+        <Button Grid.Row="1"
+                 Grid.Column="3"
+                FontSize="20"
+                FontWeight="Bold"
+                Content="Zoeken"
+                
+                Margin="30 5 30 5"/>
+        
+        <Button Grid.Row="1"
+                 Grid.Column="4"
+                Grid.ColumnSpan="2"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Background="#9523EF"
+                Content="+ Product toevoegen"
+                Margin="10 5 10 5"
+                Width="auto"/>
+        
+        <!--Products Header Title-->
+        <Border BorderThickness="0 0 0 1"
+                BorderBrush="#D1D1D1"
+                Grid.Row="2" Grid.Column="0"
+                Grid.ColumnSpan="6"/>
+        
+        
+        <TextBlock Grid.Row="2" Grid.Column="0"
+                   Margin="0 25 0 10"
                    Grid.ColumnSpan="3"
-                   Text="Omschrijving"
+                   Text="Omschrijving" 
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="4"
+        <TextBlock Grid.Row="2" Grid.Column="4"
+                   Margin="0 25 0 10"
                    Text="Huidige stock"
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="5"
+        <TextBlock Grid.Row="2" Grid.Column="5"
+                   Margin="0 25 0 10"
                    Text="Aantal verkocht"
                    HorizontalAlignment="Center"/>
 
-        <ListBox Grid.Row="2" Grid.Column="0"
+        <ListBox Grid.Row="3" Grid.Column="0"
                  Grid.ColumnSpan="6"
+                 BorderThickness="0"
                  HorizontalContentAlignment="Center"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemsSource="{Binding Products}"
