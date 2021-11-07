@@ -23,5 +23,6 @@ namespace WpfDesktopApp.Views.Login
         {
             InitializeComponent();
         }
+
     }
 }

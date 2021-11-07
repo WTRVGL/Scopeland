@@ -39,10 +39,10 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Column="0"
-                                  Grid.ColumnSpan="2">
+                                  Grid.ColumnSpan="4">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.2*"/>
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
 
@@ -95,16 +95,17 @@
                    FontSize="26"/>
 
         <!--Products Header Title-->
+        
         <TextBlock Grid.Row="1" Grid.Column="0"
-                   Grid.ColumnSpan="2"
+                   Grid.ColumnSpan="3"
                    Text="Omschrijving"
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="2"
+        <TextBlock Grid.Row="1" Grid.Column="4"
                    Text="Huidige stock"
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="3"
+        <TextBlock Grid.Row="1" Grid.Column="5"
                    Text="Aantal verkocht"
                    HorizontalAlignment="Center"/>
 

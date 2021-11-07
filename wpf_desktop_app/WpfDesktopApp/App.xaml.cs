@@ -24,7 +24,7 @@ namespace WpfDesktopApp
         private void AppStartup(object sender, StartupEventArgs e)
         {
             this.MainWindow = new MainWindow();
-            var loginView = new LoginView();
+            var loginView = new LoginMainWindow();
             var result = loginView.ShowDialog();
 
             if (result == false)

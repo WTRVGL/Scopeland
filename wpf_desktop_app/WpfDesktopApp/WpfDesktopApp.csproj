@@ -67,6 +67,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\DialogCloser.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="ViewModels\App\HomeViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginMainWindowViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />

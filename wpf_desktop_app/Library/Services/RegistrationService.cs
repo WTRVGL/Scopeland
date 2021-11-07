@@ -29,9 +29,10 @@ namespace Library.Services
             {
                 return false;
             }
-            var data = new DataContext();
-            data.CreateUser(username, voornaam, achternaam, passwoord);
-            var createdUser = data.GetUserByUserName(username);
+
+
+            Data.CreateUser(username, voornaam, achternaam, passwoord);
+            var createdUser = Data.GetUserByUserName(username);
             return true;
         }
     }

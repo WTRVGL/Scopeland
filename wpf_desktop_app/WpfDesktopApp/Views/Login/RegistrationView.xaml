@@ -3,64 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfDesktopApp.Views.Login"
+             xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels.Login" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:prism="http://www.codeplex.com/prism" xmlns:login="clr-namespace:WpfDesktopApp.ViewModels.Login"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="200" d:DesignWidth="400">
+             FontSize="20"
+             Height="700" Width="1000">
+
+    <UserControl.DataContext>
+        <viewmodels:RegistrationViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1"
-                    HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" 
-                        >
-                <TextBlock Text="E-mail"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                         Width="100"
-                         Margin="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" 
-                        >
-                <TextBlock Text="Voornaam"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                <TextBox Text="{Binding FirstName}"
-                         Width="100"
-                         Margin="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" 
-                        >
-                <TextBlock Text="Achternaam"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                <TextBox Text="{Binding LastName}"
-                         Width="100"
-                         Margin="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" 
-                        >
-                <TextBlock Text="Wachtwoord"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Password}"
-                         Width="100"
-                         Margin="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" 
-                        >
-                <TextBlock Text="Herhaal Wachtwoord"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
-                <TextBox Text="{Binding PasswordRepeat}"
-                         Width="100"
-                         Margin="10"/>
-            </StackPanel>
-        </StackPanel>
 
+
+        <StackPanel Grid.Column="1" 
+                    VerticalAlignment="Center">
+
+            <TextBlock Text="Welkom!"
+                       FontSize="20"
+                       Foreground="#515051"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Registreren"
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       Margin="0 0 0 25"/>
+            
+            <TextBlock  Style="{StaticResource TextBoxLabel}" 
+                        Text="Voornaam" />
+            <TextBox Style="{StaticResource LoginTextBox}" 
+                     Text="{Binding RegistrationModel.FirstName}"/>
+            <TextBlock  Style="{StaticResource TextBoxLabel}" 
+                        Text="Achternaam" />
+            <TextBox Style="{StaticResource LoginTextBox}" 
+                     Text="{Binding RegistrationModel.LastName}"/>
+            <TextBlock  Style="{StaticResource TextBoxLabel}" 
+                        Text="E-mail adres" />
+            <TextBox Style="{StaticResource LoginTextBox}" 
+                     Text="{Binding RegistrationModel.Email}"/>
+
+            <TextBlock  Style="{StaticResource TextBoxLabel}" 
+                    Text="Passwoord:" />
+            
+            <TextBox Style="{StaticResource LoginTextBox}" 
+                     Text="{Binding RegistrationModel.Password}"/>
+
+            <TextBlock  Style="{StaticResource TextBoxLabel}" 
+                    Text="Herhaal passwoord:" />
+
+            <TextBox Style="{StaticResource LoginTextBox}" 
+                     Text="{Binding RegistrationModel.PasswordRepeat}"/>
+
+
+            <Button Content="Registreer"
+                    Padding="15 10 15 10"
+                    Command="{Binding DataContext.VerifyRegistrationCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                    CommandParameter="{Binding RegistrationModel}"
+                    />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Terug"
+                           Margin="0 10 0 0"
+                       FontSize="16"
+                       FontWeight="Bold">
+                <i:Interaction.Triggers>
+                         <i:EventTrigger EventName="MouseDown">
+                            <prism:InvokeCommandAction   
+                            Command="{Binding DataContext.ShowLoginCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </StackPanel>
+
+
+        </StackPanel>
     </Grid>
 </UserControl>

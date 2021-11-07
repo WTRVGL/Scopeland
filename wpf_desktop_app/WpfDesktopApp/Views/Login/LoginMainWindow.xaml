@@ -6,19 +6,33 @@
         xmlns:local="clr-namespace:WpfDesktopApp.Views"
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels.Login"
         xmlns:views="clr-namespace:WpfDesktopApp.Views.Login"
+        xmlns:helpers="clr-namespace:WpfDesktopApp.Helper" 
+        helpers:DialogCloser.DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
-        Title="LoginMainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Width="1000" Height="750"
+
+        Title="LoginMainWindow">
 
     <Window.DataContext>
         <viewmodels:LoginMainWindowViewModel/>
     </Window.DataContext>
+    
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:RegistrationViewModel}">
             <views:RegistrationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+            <views:LoginView/>
+        </DataTemplate>
+
+        
+
     </Window.Resources>
     
     <Grid>
+        <Border BorderBrush="Black"
+                BorderThickness="1"/>
         <ContentControl Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>

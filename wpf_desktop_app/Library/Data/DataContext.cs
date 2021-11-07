@@ -93,6 +93,7 @@ namespace Library
 
 
             var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", SqlConnection);
+            command.Connection.Close();
             command.Connection.Open();
             var reader = command.ExecuteReader();
             reader.Close();
@@ -104,6 +105,7 @@ namespace Library
         {
 
             var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", SqlConnection);
+            command.Connection.Close();
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var gebruiker = new Gebruiker();
