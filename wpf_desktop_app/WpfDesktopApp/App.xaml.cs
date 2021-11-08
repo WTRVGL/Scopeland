@@ -6,11 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfDesktopApp.Views;
-using Core.Services;
+using Library.Services;
 using Library;
 using WpfDesktopApp.ViewModels;
 using WpfDesktopApp.Views.Login;
-using Library.Services;
 
 namespace WpfDesktopApp
 {

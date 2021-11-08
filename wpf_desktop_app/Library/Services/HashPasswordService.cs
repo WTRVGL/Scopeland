@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Core.Services
+namespace Library.Services
 {
     public class HashPasswordService
     {
-
-        public string HashBase64 { get; }
-        public string SaltBase64 { get; }
-
-        public HashPasswordService(string password)
-        {
-            var rng = new RNGCryptoServiceProvider();
-            var saltBytes = new byte[14];
-            rng.GetBytes(saltBytes);
-
-            var rfc = new Rfc2898DeriveBytes(password, saltBytes);
-            var hashBytes = rfc.GetBytes(20);
-
-            HashBase64 = Convert.ToBase64String(hashBytes);
-            SaltBase64 = Convert.ToBase64String(saltBytes);
-        }
+        private readonly byte[] saltBytes;
 
         public HashPasswordService()
         {
+            saltBytes = new byte[14];
+        }
+
+        /// <summary>
+        /// Generate a hash and salt tuple from a password.
+        /// </summary>
+        /// <param name="password">The entered password</param>
+        /// <returns>Hash as Item 1, Salt as Item 2</returns>
+        public Tuple<string, string> generateHashAndSalt(string password)
+        {
+            var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(saltBytes);
+            var saltBase64 = Convert.ToBase64String(saltBytes);
+
+            
+
+            var rfc = new Rfc2898DeriveBytes(password, saltBytes);
+            var hashBytes = rfc.GetBytes(20);
+            var hashBase64 = Convert.ToBase64String(hashBytes);
+
+            return new Tuple<string, string>(hashBase64, saltBase64);
 
         }
 

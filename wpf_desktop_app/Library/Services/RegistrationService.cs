@@ -31,8 +31,7 @@ namespace Library.Services
             }
 
 
-            Data.CreateUser(username, voornaam, achternaam, passwoord);
-            var createdUser = Data.GetUserByUserName(username);
+            var createdUser = Data.CreateUser(username, voornaam, achternaam, passwoord);
             return true;
         }
     }

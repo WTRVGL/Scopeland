@@ -1,19 +1,16 @@
-﻿
-using Core.Services;
-
-namespace Library.Services
+﻿namespace Library.Services
 {
     public class LoginService
     {
+        private readonly string _username;
+        private readonly string _password;
+
         public Gebruiker CurrentUser { get; set; }
-        public string Password { get; set; }
-        private DataContext Data { get; set; }
 
         public LoginService(string username, string password)
         {
-            Data = new DataContext();
-            CurrentUser = Data.GetUserByUserName(username);
-            Password = password;
+            _username = username;
+            _password = password;
         }
 
         /// <summary>
@@ -22,13 +19,16 @@ namespace Library.Services
         /// <returns></returns>
         public bool authenticateUser()
         {
+            var data = new DataContext();
+            CurrentUser = data.GetUserByUserName(_username);
+
             if (CurrentUser.GebruikerID == 0)
             {
                 return false;
             }
 
             var passwordService = new HashPasswordService();
-            var result = passwordService.checkHash(Password, CurrentUser.PasswoordHash, CurrentUser.PasswoordSalt);
+            var result = passwordService.checkHash(_password, CurrentUser.PasswoordHash, CurrentUser.PasswoordSalt);
 
            
             return result;

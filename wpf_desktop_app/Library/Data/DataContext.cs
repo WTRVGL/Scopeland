@@ -1,6 +1,7 @@
-﻿using Core.Services;
+﻿using Library.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -8,16 +9,16 @@ namespace Library
 {
     public class DataContext : IDataContext
     {
-        private SqlConnection SqlConnection { get; set; }
+        private readonly SqlConnection sqlConnection;
 
         public DataContext()
         {
-            SqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
+            sqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
         }
 
         public List<Product> GetProducts()
         {
-            var command = new SqlCommand($"SELECT * FROM Products", SqlConnection);
+            var command = new SqlCommand($"SELECT * FROM Products", sqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var products = new List<Product>();
@@ -40,7 +41,7 @@ namespace Library
 
         public Product GetProduct(int id)
         {
-            var command = new SqlCommand($"SELECT * FROM Products WHERE ProductId = {id}", SqlConnection);
+            var command = new SqlCommand($"SELECT * FROM Products WHERE ProductId = {id}", sqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var product = new Product();
@@ -60,7 +61,7 @@ namespace Library
 
         public Gebruiker GetUser(int id)
         {
-            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Id = {id}", SqlConnection);
+            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Id = {id}", sqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var gebruiker = new Gebruiker();
@@ -85,26 +86,29 @@ namespace Library
 
 
 
-        public void CreateUser(string username, string voornaam, string achternaam, string passwoord)
+        public Gebruiker CreateUser(string username, string voornaam, string achternaam, string passwoord)
         {
-            var service = new HashPasswordService(passwoord);
-            var passwoordHash = service.HashBase64;
-            var passwoordSalt = service.SaltBase64;
+            var service = new HashPasswordService();
 
+            Tuple<string, string> passwordHashSaltTuple = service.generateHashAndSalt(passwoord);
 
-            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", SqlConnection);
+            var passwoordHash = passwordHashSaltTuple.Item1;
+            var passwoordSalt = passwordHashSaltTuple.Item2;
+
+            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", sqlConnection);
             command.Connection.Close();
             command.Connection.Open();
             var reader = command.ExecuteReader();
             reader.Close();
 
+            return GetUserByUserName(username);
 
         }
 
         public Gebruiker GetUserByUserName(string username)
         {
 
-            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", SqlConnection);
+            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", sqlConnection);
             command.Connection.Close();
             command.Connection.Open();
             var reader = command.ExecuteReader();
