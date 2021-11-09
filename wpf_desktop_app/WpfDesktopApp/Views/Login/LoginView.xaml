@@ -53,7 +53,7 @@
             <TextBlock  Style="{StaticResource TextBoxLabel}" 
                         Text="E-mail adres" />
             <TextBox Style="{StaticResource LoginTextBox}" 
-                     Text="{Binding LoginModel.LoginName}"/>
+                     Text="{Binding LoginModel.LoginName, UpdateSourceTrigger=PropertyChanged}"/>
 
             <DockPanel >
                 <TextBlock  Style="{StaticResource TextBoxLabel}" 
@@ -70,7 +70,7 @@
 
             <Button Content="Login"
                     Padding="15 10 15 10"
-                    Command="{Binding DataContext.VerifyLoginCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                    Command="{Binding VerifyLoginCommand}"
                     CommandParameter="{Binding LoginModel}"
                     />
 

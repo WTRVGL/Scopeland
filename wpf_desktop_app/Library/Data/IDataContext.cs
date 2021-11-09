@@ -8,6 +8,7 @@ namespace Library
     {
         List<Product> GetProducts();
         Product GetProduct(int id);
+        Product CreateProduct(Product product);
         List<Gebruiker> GetUsers();
         Gebruiker GetUser(int id);
         Gebruiker GetUserByUserName(string username);

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using WpfDesktopApp.Views;
-using Library.Services;
+﻿using System.Windows;
 using Library;
 using WpfDesktopApp.ViewModels;
 using WpfDesktopApp.Views.Login;
@@ -37,9 +29,6 @@ namespace WpfDesktopApp
             };
 
             MainWindow.ShowDialog();
-            
-            
-            
         }
     }
 }

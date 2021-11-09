@@ -38,13 +38,13 @@ namespace Library
             return products;
         }
 
-
         public Product GetProduct(int id)
         {
             var command = new SqlCommand($"SELECT * FROM Products WHERE ProductId = {id}", sqlConnection);
             command.Connection.Open();
             var reader = command.ExecuteReader();
             var product = new Product();
+
             while (reader.Read())
             {
                 product.ProductID = reader.GetInt32(0);
@@ -53,6 +53,7 @@ namespace Library
                 product.ProductOmschrijving = reader.GetString(3);
                 product.ProductMerk = reader.GetString(4);
             }
+
             reader.Close();
             return product;
         }
@@ -79,12 +80,29 @@ namespace Library
             return gebruiker;
         }
 
+        //NEEDS TEST
         public List<Gebruiker> GetUsers()
         {
-            throw new NotImplementedException();
+            var command = new SqlCommand($"SELECT * FROM Gebruikers", sqlConnection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            var users = new List<Gebruiker>();
+            while (reader.Read())
+            {
+                users.Add(
+                    new Gebruiker
+                    {
+                        GebruikerID = (int)reader["UserId"],
+                        Email = (string)reader["Email"],
+                        FirstName = (string)reader["FirstName"],
+                        LastName = (string)reader["LastName"],
+                        PasswoordHash = (string)reader["PasswoordHash"],
+                        PasswoordSalt = (string)reader["PasswoordSalt"]
+                    });
+            }
+            reader.Close();
+            return users;
         }
-
-
 
         public Gebruiker CreateUser(string username, string voornaam, string achternaam, string passwoord)
         {
@@ -129,5 +147,9 @@ namespace Library
             return gebruiker;
         }
 
+        public Product CreateProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
