@@ -56,19 +56,19 @@
             <TextBlock  Style="{StaticResource TextBoxLabel}" 
                     Text="Passwoord:" />
             
-            <TextBox Style="{StaticResource LoginTextBox}" 
-                     Text="{Binding RegistrationModel.Password}"/>
+            <PasswordBox Style="{StaticResource LoginPasswordBox}" 
+                        PasswordChanged="PasswordChanged_Event"/>
 
             <TextBlock  Style="{StaticResource TextBoxLabel}" 
                     Text="Herhaal passwoord:" />
 
-            <TextBox Style="{StaticResource LoginTextBox}" 
-                     Text="{Binding RegistrationModel.PasswordRepeat}"/>
+            <PasswordBox Style="{StaticResource LoginPasswordBox}" 
+                         PasswordChanged="RepeatPasswordChanged_Event" />
 
 
             <Button Content="Registreer"
                     Padding="15 10 15 10"
-                    Command="{Binding DataContext.VerifyRegistrationCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                    Command="{Binding VerifyRegistrationCommand}"
                     CommandParameter="{Binding RegistrationModel}"
                     />
 

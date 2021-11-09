@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfDesktopApp.ViewModels.Login;
 
 namespace WpfDesktopApp.Views.Login
 {
@@ -23,6 +24,18 @@ namespace WpfDesktopApp.Views.Login
         public RegistrationView()
         {
             InitializeComponent();
+        }
+
+        private void RepeatPasswordChanged_Event(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((RegistrationViewModel)this.DataContext).RegistrationModel.PasswordRepeat= ((PasswordBox)sender).Password; }
+        }
+
+        private void PasswordChanged_Event(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((RegistrationViewModel)this.DataContext).RegistrationModel.Password = ((PasswordBox)sender).Password; }
         }
     }
 }

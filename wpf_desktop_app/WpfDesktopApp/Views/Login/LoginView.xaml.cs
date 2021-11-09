@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDesktopApp.Models;
+using WpfDesktopApp.ViewModels;
+using WpfDesktopApp.ViewModels.Login;
 
 namespace WpfDesktopApp.Views.Login
 {
@@ -25,5 +27,10 @@ namespace WpfDesktopApp.Views.Login
             InitializeComponent();
         }
 
+        private void passwordChanged_event(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((LoginViewModel)this.DataContext).LoginModel.LoginPassword = ((PasswordBox)sender).Password; }
+        }
     }
 }

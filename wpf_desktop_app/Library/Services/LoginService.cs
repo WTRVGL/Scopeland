@@ -1,4 +1,6 @@
-﻿namespace Library.Services
+﻿using System.Security;
+
+namespace Library.Services
 {
     public class LoginService
     {

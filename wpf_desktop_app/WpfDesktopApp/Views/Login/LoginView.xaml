@@ -64,8 +64,8 @@
                         Text="Passwoord vergeten?" />
             </DockPanel>
 
-            <TextBox Style="{StaticResource LoginTextBox}" 
-                     Text="{Binding LoginModel.LoginPassword}"/>
+            <PasswordBox Style="{StaticResource LoginPasswordBox}" 
+                         PasswordChanged="passwordChanged_event" />
 
 
             <Button Content="Login"
