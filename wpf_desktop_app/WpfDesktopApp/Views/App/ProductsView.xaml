@@ -39,12 +39,13 @@
                             </Grid.RowDefinitions>
 
                             <Border Grid.ColumnSpan="6"  BorderThickness="0 0 0 1"
+                                    Margin="10 0 0 0"
                                     BorderBrush="#D1D1D1"/>
                             <Grid Grid.Column="0"
                                   Grid.ColumnSpan="4">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.3*"/> 
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
 
@@ -56,7 +57,8 @@
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Column="1">
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding ProductNaam}"/>
+                                        <TextBlock Text="{Binding ProductNaam}"
+                                                   />
                                         <TextBlock Text="{Binding ProductMerk}"/>
                                     </StackPanel>
 
@@ -135,6 +137,7 @@
         
         <!--Products Header Title-->
         <Border BorderThickness="0 0 0 1"
+                Margin="10 0 0 10"
                 BorderBrush="#D1D1D1"
                 Grid.Row="2" Grid.Column="0"
                 Grid.ColumnSpan="6"/>
@@ -144,22 +147,25 @@
                    Margin="0 25 0 10"
                    Grid.ColumnSpan="3"
                    Text="Omschrijving" 
+                   FontSize="22"
                    HorizontalAlignment="Center"/>
 
         <TextBlock Grid.Row="2" Grid.Column="4"
                    Margin="0 25 0 10"
                    Text="Huidige stock"
+                   FontSize="22"
                    HorizontalAlignment="Center"/>
 
         <TextBlock Grid.Row="2" Grid.Column="5"
                    Margin="0 25 0 10"
                    Text="Aantal verkocht"
+                   FontSize="22"
                    HorizontalAlignment="Center"/>
 
         <ListBox Grid.Row="3" Grid.Column="0"
                  Grid.ColumnSpan="6"
                  BorderThickness="0"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemsSource="{Binding Products}"
                  x:Name="ListBoxProductsList"

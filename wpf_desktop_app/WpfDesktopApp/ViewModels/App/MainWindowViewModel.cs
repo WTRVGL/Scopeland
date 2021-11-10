@@ -1,9 +1,11 @@
-﻿using Library;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Library;
 using Prism.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using System.Windows.Input;
+using WpfDesktopApp.Messenges;
 
 namespace WpfDesktopApp.ViewModels
 {
@@ -34,6 +36,12 @@ namespace WpfDesktopApp.ViewModels
         public MainWindowViewModel()
         {
             SelectedViewModel = new HomeViewModel();
+            Messenger.Default.Register<ChangePageMessage>(this, ChangeSelectedViewModel);
+        }
+
+        private void ChangeSelectedViewModel(ChangePageMessage message)
+        {
+            SelectedViewModel = message.SelectedViewModel;
         }
     }
 }

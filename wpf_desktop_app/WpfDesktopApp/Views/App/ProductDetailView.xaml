@@ -6,78 +6,251 @@
         xmlns:local="clr-namespace:WpfDesktopApp.Views"
         xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
+        xmlns:mockvm="clr-namespace:WpfDesktopApp.ViewModels.MockViewModels"
+             d:DataContext ="{d:DesignInstance {x:Type mockvm:MockProductDetailViewModel}, IsDesignTimeCreatable=True}"
         Background="White"
-        d:DesignHeight="300" d:DesignWidth="450">
+             FontFamily="Roboto"
+        d:DesignHeight="800" d:DesignWidth="1000 ">
 
-    <!--<UserControl.DataContext>
-        <viewmodels:ProductDetailViewModel/>
-    </UserControl.DataContext>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="41*"/>
         </Grid.ColumnDefinitions>
-        
-        <!--Product foto kolom-->
-        <Image Source="/Resources/150mm_refractor.jpg"
-               Grid.Column="1"
-               Margin="35"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Back-->
+        <TextBlock Grid.Row="0" Grid.Column="1" 
+                   Grid.ColumnSpan="2" 
+                   Text="back"
+                   Margin="0 20"
+                   FontSize="32"
+                   FontWeight="Medium"/>
+
+        <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
+                Grid.ColumnSpan="6" Grid.Column="1"/>
 
 
-        <!--Product informatie Grid-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" 
+                    Grid.ColumnSpan="4"
+                    Orientation="Horizontal">
+            <Ellipse Width="50px" Height="50px"
+                     StrokeThickness="1"
+                     Stroke="#D1D1D1"
+                     Margin="0 10"/>
+            <TextBlock Text="{Binding Product.ProductNaam}"
+                       FontSize="24" FontWeight="Medium"
+                       Margin="35 0 0 0"
+                       VerticalAlignment="Center"/>
+        </StackPanel>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            
-            
-            <TextBlock Text="Product informatie"
-                       Grid.ColumnSpan="2"
-                       FontWeight="Bold"
-                       FontSize="20"/>
 
-            <!--StackPanel kolom 1-->
-            <StackPanel Grid.Row="1">
-                <TextBlock Text="Product naam"/>
-                <!--Product naam Textbox-->
-                <TextBox Text="{Binding Product.ProductNaam}"/>
+        <Button Grid.Row="1"
+                 Grid.Column="5"
+                Grid.ColumnSpan="2"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Background="#9523EF"
                 
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Text="{Binding Product.ProductPrijs}"/>
-                    <TextBlock Text="Euro"/>
-                </StackPanel>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="2"
-                        Grid.ColumnSpan="2">
-                <TextBlock Text="Productomschrijving"/>
-                <TextBox Text="{Binding Product.ProductOmschrijving}" 
-                         Height="100"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Edit"/>
-                    <Button Content="Save"/>
-                    <Button Content="Close"/>
-                </StackPanel>
-            </StackPanel>
-            
-            <!--StackPanel kolom 2-->
-            <StackPanel Grid.Column="1" 
-                        Grid.Row="1">
-                <TextBlock Text="Product merk"/>
-                <TextBox Text="{Binding Product.ProductMerk}"/>
-            </StackPanel>
+                Content="Product bewerken"
+                Margin="30 5 30 5"
+                Width="auto"/>
+
+        <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
+                Grid.Row="1"
+                Grid.ColumnSpan="7"
+                Margin="10 0 10 0"/>
+
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2"
+                   Grid.Column="1" 
+                   FontSize="26" FontWeight="Medium"
+                    Margin="0 30 0 30"
+                   Text="Algemene informatie"/>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Product id"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text="{Binding Product.ProductID}"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Merk"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text="{Binding Product.ProductMerk}"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
 
 
-        </Grid>
+        <StackPanel Grid.Row="4" Grid.Column="3">
+            <TextBlock Text="Categorie"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text="{Binding Product.ProductType}"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Prijs"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text="{Binding Product.ProductPrijs}"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="4"
+                    Margin="0 0 0 35">
+            <TextBlock Text="Huidige stock"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text="{Binding Product.Stock}"
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Leverancierprijs"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
         
+        <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
+                Grid.Row="4"
+                Grid.ColumnSpan="7"
+                Margin="10 0 10 0"/>
+
+        <!--Specificaties-->
+        <TextBlock Grid.Row="5" Grid.ColumnSpan="2"
+                   Grid.Column="1" 
+                   FontSize="26" FontWeight="Medium"
+                    Margin="0 35 0 30"
+                   Text="Specificaties"/>
+
+        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Type"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text=""
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Brandpuntlengte"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="22" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+            <TextBlock Text="Buislengte"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="22 " FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="6" Grid.Column="3">
+            <TextBlock Text="Resolutie"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Objectiefgrootte"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+            <TextBlock Text="Gewicht"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="4">
+            <TextBlock Text="Moeilijkheidsgraad"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="F verhouding"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <Border BorderBrush="#D1D1D1" BorderThickness="1 0 0 0"
+                Grid.Row="3"
+                Grid.RowSpan="7"
+                Grid.Column="5"
+                Margin="10 10 10 0"/>
         
+        <!--Verkoopsinformatie-->
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="2"
+                   Grid.Column="5"  
+                   FontSize="26" FontWeight="Medium"
+                    Margin="35 35 0 30"
+                   Text="Verkoopsinformatie"/>
+
+        <StackPanel Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2"
+                     Margin="35 0 0 0">
+            <TextBlock Text="Aantal verkocht"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+
+            <TextBlock Text="Datum laatste verkoop"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+            <TextBlock Text="Datum eerste stockage"
+                       FontSize="20" Foreground="#605D5D" 
+                       FontWeight="Medium"
+                       Margin="0 20 0 0"/>
+            <TextBlock Text=""
+                       FontSize="20" FontWeight="Medium"
+                       Margin="0 10 0 0"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

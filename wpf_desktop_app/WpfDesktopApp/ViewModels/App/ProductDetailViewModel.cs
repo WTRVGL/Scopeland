@@ -1,4 +1,8 @@
-﻿using Library;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Library;
+using Prism.Commands;
+using System.Windows.Input;
+using WpfDesktopApp.Messenges;
 
 namespace WpfDesktopApp.ViewModels
 {
@@ -16,5 +20,11 @@ namespace WpfDesktopApp.ViewModels
         {
             Product = product;
         }
+
+        public ICommand NavigateProductsPageCommand => new DelegateCommand(() => Messenger.Default.Send<ChangePageMessage>(
+                new ChangePageMessage
+                {
+                    SelectedViewModel = new ProductsViewModel()
+                }));
     }
 }

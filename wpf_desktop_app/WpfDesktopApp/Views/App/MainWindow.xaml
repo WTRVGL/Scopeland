@@ -47,7 +47,6 @@
     <Grid>
         <!--Main Grid Definitions-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -126,25 +125,19 @@
                 </StackPanel>
                 
             </StackPanel>
-        </DockPanel>
+        </DockPanel>  
 
         
 
         <!--Centrale content-->
-        <Grid Grid.Column="3 "
-              Grid.ColumnSpan="6"
-              Grid.Row="0"
-              Grid.RowSpan="3">
-
-            <ContentControl Content="{Binding SelectedViewModel}"/>
-            
-        </Grid>
+        <ContentControl Content="{Binding SelectedViewModel}"
+                        Grid.Column="3" Grid.ColumnSpan="7"/>
         
         <!--StatusBar-->
         <StatusBar Grid.Column="1" 
                    Grid.ColumnSpan="2" 
+                   Grid.Row="1"
                    Background="Transparent"
-                   Grid.Row="2"
                    HorizontalAlignment="Center">
             <Label Content="PXL Digital – PRW v1.0"
                    FontWeight="ExtraBlack"/>

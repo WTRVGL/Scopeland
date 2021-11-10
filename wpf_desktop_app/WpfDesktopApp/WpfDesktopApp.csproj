@@ -82,6 +82,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\DialogCloser.cs" />
+    <Compile Include="Messenges\ChangePageMessage.cs" />
     <Compile Include="Messenges\LoginResultMessage.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ViewModels\App\ProductDetailViewModel.cs" />
     <Compile Include="ViewModels\Login\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\App\UsersViewModel.cs" />
+    <Compile Include="ViewModels\MockViewModels\MockProductDetailViewModel.cs" />
     <Compile Include="ViewModels\MockViewModels\MockMainWindowViewModel.cs" />
     <Compile Include="ViewModels\MockViewModels\MockHomeViewModel.cs" />
     <Compile Include="Views\App\HomeView.xaml.cs">
