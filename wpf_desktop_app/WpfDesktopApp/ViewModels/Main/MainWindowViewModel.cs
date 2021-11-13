@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using WpfDesktopApp.Messenges;
 
-namespace WpfDesktopApp.ViewModels
+namespace WpfDesktopApp.ViewModels.Main
 {
     public class MainWindowViewModel : ViewModelBase
     {

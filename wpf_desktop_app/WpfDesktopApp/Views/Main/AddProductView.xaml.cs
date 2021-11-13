@@ -12,28 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfDesktopApp.ViewModels;
 
-namespace WpfDesktopApp.Views
+namespace WpfDesktopApp.Views.Main
 {
     /// <summary>
-    /// Interaction logic for ProductsView.xaml
+    /// Interaction logic for AddProductView.xaml
     /// </summary>
-    public partial class ProductsView : UserControl
+    public partial class AddProductView : UserControl
     {
-        public ProductsView()
+        public AddProductView()
         {
             InitializeComponent();
-        }
-
-        private void ListBoxProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBoxProductsList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

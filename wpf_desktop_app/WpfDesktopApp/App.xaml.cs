@@ -1,7 +1,8 @@
 ﻿using System.Windows;
 using Library;
-using WpfDesktopApp.ViewModels;
+using WpfDesktopApp.ViewModels.Main;
 using WpfDesktopApp.Views.Login;
+using WpfDesktopApp.Views.Main;
 
 namespace WpfDesktopApp
 {

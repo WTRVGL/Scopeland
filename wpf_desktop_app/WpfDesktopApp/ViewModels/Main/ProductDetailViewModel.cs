@@ -4,7 +4,7 @@ using Prism.Commands;
 using System.Windows.Input;
 using WpfDesktopApp.Messenges;
 
-namespace WpfDesktopApp.ViewModels
+namespace WpfDesktopApp.ViewModels.Main
 {
     public class ProductDetailViewModel : ViewModelBase
     {
@@ -21,7 +21,8 @@ namespace WpfDesktopApp.ViewModels
             Product = product;
         }
 
-        public ICommand NavigateProductsPageCommand => new DelegateCommand(() => Messenger.Default.Send<ChangePageMessage>(
+        public ICommand NavigateProductsPageCommand => 
+            new DelegateCommand(() => Messenger.Default.Send<ChangePageMessage>(
                 new ChangePageMessage
                 {
                     SelectedViewModel = new ProductsViewModel()

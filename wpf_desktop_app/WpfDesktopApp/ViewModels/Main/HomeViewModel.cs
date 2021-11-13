@@ -1,5 +1,6 @@
 ﻿using Library;
-namespace WpfDesktopApp.ViewModels
+
+namespace WpfDesktopApp.ViewModels.Main
 {
     public class HomeViewModel : ViewModelBase
     {

@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="WpfDesktopApp.Views.Main.AddProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDesktopApp.Views.Main"
+             xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels.Main"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="850" d:DesignWidth="1000">
+
+    <UserControl.DataContext>
+        <viewmodels:AddProductViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Back-->
+        <TextBlock Grid.Row="0" Grid.Column="1" 
+                   Grid.ColumnSpan="2" 
+                   Text="&lt; back"
+                   Margin="0 20"
+                   FontSize="30"
+                   Foreground="#605D5D"
+                   FontWeight="Medium"
+                   >
+        </TextBlock>
+
+        <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
+                Grid.ColumnSpan="6" Grid.Column="1"/>
+
+        <TextBlock Text="Product toevoegen"
+                   Grid.Row="1" Grid.Column="1" 
+                    Grid.ColumnSpan="3"
+                       FontSize="30" FontWeight="Medium"
+                       Margin="35 0 0 0"
+                       VerticalAlignment="Center"/>
+
+
+        <Button Grid.Row="1"
+                Grid.Column="4"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Background="#9523EF"
+                Margin="10 10"
+                Content="Opslaan"
+                Width="auto"/>
+
+        <Button Grid.Row="1"
+                Grid.Column="5"
+                FontSize="20"
+                FontWeight="Bold"
+                BorderBrush="#9523EF"
+                Foreground="#9523EF"
+                Background="White"
+                Margin="10 10"
+                Content="Annuleren"
+                Width="auto"/>
+        
+
+        <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
+                Grid.Row="1"
+                Grid.ColumnSpan="7"
+                Margin="10 0 10 0"/>
+
+        <Grid Grid.Row="2" Grid.Column="1"
+              Grid.ColumnSpan="6"
+              Grid.RowSpan="6"
+              Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Productnaam DockPanel-->
+            <DockPanel  Grid.Row="0" Grid.ColumnSpan="4"
+                        Grid.Column="0"
+                        LastChildFill="True"
+                        Margin="15 0">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Productnaam"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.ProductNaam}"/>
+            </DockPanel>
+
+            <!--Categorie DockPanel-->
+            <DockPanel  Grid.Row="0" Grid.ColumnSpan="2"
+                        Grid.Column="4"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Categorie"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.ProductCategory}"/>
+            </DockPanel>
+
+            <!--Aankoopprijs DockPanel-->
+            <DockPanel  Grid.Row="0" Grid.ColumnSpan="2"
+                        Grid.Column="6"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Aankoopprijs"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.PriceSold}"/>
+            </DockPanel>
+
+            <!--Productbeschrijving DockPanel-->
+            <DockPanel  Grid.Row="1" Grid.ColumnSpan="4"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Productbeschrijving"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.ProductOmschrijving}"/>
+            </DockPanel>
+
+            <!--Merk DockPanel-->
+            <DockPanel  Grid.Row="1" Grid.ColumnSpan="2"
+                        Grid.Column="4"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Merk"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.ProductMerk}"/>
+            </DockPanel>
+
+            <!--Verkoopprijs DockPanel-->
+            <DockPanel  Grid.Row="1" Grid.ColumnSpan="2"
+                        Grid.Column="6"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Verkoopprijs"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.PriceSold}"/>
+            </DockPanel>
+            
+            <!--Productbeschrijving DockPanel-->
+            <!--<DockPanel  Grid.Row="3" Grid.ColumnSpan="4"
+                        Grid.Column="0"
+                        Grid.RowSpan="3"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Productbeschrijving"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"/>
+            </DockPanel>-->
+
+           
+
+           
+
+            <!--Brandpunt DockPanel-->
+            <DockPanel  Grid.Row="2" Grid.ColumnSpan="2"
+                        Grid.Column="6"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Brandpunt"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.FocalLength}"/>
+            </DockPanel>
+
+            <!--Moeilijkheidsgraad DockPanel-->
+            <DockPanel  Grid.Row="4" Grid.ColumnSpan="2"
+                        Grid.Column="6"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Moeilijkheidsgraad"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.Difficulty}"/>
+            </DockPanel>
+
+            <!--Objectiefgrootte DockPanel-->
+            <DockPanel  Grid.Row="3" Grid.ColumnSpan="2"
+                        Grid.Column="6"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Objectiefgrootte"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.Aperture}"/>
+            </DockPanel>
+
+            <!--Resoltie DockPanel-->
+            <DockPanel  Grid.Row="3" Grid.ColumnSpan="2"
+                        Grid.Column="4"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Resoltie "/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.Resolution}"/>
+            </DockPanel>
+
+            <!--Buisgewicht DockPanel-->
+            <DockPanel  Grid.Row="4" Grid.ColumnSpan="2"
+                        Grid.Column="4"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Buisgewicht"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.Weight}"/>
+            </DockPanel>
+
+
+            <!--Type DockPanel-->
+            <DockPanel  Grid.Row="2" Grid.ColumnSpan="2"
+                        Grid.Column="4"
+                        Margin="15 0"
+                        LastChildFill="True">
+                <TextBlock 
+                    DockPanel.Dock="Top"
+                   FontSize="26" FontWeight="Medium"
+                   Text="Type"/>
+                <TextBox VerticalAlignment="Stretch"
+                         Margin="0 10"
+                         Text="{Binding Product.ProductType}"/>
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

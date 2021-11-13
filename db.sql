@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS PXLDigital_PRWA_WPL2_DB
+DROP DATABASE PXLDigital_PRWA_WPL2_DB
 CREATE DATABASE PXLDigital_PRWA_WPL2_DB
 
 USE PXLDigital_PRWA_WPL2_DB
@@ -10,6 +10,18 @@ CREATE TABLE Products (
 	ProductPrice decimal,
 	ProductDescription text,
 	ProductBrand nvarchar(100),
+	ProductCategory nvarchar(100),
+	ProductType nvarchar(100),
+	ProductStock int, 
+	ProductAmountSold int,
+	ProductFocalLength decimal,
+	ProductPriceSold decimal,
+	ProductResolution decimal,
+	ProductAperture decimal,
+	ProductWeight decimal,
+	ProductDifficulty nvarchar(100),
+	ProductDateLastSale DATE, 
+	ProductDateFirstStockage DATE
 )
 
 INSERT INTO Products (ProductName, ProductPrice, ProductDescription, ProductBrand) VALUES(

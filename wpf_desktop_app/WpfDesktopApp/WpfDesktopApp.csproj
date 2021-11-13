@@ -86,16 +86,20 @@
     <Compile Include="Messenges\LoginResultMessage.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
-    <Compile Include="ViewModels\App\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Main\AddProductViewModel.cs" />
+    <Compile Include="ViewModels\Main\HomeViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginMainWindowViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
-    <Compile Include="ViewModels\App\ProductDetailViewModel.cs" />
+    <Compile Include="ViewModels\Main\ProductDetailViewModel.cs" />
     <Compile Include="ViewModels\Login\RegistrationViewModel.cs" />
-    <Compile Include="ViewModels\App\UsersViewModel.cs" />
+    <Compile Include="ViewModels\Main\UsersViewModel.cs" />
     <Compile Include="ViewModels\MockViewModels\MockProductDetailViewModel.cs" />
     <Compile Include="ViewModels\MockViewModels\MockMainWindowViewModel.cs" />
     <Compile Include="ViewModels\MockViewModels\MockHomeViewModel.cs" />
-    <Compile Include="Views\App\HomeView.xaml.cs">
+    <Compile Include="Views\Main\AddProductView.xaml.cs">
+      <DependentUpon>AddProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\LoginMainWindow.xaml.cs">
@@ -104,23 +108,27 @@
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\App\ProductDetailView.xaml.cs">
+    <Compile Include="Views\Main\ProductDetailView.xaml.cs">
       <DependentUpon>ProductDetailView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\App\ProductsView.xaml.cs">
+    <Compile Include="Views\Main\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\App\UsersView.xaml.cs">
+    <Compile Include="Views\Main\UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\Common.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\App\HomeView.xaml">
+    <Page Include="Views\Main\AddProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,7 +140,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\App\MainWindow.xaml">
+    <Page Include="Views\Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -141,16 +149,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\App\ProductsViewModel.cs" />
-    <Compile Include="Views\App\MainWindow.xaml.cs">
+    <Compile Include="ViewModels\Main\ProductsViewModel.cs" />
+    <Compile Include="Views\Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\App\ProductDetailView.xaml">
+    <Page Include="Views\Main\ProductDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\App\ProductsView.xaml">
+    <Page Include="Views\Main\ProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,13 +166,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\App\UsersView.xaml">
+    <Page Include="Views\Main\UsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\App\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

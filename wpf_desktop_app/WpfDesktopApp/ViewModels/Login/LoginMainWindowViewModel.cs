@@ -1,15 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Library.Services;
 using Prism.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfDesktopApp.Messenges;
-using WpfDesktopApp.Models;
-using static WpfDesktopApp.ViewModels.Login.LoginViewModel;
 
 namespace WpfDesktopApp.ViewModels.Login
 {
@@ -54,11 +46,7 @@ namespace WpfDesktopApp.ViewModels.Login
             }
 
             DialogResult = message.Authenticated;
-
-            if (DialogResult == true)
-            {
-                App.Current.Properties["CurrentAuthenticatedUser"] = message.CurrentUser;
-            }
+            App.Current.Properties["CurrentAuthenticatedUser"] = message.CurrentUser;
             
         }
 

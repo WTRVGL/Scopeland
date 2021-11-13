@@ -27,11 +27,25 @@ namespace Library
                 products.Add(
                     new Product
                     {
-                        ProductID = reader.GetInt32(0),
-                        ProductNaam = reader.GetString(1),
-                        ProductPrijs = reader.GetDecimal(2),
-                        ProductOmschrijving = reader.GetString(3),
-                        ProductMerk = reader.GetString(4)
+                        ProductID = (int)reader["ProductID"],
+                        ProductNaam = (string)reader["ProductName"],
+                        ProductPrijs = (decimal)reader["ProductPrice"],
+                        ProductOmschrijving = (string)reader["ProductDescription"],
+                        ProductMerk = reader.GetString(4),
+                        ProductCategory = (string)reader["ProductCategory"],
+                        ProductType = (string)reader["ProductType"],
+                        Stock = (int)reader["ProductStock"],
+                        AmountSold = (int)reader["ProductAmountSold"],
+                        FocalLength = (decimal)reader["ProductFocalLength"],
+                        PriceSold = (decimal)reader["ProductPriceSold"],
+                        Resolution = (decimal)reader["ProductResolution"],
+                        Aperture = (decimal)reader["ProductAperture"],
+                        Weight = (decimal)reader["ProductWeight"],
+                        Difficulty = (string)reader["ProductDifficulty"],
+                        DateLastSale = (DateTime)reader["ProductDateLastSale"],
+                        DateFirstStockage = (DateTime)reader["ProductDateFirstStockage"]
+
+
                     });
             }
             reader.Close();

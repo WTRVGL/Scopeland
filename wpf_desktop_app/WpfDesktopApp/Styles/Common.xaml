@@ -19,5 +19,5 @@
     <Style x:Key="TextBoxLabel" TargetType="TextBlock">
         <Setter Property="FontSize" Value="20"/>
     </Style>
-
+    
 </ResourceDictionary>
