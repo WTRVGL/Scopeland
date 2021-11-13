@@ -12,7 +12,25 @@
         FontFamily="Roboto"
         d:DesignHeight="800" d:DesignWidth="1000 ">
 
-
+    <UserControl.Resources>
+        <Style x:Key="EditableText" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding IsEditMode}" Value="true">
+                    <Setter Property="Foreground" Value="#AA63E1"/>
+                    <Setter Property="Focusable" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+            
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>
@@ -77,12 +95,75 @@
                 FontWeight="Bold"
                 Foreground="White"
                 Background="#9523EF"
-                
                 Content="Product bewerken"
                 Margin="30 5 30 5"
                 Width="auto"
-                Command="{Binding ToggleEditModeCommand}"
-                />
+                Command="{Binding EnableEditModeCommand}"
+                >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Setters>
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditMode}" Value="true">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>   
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Grid.Row="1"
+                 Grid.Column="5"
+                Grid.ColumnSpan="1"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Background="#9523EF"
+                
+                Content="Opslaan"
+                Margin="30 5 30 5"
+                Width="auto"
+                Command="{Binding SaveProductChangesCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Setters>
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Grid.Row="1"
+                 Grid.Column="6"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#9523EF"
+                Background="White"
+                BorderBrush="#B063EC"
+                Content="Annuleren"
+                Margin="30 5 30 5"
+                Width="auto"
+                Command="{Binding DisableEditModeCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Setters>
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
                 Grid.Row="1"
@@ -107,9 +188,14 @@
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.ProductMerk}"
+
+            <TextBox Text="{Binding Product.ProductMerk}"
+                     Style="{StaticResource EditableText}"/>
+            
+            <!--<TextBlock Text="{Binding Product.ProductMerk}"
                        FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+                       Margin="0 10 0 0"/>-->
+
         </StackPanel>
 
 
@@ -117,17 +203,15 @@
             <TextBlock Text="Categorie"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text="{Binding Product.ProductType}"
-                       FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.ProductCategory}"
+                     Style="{StaticResource EditableText}"/>
 
             <TextBlock Text="Prijs"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.ProductPrijs}"
-                       FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.ProductPrijs}"
+                     Style="{StaticResource EditableText}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="4"
@@ -135,9 +219,8 @@
             <TextBlock Text="Huidige stock"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text="{Binding Product.Stock}"
-                       FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.Stock}"
+                     Style="{StaticResource EditableText}"/>
 
             <TextBlock Text="Omschrijving"
                        FontSize="20" Foreground="#605D5D" 
@@ -169,17 +252,15 @@
             <TextBlock Text="Type"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text="{Binding Product.ProductType}"
-                       FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.ProductType}"
+                     Style="{StaticResource EditableText}"/>
 
             <TextBlock Text="Brandpuntlengte"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.FocalLength}"
-                       FontSize="22" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.FocalLength}"
+                     Style="{StaticResource EditableText}"/>
             <TextBlock Text="Buislengte"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
@@ -194,24 +275,21 @@
             <TextBlock Text="Resolutie"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text="{Binding Product.Resolution}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.Resolution}"
+                     Style="{StaticResource EditableText}"/>
 
             <TextBlock Text="Objectiefgrootte"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.Aperture}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.Aperture}"
+                     Style="{StaticResource EditableText}"/>
             <TextBlock Text="Gewicht"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.Weight}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.Weight}"
+                     Style="{StaticResource EditableText}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="4">
@@ -249,24 +327,21 @@
             <TextBlock Text="Aantal verkocht"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text="{Binding Product.AmountSold}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.AmountSold}"
+                     Style="{StaticResource EditableText}"/>
 
             <TextBlock Text="Datum laatste verkoop"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.DateLastSale}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.DateLastSale}"
+                     Style="{StaticResource EditableText}"/>
             <TextBlock Text="Datum eerste stockage"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text="{Binding Product.DateFirstStockage}"
-                       FontSize="20" FontWeight="Medium"
-                       Margin="0 10 0 0"/>
+            <TextBox Text="{Binding Product.DateFirstStockage}"
+                     Style="{StaticResource EditableText}"/>
         </StackPanel>
 
     </Grid>

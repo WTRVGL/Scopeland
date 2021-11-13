@@ -23,5 +23,8 @@ namespace Library
         public string Difficulty { get; set; }
         public DateTime DateLastSale { get; set; }
         public DateTime DateFirstStockage { get; set; }
+
+
+        public object Clone => this.MemberwiseClone();
     }
 }
