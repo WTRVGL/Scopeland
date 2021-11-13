@@ -64,7 +64,9 @@
                 Background="#9523EF"
                 Margin="10 10"
                 Content="Opslaan"
-                Width="auto"/>
+                Width="auto"
+                Command="{Binding CreateProductCommand}"
+                CommandParameter="{Binding Product}"/>
 
         <Button Grid.Row="1"
                 Grid.Column="5"

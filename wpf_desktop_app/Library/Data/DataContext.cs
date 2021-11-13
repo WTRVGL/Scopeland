@@ -31,7 +31,7 @@ namespace Library
                         ProductNaam = (string)reader["ProductName"],
                         ProductPrijs = (decimal)reader["ProductPrice"],
                         ProductOmschrijving = (string)reader["ProductDescription"],
-                        ProductMerk = reader.GetString(4),
+                        ProductMerk = (string)reader["ProductBrand"],
                         ProductCategory = (string)reader["ProductCategory"],
                         ProductType = (string)reader["ProductType"],
                         Stock = (int)reader["ProductStock"],
@@ -44,8 +44,6 @@ namespace Library
                         Difficulty = (string)reader["ProductDifficulty"],
                         DateLastSale = (DateTime)reader["ProductDateLastSale"],
                         DateFirstStockage = (DateTime)reader["ProductDateFirstStockage"]
-
-
                     });
             }
             reader.Close();
@@ -61,18 +59,46 @@ namespace Library
 
             while (reader.Read())
             {
-                product.ProductID = reader.GetInt32(0);
-                product.ProductNaam = reader.GetString(1);
-                product.ProductPrijs = reader.GetInt32(2);
-                product.ProductOmschrijving = reader.GetString(3);
-                product.ProductMerk = reader.GetString(4);
+                product.ProductID = (int)reader["ProductID"];
+                product.ProductNaam = (string)reader["ProductName"];
+                product.ProductPrijs = (decimal)reader["ProductPrice"];
+                product.ProductOmschrijving = (string)reader["ProductDescription"];
+                product.ProductMerk = (string)reader["ProductBrand"];
+                product.ProductCategory = (string)reader["ProductCategory"];
+                product.ProductType = (string)reader["ProductType"];
+                product.Stock = (int)reader["ProductStock"];
+                product.AmountSold = (int)reader["ProductAmountSold"];
+                product.FocalLength = (decimal)reader["ProductFocalLength"];
+                product.PriceSold = (decimal)reader["ProductPriceSold"];
+                product.Resolution = (decimal)reader["ProductResolution"];
+                product.Aperture = (decimal)reader["ProductAperture"];
+                product.Weight = (decimal)reader["ProductWeight"];
+                product.Difficulty = (string)reader["ProductDifficulty"];
+                product.DateLastSale = (DateTime)reader["ProductDateLastSale"];
+                product.DateFirstStockage = (DateTime)reader["ProductDateFirstStockage"];
             }
 
             reader.Close();
             return product;
         }
 
-        
+        public Product CreateProduct(Product product)
+        {
+            var dateFirstStockage = product.DateFirstStockage.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateFirstSale= product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var command = new SqlCommand(
+                $"INSERT INTO Products(ProductName, ProductPrice, ProductDescription, ProductBrand, ProductCategory, ProductType, ProductStock, ProductAmountSold, ProductFocalLength, ProductPriceSold, ProductResolution, ProductAperture, ProductWeight, ProductDifficulty, ProductDateLastSale, ProductDateFirstStockage) " +
+                $"VALUES('{product.ProductNaam}','{product.ProductPrijs}', '{product.ProductOmschrijving}', '{product.ProductMerk}', '{product.ProductCategory}', '{product.ProductType}', '{product.Stock}', '{product.AmountSold}', '{product.FocalLength}', '{product.PriceSold}', '{product.Resolution}', '{product.Aperture}', '{product.Weight}', '{product.Difficulty}', '{dateFirstSale}', '{dateFirstStockage}')", sqlConnection);
+            command.Connection.Close();
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            reader.Close();
+
+            return product;
+
+        }
+
+
 
         public Gebruiker GetUser(int id)
         {
@@ -161,9 +187,6 @@ namespace Library
             return gebruiker;
         }
 
-        public Product CreateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

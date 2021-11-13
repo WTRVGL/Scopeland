@@ -88,7 +88,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="70px"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <!--Title-->

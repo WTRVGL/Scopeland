@@ -22,6 +22,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -79,7 +80,9 @@
                 
                 Content="Product bewerken"
                 Margin="30 5 30 5"
-                Width="auto"/>
+                Width="auto"
+                Command="{Binding ToggleEditModeCommand}"
+                />
 
         <Border BorderBrush="#D1D1D1" BorderThickness="0 0 0 1"
                 Grid.Row="1"
@@ -166,7 +169,7 @@
             <TextBlock Text="Type"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.ProductType}"
                        FontSize="22" FontWeight="Medium"
                        Margin="0 10 0 0"/>
 
@@ -174,7 +177,7 @@
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.FocalLength}"
                        FontSize="22" FontWeight="Medium"
                        Margin="0 10 0 0"/>
             <TextBlock Text="Buislengte"
@@ -191,7 +194,7 @@
             <TextBlock Text="Resolutie"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.Resolution}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
 
@@ -199,14 +202,14 @@
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.Aperture}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
             <TextBlock Text="Gewicht"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.Weight}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
         </StackPanel>
@@ -215,7 +218,7 @@
             <TextBlock Text="Moeilijkheidsgraad"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.Difficulty}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
 
@@ -246,7 +249,7 @@
             <TextBlock Text="Aantal verkocht"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.AmountSold}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
 
@@ -254,14 +257,14 @@
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.DateLastSale}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
             <TextBlock Text="Datum eerste stockage"
                        FontSize="20" Foreground="#605D5D" 
                        FontWeight="Medium"
                        Margin="0 20 0 0"/>
-            <TextBlock Text=""
+            <TextBlock Text="{Binding Product.DateFirstStockage}"
                        FontSize="20" FontWeight="Medium"
                        Margin="0 10 0 0"/>
         </StackPanel>
