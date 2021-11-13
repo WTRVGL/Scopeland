@@ -9,6 +9,8 @@ namespace Library
         List<Product> GetProducts();
         Product GetProduct(int id);
         Product CreateProduct(Product product);
+        Product UpdateProduct(Product product);
+        bool DeleteProduct(int id);
         List<Gebruiker> GetUsers();
         Gebruiker GetUser(int id);
         Gebruiker GetUserByUserName(string username);

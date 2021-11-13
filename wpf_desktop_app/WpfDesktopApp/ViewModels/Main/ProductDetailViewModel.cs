@@ -13,6 +13,7 @@ namespace WpfDesktopApp.ViewModels.Main
         private Product _product;
         private bool _isEditMode;
         private Product _originalProduct;
+        private readonly DataContext _data;
                 
         public Product OriginalProduct
         {
@@ -37,6 +38,7 @@ namespace WpfDesktopApp.ViewModels.Main
         {
             Product = product;
             IsEditMode = false;
+            _data = new DataContext();
         }
 
         public ICommand NavigateProductsPageCommand => 
@@ -63,13 +65,15 @@ namespace WpfDesktopApp.ViewModels.Main
             Product = (Product)OriginalProduct.Clone;
         }
 
-        public ICommand SaveProductChangesCommand => new DelegateCommand(HandleSaveProductChangesCommand);
+        public ICommand SaveProductChangesCommand => new DelegateCommand(HandleSaveProductChanges);
 
-        private void HandleSaveProductChangesCommand()
+        
+        private void HandleSaveProductChanges()
         {
             //Update DB
+            _data.UpdateProduct(Product);
             IsEditMode = false;
-
         }
+
     }
 }

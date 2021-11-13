@@ -98,6 +98,43 @@ namespace Library
 
         }
 
+        public Product UpdateProduct(Product product)
+        {
+            var dateFirstStockage = product.DateFirstStockage.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateFirstSale = product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var command = new SqlCommand(
+                $"Update Products " +
+                $"SET   ProductName = '{product.ProductNaam}',  " +
+                $"      ProductPrice = '{product.ProductPrijs}', " +
+                $"      ProductDescription = '{product.ProductOmschrijving}'," +
+                $"      ProductBrand = '{product.ProductMerk}', " +
+                $"      ProductCategory = '{product.ProductCategory}', " +
+                $"      ProductType = '{product.ProductType}', " +
+                $"      ProductStock = '{product.Stock}', " +
+                $"      ProductAmountSold = '{product.AmountSold}', " +
+                $"      ProductFocalLength = '{product.FocalLength}', " +
+                $"      ProductPriceSold = '{product.PriceSold}', " +
+                $"      ProductResolution = '{product.Resolution}', " +
+                $"      ProductAperture = '{product.Aperture}', " +
+                $"      ProductWeight =  '{product.Weight}', " +
+                $"      ProductDifficulty = '{product.Difficulty}', " +
+                $"      ProductDateLastSale = '{dateFirstSale}', " +
+                $"      ProductDateFirstStockage = '{dateFirstStockage}'" +
+                $"WHERE ProductID = '{product.ProductID}'", sqlConnection);
+
+            command.Connection.Close();
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            reader.Close();
+
+            return product;
+
+        }
+
+        public bool DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
 
 
         public Gebruiker GetUser(int id)
@@ -187,6 +224,6 @@ namespace Library
             return gebruiker;
         }
 
-      
+        
     }
 }
