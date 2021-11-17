@@ -1,19 +1,21 @@
 import * as React from "react";
 import styled from "styled-components";
-import Grid from "./Grid";
+import Grid from "../grid/grid";
 
-export default function Page({ children, columns, columnGap, rows }) {
+const FullScreenGrid = ({ children, columns, columnGap, rows }) => {
   return (
-    <PageContainer>
+    <$GridPage>
       <Grid rows={rows} columns={columns} columnGap={columnGap}>
         {children}
       </Grid>
-    </PageContainer>
+    </$GridPage>
   );
-}
+};
 
-const PageContainer = styled.section`
-  height: 100vh;
+export default FullScreenGrid;
+
+const $GridPage = styled.section`
+  height: 85vh;
   width: 100vw;
   max-width: 100%;
 `;
