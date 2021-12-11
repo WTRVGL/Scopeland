@@ -1,22 +1,55 @@
+import { graphql } from "gatsby";
 import * as React from "react";
-import styled from "styled-components";
-import Layout from "../layout";
+import AboutSection from "../components/aboutSection";
+import { FeaturedProductSection } from "../components/featuredProductSection";
+import { Hero } from "../components/hero";
+import Layout from "../components/layout";
 
-// markup
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const products = data.allMdx.edges;
+  console.log(localStorage);
+
   return (
     <Layout>
-      <$IndexPage>yo</$IndexPage>
-      <div>yo</div>
+      <Hero
+        title="Wij brengen het universum naar uw tuin"
+        subtitle="Astronomie binnen handbereik voor iedereen"
+      />
+
+      <AboutSection
+        title="Waarom Scopeland?"
+        description="Scopeland levert een unieke shopervaring in België met ongeongeëvenaarde klantenservice."
+      />
+      <FeaturedProductSection
+        title="Astronomisch coole producten"
+        products={products}
+      />
     </Layout>
   );
 };
 
 export default IndexPage;
 
-const $IndexPage = styled.main`
-  height: 85vh;
-  width: 100vw;
-  max-width: 100%;
-  background-color: peachpuff;
+export const pageQuery = graphql`
+  query fetchProductQuery {
+    allMdx {
+      edges {
+        node {
+          id
+          slug
+          frontmatter {
+            featuredProduct
+            price
+            productName
+            title
+            image {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;

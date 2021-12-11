@@ -15,7 +15,6 @@ namespace WpfDesktopApp.ViewModels.Main
         private ViewModelBase _selectedViewModel;
         private Gebruiker _currentUser;
 
-
         public Gebruiker CurrentUser
         {
             get { return _currentUser; }
