@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:WpfDesktopApp.ViewModels"
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:mockvm="clr-namespace:WpfDesktopApp.ViewModels.MockViewModels" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -81,7 +80,8 @@
                      StrokeThickness="1"
                      Stroke="#D1D1D1"
                      Margin="0 10"/>
-            <TextBlock Text="{Binding Product.ProductNaam}"
+            <TextBox Text="{Binding Product.ProductNaam}"
+                       Style="{StaticResource EditableText}"
                        FontSize="24" FontWeight="Medium"
                        Margin="35 0 0 0"
                        VerticalAlignment="Center"/>

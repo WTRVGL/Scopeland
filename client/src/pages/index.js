@@ -1,19 +1,55 @@
+import { graphql } from "gatsby";
 import * as React from "react";
-import Page from "../components/Page";
-import GridColumn from "../components/gridcolumn";
-import Layout from "./layout";
+import AboutSection from "../components/aboutSection";
+import { FeaturedProductSection } from "../components/featuredProductSection";
+import { Hero } from "../components/hero";
+import Layout from "../components/layout";
 
-// markup
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const products = data.allMdx.edges;
+  console.log(localStorage);
+
   return (
     <Layout>
-      <Page columns={8} columnGap={"1em"} rows={6}>
-        <GridColumn column={1} columnSpan={2} row={2} rowSpan={1}>
-          <div>Yo</div>
-        </GridColumn>
-      </Page>
+      <Hero
+        title="Wij brengen het universum naar uw tuin"
+        subtitle="Astronomie binnen handbereik voor iedereen"
+      />
+
+      <AboutSection
+        title="Waarom Scopeland?"
+        description="Scopeland levert een unieke shopervaring in België met ongeongeëvenaarde klantenservice."
+      />
+      <FeaturedProductSection
+        title="Astronomisch coole producten"
+        products={products}
+      />
     </Layout>
   );
 };
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query fetchProductQuery {
+    allMdx {
+      edges {
+        node {
+          id
+          slug
+          frontmatter {
+            featuredProduct
+            price
+            productName
+            title
+            image {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
