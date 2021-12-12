@@ -1,21 +1,20 @@
 @import "../src/fonts/type.css";
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Aeonik;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Aeonik;
 }
 
-body{
-    background-color: #f5f3eb;
-    height: auto;
+body {
+  background-color: #f5f3eb;
 }
 
- a,
- a:hover,
- a:focus,
- a:active {
-     text-decoration: none;
-     color: inherit;
- }
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}

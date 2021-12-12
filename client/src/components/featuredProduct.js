@@ -2,24 +2,17 @@ import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
-import { CartState } from "../context/cartContext";
 
 export const FeaturedProduct = ({ product }) => {
   const { frontmatter } = product.node;
-  const image = getImage(frontmatter.image);
+  const featuredImage = getImage(frontmatter.featuredImage);
   const price = frontmatter.price;
   const name = frontmatter.productName;
-
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
-  console.log(cart);
 
   return (
     <>
       <ProductContainer to={`/products/${product.node.slug}`}>
-        <Image image={image} alt="" />
+        <Image image={featuredImage} alt="" />
         <DescriptionContainer>
           <Title>{name}</Title>
           <Price>€{price}</Price>

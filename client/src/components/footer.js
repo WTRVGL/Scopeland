@@ -14,14 +14,14 @@ const Footer = () => {
               Astronomie binnen handbereik voor iedereen
             </FooterDescription>
           </BrandContainer>
-          <NavContainer lg={3} md={6}>
+          <NavContainer>
             <NavTitle>Shop all</NavTitle>
             <NavItem>Refractors</NavItem>
             <NavItem>Reflectors</NavItem>
             <NavItem>Catadioptic</NavItem>
             <NavItem>Mounts</NavItem>
           </NavContainer>
-          <NavContainer lg={3} md={6}>
+          <NavContainer>
             <NavTitle>Links</NavTitle>
             <NavItem>Account</NavItem>
           </NavContainer>
@@ -49,6 +49,7 @@ const BrandContainer = styled(Col)`
 const FooterHeader = styled.h1`
   color: white;
   font-family: "Aeonik Bold";
+  font-size: 7vw;
 `;
 
 const FooterDescription = styled.h5`

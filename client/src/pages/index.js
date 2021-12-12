@@ -7,7 +7,6 @@ import Layout from "../components/layout";
 
 const IndexPage = ({ data }) => {
   const products = data.allMdx.edges;
-  console.log(localStorage);
 
   return (
     <Layout>
@@ -31,18 +30,24 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query fetchProductQuery {
+  query fetchProductsQuery {
     allMdx {
       edges {
         node {
-          id
           slug
+          id
           frontmatter {
             featuredProduct
             price
             productName
+            productType
             title
-            image {
+            images {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            featuredImage {
               childImageSharp {
                 gatsbyImageData
               }

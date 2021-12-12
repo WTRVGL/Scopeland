@@ -4,7 +4,6 @@ import { FeaturedProduct } from "./featuredProduct";
 import PageContainer from "./pageContainer";
 
 export const FeaturedProductSection = ({ products, title }) => {
-  console.log(products);
   return (
     <FeaturedContainer>
       <FeaturedTitle>{title}</FeaturedTitle>
