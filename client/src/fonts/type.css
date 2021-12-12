@@ -7,3 +7,8 @@
     font-family: "Aeonik Bold";
     src: url("Aeonik-Bold.otf");
 }
+
+@font-face {
+    font-family: "Aeonik Light";
+    src: url("Aeonik-Light.otf");
+}

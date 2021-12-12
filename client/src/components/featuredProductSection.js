@@ -23,10 +23,10 @@ export const FeaturedProductSection = ({ products, title }) => {
 const FeaturedContainer = styled(PageContainer)``;
 
 const FeaturedTitle = styled.h1`
-  font-weight: 500;
   text-align: left;
   margin-bottom: 0.5em;
-  font-size: calc(1em + 3vw);
+  font-family: "Aeonik Light";
+  font-size: calc(1em + 3.5vw);
 `;
 
 const FeaturedProductList = styled.div`
