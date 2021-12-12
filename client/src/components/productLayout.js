@@ -19,25 +19,27 @@ export default function ProductTemplate({ data: { mdx } }) {
 
   const {
     id,
-    frontmatter: { productName, images },
+    frontmatter: { productName, images, price },
   } = mdx;
 
   return (
     <Layout>
       <ProductContainer>
-        <Carousel style={{ borderRadius: "15px" }} fade variant="dark">
+        <StyledCarousel fade variant="dark">
           {images.map((image) => {
             const gatsbyImg = getImage(image);
             return (
               <Carousel.Item>
-                <GatsbyImage
-                  image={gatsbyImg}
-                  style={{ height: "calc(100vh - 80px)" }}
-                />
+                <GatsbyImage image={gatsbyImg} />
               </Carousel.Item>
             );
           })}
-        </Carousel>
+        </StyledCarousel>
+
+        <DescriptionSection>
+          <h1>{productName}</h1>
+          <h5>€{price}</h5>
+        </DescriptionSection>
 
         {/* <MDXProvider components={shortcodes}>
           <MDXRenderer frontmatter={mdx.frontmatter}>{mdx.body}</MDXRenderer>
@@ -67,6 +69,26 @@ export default function ProductTemplate({ data: { mdx } }) {
   );
 }
 
+const ProductContainer = styled.main`
+  display: grid;
+  padding: 15px 50px;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 50px;
+  width: 100vw;
+  max-width: 100%;
+`;
+
+const StyledCarousel = styled(Carousel)`
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const DescriptionSection = styled.section`
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const pageQuery = graphql`
   query product($id: String) {
     mdx(id: { eq: $id }) {
@@ -84,18 +106,15 @@ export const pageQuery = graphql`
         }
         images {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              height: 800
+              width: 800
+              placeholder: BLURRED
+              transformOptions: { cropFocus: CENTER }
+            )
           }
         }
       }
     }
   }
-`;
-
-const ProductContainer = styled.main`
-  display: grid;
-  padding: 15px 50px;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100vw;
-  max-width: 100%;
 `;
