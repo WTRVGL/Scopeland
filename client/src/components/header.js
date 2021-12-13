@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { GrCart } from "react-icons/gr";
+import { GoTelescope } from "react-icons/go";
 import { CartState } from "../context/cartContext";
+import { CartModalState } from "../context/cartModalContext";
+import ShoppingCartModal from "./shoppingCartModal";
 
 const Header = () => {
   const {
     state: { cart },
   } = CartState();
 
+  const { modalVisibility, setModalVisibility } = CartModalState();
+
+  console.log(modalVisibility);
+  const openModal = () => {
+    setModalVisibility(true);
+  };
   return (
     <HeaderContainer>
       <LinkNav>
@@ -17,7 +25,7 @@ const Header = () => {
       </LinkNav>
       <Logo to="/">Scopeland</Logo>
       <NavIcons>
-        <GrCart />
+        <GoTelescope size={25} onClick={openModal} />
         {cart.length}
       </NavIcons>
     </HeaderContainer>
@@ -28,6 +36,7 @@ export default Header;
 
 const HeaderContainer = styled.nav`
   display: grid;
+  color: ${({ theme }) => theme.colors.primaryColor};
   grid-template-columns: repeat(3, 1fr);
   height: 80px;
   //position: sticky;

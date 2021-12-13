@@ -29,7 +29,6 @@ const ProductContainer = styled(Link)`
   justify-content: center;
   flex: 1;
   margin: 10px;
-  height: 50vh;
 
   @media screen and (max-width: 768px) {
     margin-bottom: 2em;

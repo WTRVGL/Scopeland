@@ -7,7 +7,6 @@ import { GiExplodingPlanet, GiSpaceShuttle } from "react-icons/gi";
 
 const AboutSection = ({ title }) => {
   return (
-    // <PageContainer fullPage={true}>
     <PageContainer>
       <AboutContainer>
         <Title>{title}</Title>

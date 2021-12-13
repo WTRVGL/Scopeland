@@ -49,7 +49,6 @@ export const Hero = (props) => {
 const HeroContainer = styled.main`
   display: flex;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundColor};
   height: calc(100vh - 80px);
   padding-left: 30px;
   padding-right: 15px;

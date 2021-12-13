@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
@@ -19,7 +19,7 @@ export default function ProductTemplate({ data: { mdx } }) {
 
   const {
     id,
-    frontmatter: { productName, images, price },
+    frontmatter: { productName, images, price, productCategory, productType },
   } = mdx;
 
   return (
@@ -41,10 +41,11 @@ export default function ProductTemplate({ data: { mdx } }) {
           <h5>€{price}</h5>
         </DescriptionSection>
 
-        {/* <MDXProvider components={shortcodes}>
+        <MDXProvider components={shortcodes}>
           <MDXRenderer frontmatter={mdx.frontmatter}>{mdx.body}</MDXRenderer>
-        </MDXProvider> */}
-        {/* <button
+        </MDXProvider>
+
+        <button
           onClick={() => {
             dispatch({
               type: "ADD_TO_CART",
@@ -63,7 +64,7 @@ export default function ProductTemplate({ data: { mdx } }) {
           }}
         >
           remove from cart
-        </button> */}
+        </button>
       </ProductContainer>
     </Layout>
   );
@@ -76,6 +77,11 @@ const ProductContainer = styled.main`
   column-gap: 50px;
   width: 100vw;
   max-width: 100%;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
 `;
 
 const StyledCarousel = styled(Carousel)`
@@ -99,6 +105,9 @@ export const pageQuery = graphql`
         productName
         price
         featuredProduct
+        productCategory
+        productType
+        secondaryProductType
         featuredImage {
           childImageSharp {
             gatsbyImageData

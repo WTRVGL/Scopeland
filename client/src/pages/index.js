@@ -49,7 +49,12 @@ export const pageQuery = graphql`
             }
             featuredImage {
               childImageSharp {
-                gatsbyImageData
+                gatsbyImageData(
+                  height: 400
+                  width: 400
+                  placeholder: BLURRED
+                  transformOptions: { cropFocus: CENTER }
+                )
               }
             }
           }

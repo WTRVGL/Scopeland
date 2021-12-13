@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import CartContext from "../context/cartContext";
+import CartModalContext from "../context/cartModalContext";
 
 const lightTheme = {
   colors: {
@@ -12,9 +13,11 @@ const lightTheme = {
 
 const RootLayout = ({ children }) => {
   return (
-    <CartContext>
-      <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
-    </CartContext>
+    <CartModalContext>
+      <CartContext>
+        <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
+      </CartContext>
+    </CartModalContext>
   );
 };
 

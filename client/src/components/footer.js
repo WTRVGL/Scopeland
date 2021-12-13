@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "gatsby";
 
 const Footer = () => {
   return (
@@ -61,8 +62,9 @@ const NavContainer = styled(Col)`
   display: flex;
   flex-direction: column;
 `;
-const NavTitle = styled.h4`
+const NavTitle = styled.h2`
   color: white;
+  font-size: 2em;
   font-family: "Aeonik Regular";
 `;
 
