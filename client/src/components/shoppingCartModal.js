@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CartModalState } from "../context/cartModalContext";
 import { CartState } from "../context/cartContext";
+import { motion } from "framer-motion";
 
 const ShoppingCartModal = () => {
   const { setModalVisibility } = CartModalState();
@@ -16,10 +17,15 @@ const ShoppingCartModal = () => {
 
   console.log(cart);
   return (
-    <ModalContainer>
-      <Cover onClick={closeModal}></Cover>
+    <ModalContainer initial={{ x: 100 }} animate={{ x: 0 }}>
+      <Cover
+        onClick={closeModal}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ type: "tween", duration: 0.4 }}
+      ></Cover>
       <CartInfo>
-        <button onClick={closeModal}>yo</button>
+        <button onClick={closeModal}>x</button>
         {cart.map((product) => {
           const {
             id,
@@ -34,9 +40,9 @@ const ShoppingCartModal = () => {
 
 export default ShoppingCartModal;
 
-const ModalContainer = styled.section`
+const ModalContainer = styled(motion.section)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.8fr;
   position: fixed;
   z-index: 100;
   top: 0;
@@ -46,9 +52,8 @@ const ModalContainer = styled.section`
   height: 100vh;
 `;
 
-const Cover = styled.div`
+const Cover = styled(motion.div)`
   background-color: #943434;
-  opacity: 0.8;
 `;
 
 const CartInfo = styled.div`

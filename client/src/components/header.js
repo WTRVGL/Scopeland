@@ -45,6 +45,10 @@ const HeaderContainer = styled.nav`
   padding-left: 50px;
   padding-right: 50px;
   background-color: ${({ theme }) => theme.colors.backgroundColor};
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const LinkNav = styled.ul`
@@ -79,4 +83,8 @@ const NavIcons = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
