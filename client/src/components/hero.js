@@ -21,6 +21,7 @@ export const Hero = (props) => {
             flex: 1,
           }}
           alt=""
+          placeholder="blurred"
         />
         <StaticImage
           src="../images/2.jpg"
@@ -30,6 +31,7 @@ export const Hero = (props) => {
             borderRadius: "10px",
           }}
           alt=""
+          placeholder="blurred"
         />
         <StaticImage
           src="../images/3.jpg"
@@ -40,6 +42,7 @@ export const Hero = (props) => {
             flex: 1,
           }}
           alt=""
+          placeholder="blurred"
         />
       </HeroImageContainer>
     </HeroContainer>
