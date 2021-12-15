@@ -50,7 +50,7 @@ const BrandContainer = styled(Col)`
 const FooterHeader = styled.h1`
   color: white;
   font-family: "Aeonik Bold";
-  font-size: 7vw;
+  font-size: 6vw;
 `;
 
 const FooterDescription = styled.h5`
