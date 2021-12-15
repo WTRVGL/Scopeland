@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Footer from "./footer";
 import Header from "./header";
-import ShoppingCartModal from "./shoppingCartModal";
+import ShoppingCartModal from "./shopping-cart/shoppingCartModal";
 import { CartModalState } from "../context/cartModalContext";
 import styled from "styled-components";
 import { motion } from "framer-motion";

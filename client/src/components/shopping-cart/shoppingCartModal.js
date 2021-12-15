@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { CartModalState } from "../context/cartModalContext";
-import { CartState } from "../context/cartContext";
+import { CartModalState } from "../../context/cartModalContext"
+import { CartState } from "../../context/cartContext";
 import { motion } from "framer-motion";
+import CartProduct from "./cartProduct";
 
 const ShoppingCartModal = () => {
   const { setModalVisibility } = CartModalState();
+
   const closeModal = () => {
     setModalVisibility(false);
   };
@@ -25,13 +27,10 @@ const ShoppingCartModal = () => {
         transition={{ type: "tween", duration: 0.4 }}
       ></Cover>
       <CartInfo>
-        <button onClick={closeModal}>x</button>
+        <Title>Winkelmand</Title>
         {cart.map((product) => {
-          const {
-            id,
-            frontmatter: { productName },
-          } = product;
-          return <h1>{productName}</h1>;
+          
+          return <CartProduct product={product}/>;
         })}
       </CartInfo>
     </ModalContainer>
@@ -41,8 +40,8 @@ const ShoppingCartModal = () => {
 export default ShoppingCartModal;
 
 const ModalContainer = styled(motion.section)`
-  display: grid;
-  grid-template-columns: 1fr 0.8fr;
+
+  display: flex;
   position: fixed;
   z-index: 100;
   top: 0;
@@ -50,12 +49,29 @@ const ModalContainer = styled(motion.section)`
   width: 100vw;
   max-width: 100%;
   height: 100vh;
+
 `;
 
 const Cover = styled(motion.div)`
+height: 100%;
+width: 100%;
   background-color: #943434;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
+const Title = styled.h1`
+  font-size: 4.5vw;
+  font-family: "Aeonik Light"
+`
 const CartInfo = styled.div`
+flex: 0 0 500px;
   background: white;
+
+  @media screen and (max-width: 768px) {
+    flex-grow: 1;
+    width: 100vw;
+  }
 `;

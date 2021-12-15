@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { GoTelescope } from "react-icons/go";
 import { CartState } from "../context/cartContext";
 import { CartModalState } from "../context/cartModalContext";
-import ShoppingCartModal from "./shoppingCartModal";
+import ShoppingCartModal from "./shopping-cart/shoppingCartModal";
 
 const Header = () => {
   const {
