@@ -49,7 +49,7 @@ export default function ProductTemplate({ data: { mdx } }) {
           onClick={() => {
             dispatch({
               type: "ADD_TO_CART",
-              payload: {product: mdx, quantity: 1},
+              payload: { product: mdx, quantity: 1 },
             });
           }}
         >
@@ -59,7 +59,7 @@ export default function ProductTemplate({ data: { mdx } }) {
           onClick={() => {
             dispatch({
               type: "REMOVE_FROM_CART",
-              payload: mdx,
+              payload: { product: mdx },
             });
           }}
         >
