@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 import AboutSection from "../components/aboutSection";
-import { FeaturedProductSection } from "../components/featuredProductSection";
+import { FeaturedProductSection } from "../components/featured-products/featuredProductSection";
 import { Hero } from "../components/hero";
 import Layout from "../components/layout";
 

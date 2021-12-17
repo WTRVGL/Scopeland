@@ -15,7 +15,7 @@ export const FeaturedProduct = ({ product }) => {
         <Image image={featuredImage} alt="" />
         <DescriptionContainer>
           <Title>{name}</Title>
-          <Price>€{price}</Price>
+          <Title>€{price}</Title>
         </DescriptionContainer>
       </ProductContainer>
     </>
@@ -37,11 +37,12 @@ const ProductContainer = styled(Link)`
 
 const Image = styled(GatsbyImage)`
   width: 100%;
-  height: 100%;
+  max-height: 100%;
+
   z-index: 1;
 
   &:hover {
-    border: 1px solid black;
+    outline: 1px solid black;
     transition: 0.3s ease-in-out;
   }
 `;
@@ -55,9 +56,13 @@ const DescriptionContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: normal;
-  font-size: 1.5em;
+  font-family: "Aeonik Regular";
+  font-size: 1.5vw;
   z-index: 10;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.5em;
+  }
 `;
 
 const Price = styled.h2`

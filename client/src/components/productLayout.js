@@ -2,14 +2,12 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { Link } from "gatsby";
-import { CartState } from "../context/cartContext";
 import { Carousel } from "react-bootstrap";
 import Layout from "./layout";
 import styled from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
-const shortcodes = { Link };
+import { CartState } from "../context/cartContext";
+import { CartModalState } from "../context/cartModalContext";
 
 export default function ProductTemplate({ data: { mdx } }) {
   const {
@@ -17,10 +15,20 @@ export default function ProductTemplate({ data: { mdx } }) {
     dispatch,
   } = CartState();
 
+  const { modalVisibility, setModalVisibility } = CartModalState();
+
   const {
     id,
     frontmatter: { productName, images, price, productCategory, productType },
   } = mdx;
+
+  const addProduct = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: { product: mdx, quantity: 1 },
+    });
+    setModalVisibility(true);
+  };
 
   return (
     <Layout>
@@ -41,30 +49,11 @@ export default function ProductTemplate({ data: { mdx } }) {
           <h5>€{price}</h5>
         </DescriptionSection>
 
-        <MDXProvider components={shortcodes}>
+        <MDXProvider>
           <MDXRenderer frontmatter={mdx.frontmatter}>{mdx.body}</MDXRenderer>
         </MDXProvider>
 
-        <button
-          onClick={() => {
-            dispatch({
-              type: "ADD_TO_CART",
-              payload: { product: mdx, quantity: 1 },
-            });
-          }}
-        >
-          add to cart
-        </button>
-        <button
-          onClick={() => {
-            dispatch({
-              type: "REMOVE_FROM_CART",
-              payload: { product: mdx },
-            });
-          }}
-        >
-          remove from cart
-        </button>
+        <button onClick={addProduct}>add to cart</button>
       </ProductContainer>
     </Layout>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FeaturedProduct } from "./featuredProduct";
-import PageContainer from "./pageContainer";
+import { FeaturedProduct } from "../featured-products/featuredProduct";
+import PageContainer from "../pageContainer";
 
 export const FeaturedProductSection = ({ products, title }) => {
   return (
@@ -30,9 +30,8 @@ const FeaturedTitle = styled.h1`
 
 const FeaturedProductList = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   column-gap: 25px;
-  width: 100vw;
   max-width: 100%;
   margin-bottom: 10em;
   z-index: 5;
