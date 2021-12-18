@@ -27,7 +27,10 @@ const ShoppingCartModal = () => {
         transition={{ type: "tween", duration: 0.4 }}
       ></Cover>
       <CartInfo>
-        <Title>Winkelmand</Title>
+        <Title>
+          Winkelmand
+          <CancelButton onClick={closeModal}>x</CancelButton>
+        </Title>
         {cart.length == 0 ? (
           <EmptyProductContainer>Winkelkar leeg!</EmptyProductContainer>
         ) : (
@@ -64,15 +67,27 @@ const Cover = styled(motion.div)`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+  display: flex;
   font-size: 10ch;
   font-family: "Aeonik Light";
   margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-around;
 
   @media screen and (max-width: 768px) {
     font-size: 13vw;
   }
 `;
+
+const CancelButton = styled.h5`
+  font-size: 0.4em;
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;
+
 const CartInfo = styled.div`
   background: white;
   padding: 0px 50px;
