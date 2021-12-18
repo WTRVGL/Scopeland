@@ -1,34 +1,56 @@
 import React from "react";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "gatsby";
+import { graphql, StaticQuery } from "gatsby";
 
 const Footer = () => {
   return (
-    <FooterContainer>
-      {/* <FooterHeader>Scopeland</FooterHeader> */}
-      <Container>
-        <Row style={{ minHeight: "250px", paddingTop: "50px" }}>
-          <BrandContainer lg={6}>
-            <FooterHeader>Scopeland</FooterHeader>
-            <FooterDescription>
-              Astronomie binnen handbereik voor iedereen
-            </FooterDescription>
-          </BrandContainer>
-          <NavContainer>
-            <NavTitle>Shop all</NavTitle>
-            <NavItem>Refractors</NavItem>
-            <NavItem>Reflectors</NavItem>
-            <NavItem>Catadioptic</NavItem>
-            <NavItem>Mounts</NavItem>
-          </NavContainer>
-          <NavContainer>
-            <NavTitle>Links</NavTitle>
-            <NavItem>Account</NavItem>
-          </NavContainer>
-        </Row>
-      </Container>
-    </FooterContainer>
+    <StaticQuery
+      query={graphql`
+        query fetchProductType {
+          allMdx {
+            edges {
+              node {
+                frontmatter {
+                  productType
+                }
+              }
+            }
+          }
+        }
+      `}
+      render={({ allMdx: { edges } }) => (
+        <FooterContainer>
+          {console.log(edges)}
+          <Container>
+            <Row style={{ minHeight: "250px", paddingTop: "50px" }}>
+              <BrandContainer lg={6}>
+                <FooterHeader>Scopeland</FooterHeader>
+                <FooterDescription>
+                  Astronomie binnen handbereik voor iedereen
+                </FooterDescription>
+              </BrandContainer>
+              <NavContainer>
+                <NavTitle>Shop all</NavTitle>
+                {edges.map(
+                  ({
+                    node: {
+                      frontmatter: { productType },
+                    },
+                  }) => (
+                    <NavItem>{productType}</NavItem>
+                  )
+                )}
+              </NavContainer>
+              <NavContainer>
+                <NavTitle>Links</NavTitle>
+                <NavItem>Account</NavItem>
+              </NavContainer>
+            </Row>
+          </Container>
+        </FooterContainer>
+      )}
+    />
   );
 };
 

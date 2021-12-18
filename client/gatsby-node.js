@@ -8,6 +8,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       allMdx {
         edges {
           node {
+            frontmatter {
+              productType
+            }
             slug
             id
           }
@@ -26,7 +29,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: `/products/${node.slug}`,
       // This component will wrap our MDX content
-      component: path.resolve(`./src/components/productLayout.js`),
+      component: path.resolve(`./src/components/productTemplate.js`),
+      // You can use the values in this context in
+      // our page layout component
+      context: { id: node.id },
+    });
+  });
+
+  products.forEach(({ node }, index) => {
+    const formattedProductType = node.frontmatter.productType.toLowerCase();
+    createPage({
+      path: `/shop/${formattedProductType}`,
+      // This component will wrap our MDX content
+      component: path.resolve(`./src/components/categoryTemplate.js`),
       // You can use the values in this context in
       // our page layout component
       context: { id: node.id },

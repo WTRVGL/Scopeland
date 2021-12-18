@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import Layout from "./layout";
+import styled from "styled-components";
 import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Carousel } from "react-bootstrap";
-import Layout from "./layout";
-import styled from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { CartState } from "../context/cartContext";
 import { CartModalState } from "../context/cartModalContext";
@@ -16,12 +16,15 @@ export default function ProductTemplate({ data: { mdx } }) {
   } = CartState();
 
   const { modalVisibility, setModalVisibility } = CartModalState();
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const {
+    body,
     id,
     frontmatter: { productName, images, price, productCategory, productType },
   } = mdx;
 
+  console.log(mdx);
   const addProduct = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -47,41 +50,65 @@ export default function ProductTemplate({ data: { mdx } }) {
         <DescriptionSection>
           <h1>{productName}</h1>
           <h5>€{price}</h5>
+          <StyledButton onClick={addProduct}>add to cart</StyledButton>
+          <MDXRenderer>{body}</MDXRenderer>
         </DescriptionSection>
-
-        <MDXProvider>
-          <MDXRenderer frontmatter={mdx.frontmatter}>{mdx.body}</MDXRenderer>
-        </MDXProvider>
-
-        <button onClick={addProduct}>add to cart</button>
       </ProductContainer>
     </Layout>
   );
 }
 
+const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #e68845;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: 0;
+  font-weight: bolder;
+  color: white;
+  margin: 15px 5px;
+`;
+
 const ProductContainer = styled.main`
   display: grid;
   padding: 15px 50px;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: min-content;
   column-gap: 50px;
   width: 100vw;
   max-width: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-auto-rows: min-content;
+    column-gap: 5px;
+    padding: 15px 10px;
   }
 `;
 
 const StyledCarousel = styled(Carousel)`
   border-radius: 5px;
-  overflow: hidden;
+  height: 50vw;
+  width: 100%;
+  @media screen and (max-width: 992px) {
+    grid-row: 1;
+    height: 100%;
+  }
 `;
 
 const DescriptionSection = styled.section`
   padding: 25px 50px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 992px) {
+    grid-row: 2;
+    padding: 25px 5px;
+  }
 `;
 
 export const pageQuery = graphql`
@@ -105,9 +132,9 @@ export const pageQuery = graphql`
         images {
           childImageSharp {
             gatsbyImageData(
-              height: 800
-              width: 800
               placeholder: BLURRED
+              height: 1000
+              width: 1000
               transformOptions: { cropFocus: CENTER }
             )
           }
