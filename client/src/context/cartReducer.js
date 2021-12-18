@@ -11,11 +11,12 @@ export const cartReducer = (state, action) => {
       );
 
       if (existingIndex >= 0) {
-        const currentQuantity = parseInt(nextCart[existingIndex].quantity);
+        // const currentQuantity = parseInt(nextCart[existingIndex].quantity);
+        const newQuantity = parseInt(quantity)
 
         nextCart[existingIndex] = {
           ...action.payload.product,
-          quantity: currentQuantity + quantity,
+          quantity: newQuantity,
         };
       } else {
         nextCart.push({ ...product, quantity: 1 });

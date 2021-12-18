@@ -17,7 +17,6 @@ const ShoppingCartModal = () => {
     dispatch,
   } = CartState();
 
-  console.log(cart);
   return (
     <ModalContainer initial={{ x: 100 }} animate={{ x: 0 }}>
       <Cover
@@ -38,6 +37,14 @@ const ShoppingCartModal = () => {
             return <CartProduct product={product} />;
           })
         )}
+
+        {cart.length > 0 && 
+
+        <SubTitle animate={{opacity: 1}}>Subtotaal: €
+          {cart.map(item => {
+            return item.quantity * item.frontmatter.price
+          }).reduce((prev, curr) => prev + curr, 0)}
+        </SubTitle>}
       </CartInfo>
     </ModalContainer>
   );
@@ -100,7 +107,12 @@ const CartInfo = styled.div`
   }
 `;
 
-const ProductContainer = styled.div``;
+const SubTitle = styled(motion.h4)`
+margin-bottom: auto;
+margin-top: 50px;
+font-size: 2em;
+opacity: 0;
+`;
 
 const EmptyProductContainer = styled.div`
   font-size: 2em;

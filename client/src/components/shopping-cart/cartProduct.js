@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import styled from "styled-components";
@@ -9,6 +9,25 @@ const CartProduct = ({ product }) => {
     state: { cart },
     dispatch,
   } = CartState();
+
+  
+  const [productAmount, setProductAmount ] = useState(0)
+
+  useEffect(() => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: { product: product, quantity: productAmount },
+    });
+  }, [productAmount])
+
+  useEffect(() => {
+
+    const currentProduct = cart.find(
+      (item) => item.id === product.id
+    );
+    setProductAmount(currentProduct.quantity)
+    
+  }, [])
 
   const {
     frontmatter: {
@@ -21,15 +40,34 @@ const CartProduct = ({ product }) => {
     id,
   } = product;
 
+  const border = {
+    initial: {outline: "0px"},
+    hover: {outline: "1px solid black"}
+  }
+
+  const visibility = {
+    initial: {opacity: 0},
+    hover: {opacity: 1}
+  }
+
   return (
-    <ProductContainer whileHover={{ outline: "1px solid black" }}>
+    <ProductContainer 
+        initial="initial"
+        variants={border} 
+        whileHover="hover">
+
       <GatsbyImage image={getImage(featuredImage)} />
       <DescriptionContainer>
         <Title>{productName}</Title>
         <Title>{productType}</Title>
       </DescriptionContainer>
       <PriceContainer>
-        <Title>€{price}</Title>
+        <Title>€{price * productAmount}</Title>
+        <AmountSelector>
+          <AmountButton onClick={() => setProductAmount(productAmount + 1)}>+</AmountButton>
+            <Amount>{productAmount}</Amount>
+          <AmountButton onClick={() => setProductAmount(productAmount - 1)}>-</AmountButton>
+        </AmountSelector>
         <DeleteTitle
           onClick={() => {
             dispatch({
@@ -37,6 +75,7 @@ const CartProduct = ({ product }) => {
               payload: { product: product },
             });
           }}
+          variants={visibility}
         >
           x Verwijder
         </DeleteTitle>
@@ -92,3 +131,13 @@ const DeleteTitle = styled(motion.h6)`
     font-size: 2.3vw;
   }
 `;
+
+const AmountSelector = styled.div`
+  display: flex;
+`
+const AmountButton = styled.div`
+  margin: 0px 10px;
+  cursor: pointer;
+`
+const Amount = styled.h5``
+
