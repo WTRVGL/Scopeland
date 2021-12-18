@@ -44,9 +44,10 @@ const ModalContainer = styled(motion.section)`
   z-index: 100;
   top: 0;
   right: 0;
-  width: 100vw;
-  max-width: 100%;
   height: 100vh;
+
+  @media screen and (max-width: 768px) {
+  }
 `;
 
 const Cover = styled(motion.div)`
@@ -60,18 +61,20 @@ const Cover = styled(motion.div)`
 `;
 
 const Title = styled.h1`
-  font-size: 5em;
+  font-size: 10ch;
   font-family: "Aeonik Light";
   margin-bottom: 15px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 13vw;
+  }
 `;
 const CartInfo = styled.div`
-  flex: 0 0 600px;
-  align-items: stretch;
   background: white;
   padding: 0px 50px;
   padding-top: 25px;
+  width: 100vw;
 
   @media screen and (max-width: 768px) {
-    flex: 0 0 calc(100vw);
   }
 `;
