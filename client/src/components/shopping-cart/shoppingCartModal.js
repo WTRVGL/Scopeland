@@ -28,9 +28,13 @@ const ShoppingCartModal = () => {
       ></Cover>
       <CartInfo>
         <Title>Winkelmand</Title>
-        {cart.map((product) => {
-          return <CartProduct product={product} />;
-        })}
+        {cart.length == 0 ? (
+          <EmptyProductContainer>Winkelkar leeg!</EmptyProductContainer>
+        ) : (
+          cart.map((product) => {
+            return <CartProduct product={product} />;
+          })
+        )}
       </CartInfo>
     </ModalContainer>
   );
@@ -73,8 +77,20 @@ const CartInfo = styled.div`
   background: white;
   padding: 0px 50px;
   padding-top: 25px;
+  display: flex;
+  flex-direction: column;
   width: 100vw;
 
   @media screen and (max-width: 768px) {
   }
+`;
+
+const ProductContainer = styled.div``;
+
+const EmptyProductContainer = styled.div`
+  font-size: 2em;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
