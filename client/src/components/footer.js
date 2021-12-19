@@ -1,27 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 
 const Footer = () => {
   return (
     <StaticQuery
       query={graphql`
-        query fetchProductType {
+        query fetchDistinctProductType {
           allMdx {
-            edges {
-              node {
-                frontmatter {
-                  productType
-                }
-              }
-            }
+            distinct(field: frontmatter___productType)
           }
         }
       `}
-      render={({ allMdx: { edges } }) => (
+      render={({ allMdx: { distinct } }) => (
         <FooterContainer>
-          {console.log(edges)}
           <Container>
             <Row style={{ minHeight: "250px", paddingTop: "50px" }}>
               <BrandContainer lg={6}>
@@ -32,15 +25,16 @@ const Footer = () => {
               </BrandContainer>
               <NavContainer>
                 <NavTitle>Shop all</NavTitle>
-                {edges.map(
-                  ({
-                    node: {
-                      frontmatter: { productType },
-                    },
-                  }) => (
-                    <NavItem>{productType}</NavItem>
-                  )
-                )}
+                {distinct.map((productType) => {
+                  return (
+                    <NavItem
+                      to={`/shop/${productType.toLowerCase()}`}
+                      key={productType}
+                    >
+                      {productType}
+                    </NavItem>
+                  );
+                })}
               </NavContainer>
               <NavContainer>
                 <NavTitle>Links</NavTitle>
@@ -90,7 +84,7 @@ const NavTitle = styled.h2`
   font-family: "Aeonik Regular";
 `;
 
-const NavItem = styled.h6`
+const NavItem = styled(Link)`
   color: white;
   font-family: "Aeonik Light";
 `;

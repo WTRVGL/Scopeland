@@ -1,13 +1,17 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
 import styled from "styled-components";
+import FilterByCategory from "../components/filter-categories/filterByCategory";
 import Layout from "../components/layout";
 
 const Shop = () => {
   return (
     <Layout>
-      <ShopContainer>
-        <h1>shop</h1>
-      </ShopContainer>
+      <Container>
+        <Row>
+          <FilterByCategory />
+        </Row>
+      </Container>
     </Layout>
   );
 };

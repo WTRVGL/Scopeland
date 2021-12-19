@@ -53,8 +53,7 @@ const HeroContainer = styled.main`
   display: flex;
   position: relative;
   height: calc(100vh - 80px);
-  padding-left: 30px;
-  padding-right: 15px;
+  padding: 0px 30px;
   width: 100vw;
   max-width: 100%;
 
