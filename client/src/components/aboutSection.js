@@ -74,6 +74,7 @@ const IconSection = styled.ul`
   grid-template-columns: repeat(4, 1fr);
   column-gap: 25px;
   list-style: none;
+  padding: 0;
 
   @media screen and (max-width: 768px) {
     grid-template-rows: repeat(4, 1fr);

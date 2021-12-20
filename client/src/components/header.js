@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { GoTelescope } from "react-icons/go";
 import { CartState } from "../context/cartContext";
 import { CartModalState } from "../context/cartModalContext";
-import ShoppingCartModal from "./shopping-cart/shoppingCartModal";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const {
@@ -39,9 +39,9 @@ const HeaderContainer = styled.nav`
   color: ${({ theme }) => theme.colors.primaryColor};
   grid-template-columns: repeat(3, 1fr);
   height: 80px;
-  //position: sticky;
+  position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
   padding-left: 50px;
   padding-right: 50px;
   background-color: ${({ theme }) => theme.colors.backgroundColor};
@@ -79,7 +79,7 @@ const Logo = styled(Link)`
   }
 `;
 
-const NavIcons = styled.div`
+const NavIcons = styled(motion.div)`
   display: flex;
   justify-content: flex-end;
   align-items: center;

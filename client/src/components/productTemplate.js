@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "./layout";
 import styled from "styled-components";
 import { graphql } from "gatsby";
-import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Carousel } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -15,8 +14,7 @@ export default function ProductTemplate({ data: { mdx } }) {
     dispatch,
   } = CartState();
 
-  const { modalVisibility, setModalVisibility } = CartModalState();
-  const [productQuantity, setProductQuantity] = useState(1);
+  const { setModalVisibility } = CartModalState();
 
   const {
     body,
@@ -39,6 +37,7 @@ export default function ProductTemplate({ data: { mdx } }) {
         <StyledCarousel fade variant="dark">
           {images.map((image) => {
             const gatsbyImg = getImage(image);
+            console.log(image);
             return (
               <Carousel.Item>
                 <GatsbyImage image={gatsbyImg} />
@@ -70,7 +69,7 @@ const StyledButton = styled.button`
   border: 0;
   font-weight: bolder;
   color: white;
-  margin: 15px 5px;
+  margin: 15px 0px;
 `;
 
 const ProductContainer = styled.main`
@@ -92,9 +91,10 @@ const ProductContainer = styled.main`
 
 const StyledCarousel = styled(Carousel)`
   border-radius: 5px;
-  height: 50vw;
+  height: calc(100vh - 80px);
   width: 100%;
   @media screen and (max-width: 992px) {
+    padding: 25px;
     grid-row: 1;
     height: 100%;
   }
@@ -133,7 +133,6 @@ export const pageQuery = graphql`
           childImageSharp {
             gatsbyImageData(
               placeholder: BLURRED
-              height: 1000
               width: 1000
               transformOptions: { cropFocus: CENTER }
             )

@@ -10,24 +10,19 @@ const CartProduct = ({ product }) => {
     dispatch,
   } = CartState();
 
-  
-  const [productAmount, setProductAmount ] = useState(0)
+  const [productAmount, setProductAmount] = useState(0);
 
   useEffect(() => {
     dispatch({
       type: "ADD_TO_CART",
       payload: { product: product, quantity: productAmount },
     });
-  }, [productAmount])
+  }, [productAmount]);
 
   useEffect(() => {
-
-    const currentProduct = cart.find(
-      (item) => item.id === product.id
-    );
-    setProductAmount(currentProduct.quantity)
-    
-  }, [])
+    const currentProduct = cart.find((item) => item.id === product.id);
+    setProductAmount(currentProduct.quantity);
+  }, []);
 
   const {
     frontmatter: {
@@ -41,21 +36,17 @@ const CartProduct = ({ product }) => {
   } = product;
 
   const border = {
-    initial: {outline: "0px"},
-    hover: {outline: "1px solid black"}
-  }
+    initial: { outline: "0px" },
+    hover: { outline: "1px solid black" },
+  };
 
   const visibility = {
-    initial: {opacity: 0},
-    hover: {opacity: 1}
-  }
+    initial: { opacity: 0 },
+    hover: { opacity: 1 },
+  };
 
   return (
-    <ProductContainer 
-        initial="initial"
-        variants={border} 
-        whileHover="hover">
-
+    <ProductContainer initial="initial" variants={border} whileHover="hover">
       <GatsbyImage image={getImage(featuredImage)} />
       <DescriptionContainer>
         <Title>{productName}</Title>
@@ -64,9 +55,13 @@ const CartProduct = ({ product }) => {
       <PriceContainer>
         <Title>€{price * productAmount}</Title>
         <AmountSelector>
-          <AmountButton onClick={() => setProductAmount(productAmount + 1)}>+</AmountButton>
-            <Amount>{productAmount}</Amount>
-          <AmountButton onClick={() => setProductAmount(productAmount - 1)}>-</AmountButton>
+          <AmountButton onClick={() => setProductAmount(productAmount + 1)}>
+            +
+          </AmountButton>
+          <Amount>{productAmount}</Amount>
+          <AmountButton onClick={() => setProductAmount(productAmount - 1)}>
+            -
+          </AmountButton>
         </AmountSelector>
         <DeleteTitle
           onClick={() => {
@@ -134,10 +129,11 @@ const DeleteTitle = styled(motion.h6)`
 
 const AmountSelector = styled.div`
   display: flex;
-`
+`;
 const AmountButton = styled.div`
+  width: 10px;
+  user-select: none;
   margin: 0px 10px;
   cursor: pointer;
-`
-const Amount = styled.h5``
-
+`;
+const Amount = styled.h5``;

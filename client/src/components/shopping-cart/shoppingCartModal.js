@@ -14,11 +14,10 @@ const ShoppingCartModal = () => {
 
   const {
     state: { cart },
-    dispatch,
   } = CartState();
 
   return (
-    <ModalContainer initial={{ x: 100 }} animate={{ x: 0 }}>
+    <ModalContainer initial={{ x: 150 }} animate={{ x: 0 }}>
       <Cover
         onClick={closeModal}
         initial={{ opacity: 0 }}
@@ -30,21 +29,24 @@ const ShoppingCartModal = () => {
           Winkelmand
           <CancelButton onClick={closeModal}>x</CancelButton>
         </Title>
-        {cart.length == 0 ? (
+        {cart.length === 0 ? (
           <EmptyProductContainer>Winkelkar leeg!</EmptyProductContainer>
         ) : (
           cart.map((product) => {
-            return <CartProduct product={product} />;
+            return <CartProduct product={product} key={product.id} />;
           })
         )}
 
-        {cart.length > 0 && 
-
-        <SubTitle animate={{opacity: 1}}>Subtotaal: €
-          {cart.map(item => {
-            return item.quantity * item.frontmatter.price
-          }).reduce((prev, curr) => prev + curr, 0)}
-        </SubTitle>}
+        {cart.length > 0 && (
+          <SubTitle animate={{ opacity: 1 }}>
+            Subtotaal: €
+            {cart
+              .map((item) => {
+                return item.quantity * item.frontmatter.price;
+              })
+              .reduce((prev, curr) => prev + curr, 0)}
+          </SubTitle>
+        )}
       </CartInfo>
     </ModalContainer>
   );
@@ -87,14 +89,6 @@ const Title = styled.div`
   }
 `;
 
-const CancelButton = styled.h5`
-  font-size: 0.4em;
-  display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-`;
-
 const CartInfo = styled.div`
   background: white;
   padding: 0px 50px;
@@ -107,11 +101,19 @@ const CartInfo = styled.div`
   }
 `;
 
+const CancelButton = styled.h5`
+  font-size: 0.4em;
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;
+
 const SubTitle = styled(motion.h4)`
-margin-bottom: auto;
-margin-top: 50px;
-font-size: 2em;
-opacity: 0;
+  margin-bottom: auto;
+  margin-top: 50px;
+  font-size: 2em;
+  opacity: 0;
 `;
 
 const EmptyProductContainer = styled.div`
