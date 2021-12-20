@@ -32,9 +32,11 @@ const ShoppingCartModal = () => {
         {cart.length === 0 ? (
           <EmptyProductContainer>Winkelkar leeg!</EmptyProductContainer>
         ) : (
-          cart.map((product) => {
-            return <CartProduct product={product} key={product.id} />;
-          })
+          <ProductContainer>
+            {cart.map((product) => {
+              return <CartProduct product={product} key={product.id} />;
+            })}
+          </ProductContainer>
         )}
 
         {cart.length > 0 && (
@@ -112,6 +114,7 @@ const CancelButton = styled.h5`
 const SubTitle = styled(motion.h4)`
   margin-bottom: auto;
   margin-top: 50px;
+  padding-bottom: 15px;
   font-size: 2em;
   opacity: 0;
 `;
@@ -122,4 +125,9 @@ const EmptyProductContainer = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+const ProductContainer = styled.div`
+  overflow-y: auto;
+  padding: 5px;
 `;
