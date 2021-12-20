@@ -9,7 +9,7 @@ const Footer = () => {
       query={graphql`
         query fetchDistinctProductType {
           allMdx {
-            distinct(field: frontmatter___productType)
+            distinct(field:frontmatter___productCategory)
           }
         }
       `}
@@ -25,13 +25,13 @@ const Footer = () => {
               </BrandContainer>
               <NavContainer>
                 <NavTitle>Shop all</NavTitle>
-                {distinct.map((productType) => {
+                {distinct.map((productCategory) => {
                   return (
                     <NavItem
-                      to={`/shop/${productType.toLowerCase()}`}
-                      key={productType}
+                      to={`/shop/${productCategory.toLowerCase()}`}
+                      key={productCategory}
                     >
-                      {productType}
+                      {productCategory}
                     </NavItem>
                   );
                 })}
