@@ -6,6 +6,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(`
     query {
       allMdx {
+        distinct(field: frontmatter___productCategory)
         edges {
           node {
             frontmatter {
@@ -28,23 +29,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   products.forEach(({ node }, index) => {
     createPage({
       path: `/products/${node.slug}`,
-      // This component will wrap our MDX content
       component: path.resolve(`./src/components/productTemplate.js`),
-      // You can use the values in this context in
-      // our page layout component
       context: { id: node.id },
     });
   });
 
-  products.forEach(({ node }, index) => {
-    const formattedProductType = node.frontmatter.productType.toLowerCase();
+  const categories = result.data.allMdx.distinct
+
+  categories.forEach((category) => {
+    const formattedCategory = category.toLowerCase();
     createPage({
-      path: `/shop/${formattedProductType}`,
-      // This component will wrap our MDX content
+      path: `/shop/${formattedCategory}`,
       component: path.resolve(`./src/components/categoryTemplate.js`),
-      // You can use the values in this context in
-      // our page layout component
-      context: { id: node.id },
+      context: { category },
     });
   });
 };
