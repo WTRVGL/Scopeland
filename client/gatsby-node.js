@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: `/shop/${formattedCategory}`,
       component: path.resolve(`./src/components/categoryTemplate.js`),
-      context: { category },
+      context: { category: category },
     });
   });
 };

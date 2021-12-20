@@ -13,7 +13,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
     "gatsby-plugin-mdx",
-    "gatsby-transformer-json",
+   `gatsby-transformer-json`,
     "gatsby-transformer-sharp",
 
     {
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `graveyard`,
+        name: `categories`,
         path: `./src/data/categories/`,
       },
     },

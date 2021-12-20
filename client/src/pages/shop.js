@@ -1,13 +1,15 @@
+import { graphql } from "gatsby";
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import FilterByCategory from "../components/filter-categories/filterByCategory";
 import Layout from "../components/layout";
 
-const Shop = () => {
+const Shop = ({data: {allMdx: {edges}}}) => {
+  console.log(edges);
   return (
     <Layout>
-      <Container>
+      <Container style={{padding: "0px 100px"}}>
         <Row>
           <FilterByCategory />
         </Row>
@@ -26,3 +28,29 @@ const ShopContainer = styled.main`
   max-width: 100%;
   height: calc(100vh - 80px);
 `;
+
+export const query = graphql`
+query allProducts {
+  allMdx {
+    edges {
+      node {
+        id
+        slug
+        frontmatter {
+          productName
+          productType
+          productCategory
+          price
+          featuredProduct
+          featuredImage {
+            childrenImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+`
