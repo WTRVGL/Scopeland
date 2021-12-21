@@ -52,13 +52,11 @@ const DescriptionContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 15px;
-  z-index: 50;
 `;
 
 const Title = styled.h1`
   font-family: "Aeonik Regular";
   font-size: 1.5vw;
-  z-index: 10;
 
   @media screen and (max-width: 768px) {
     font-size: 1.5em;
@@ -68,5 +66,4 @@ const Title = styled.h1`
 const Price = styled.h2`
   font-weight: normal;
   font-size: 1.5em;
-  z-index: 10;
 `;
