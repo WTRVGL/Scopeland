@@ -5,17 +5,21 @@ import { cartReducer } from "./cartReducer";
 const CartContext = createContext();
 
 const Cart = ({ children }) => {
+  const isBrowser = typeof window !== "undefined";
   const [state, dispatch] = useReducer(
     cartReducer,
     {
       cart: [],
     },
     () => {
-      const storageItems = JSON.parse(localStorage.getItem("cart"));
-      if (!storageItems) {
-        return { cart: [] };
+      if (isBrowser) {
+        const storageItems = JSON.parse(localStorage.getItem("cart"));
+        if (!storageItems) {
+          return { cart: [] };
+        }
+        return { cart: storageItems };
       }
-      return { cart: storageItems };
+      return { cart: [] };
     }
   );
 
