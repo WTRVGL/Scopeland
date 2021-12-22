@@ -27,8 +27,6 @@ const ProductContainer = styled(Link)`
   flex-direction: column;
   position: relative;
   justify-content: center;
-  flex: 1;
-  margin: 10px;
 
   @media screen and (max-width: 768px) {
     margin-bottom: 2em;
@@ -36,8 +34,6 @@ const ProductContainer = styled(Link)`
 `;
 
 const Image = styled(GatsbyImage)`
-  width: 100%;
-  max-height: 100%;
 
   z-index: 1;
 
@@ -56,7 +52,7 @@ const DescriptionContainer = styled.div`
 
 const Title = styled.h1`
   font-family: "Aeonik Regular";
-  font-size: 1.5vw;
+  font-size: 1.2vw;
 
   @media screen and (max-width: 768px) {
     font-size: 1.5em;
