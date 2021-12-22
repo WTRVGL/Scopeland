@@ -44,7 +44,7 @@ const HeaderContainer = styled.nav`
   z-index: 10;
   padding-left: 50px;
   padding-right: 50px;
-  background-color: ${({ theme }) => theme.colors.backgroundColor};
+  background-color: white;
 
   @media screen and (max-width: 768px) {
     padding: 0;

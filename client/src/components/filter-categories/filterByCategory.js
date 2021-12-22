@@ -23,7 +23,7 @@ const FilterByCategory = () => {
               category
               image {
                 childImageSharp {
-                  gatsbyImageData(width: 250 layout: CONSTRAINED)
+                  gatsbyImageData(height: 175 layout: CONSTRAINED)
                 }
               }
             }
@@ -42,13 +42,23 @@ const FilterByCategory = () => {
         <>
         <Container>
       <Row style={{ alignItems: "center", justifyContent: "center" }}>
-        <Col>
+        <Col lg={6}>
           <Filter>Sorteer</Filter>
         </Col>
         <Col>
-          <CategoryTitle onClick={toggleCategoryList}>
+          <Title onClick={toggleCategoryList}>
             Categorie
-          </CategoryTitle>
+          </Title>
+        </Col>
+        <Col>
+          <Title>
+            Astronomie
+          </Title>
+        </Col>
+        <Col>
+          <Title>
+            Astrofotografie
+          </Title>
         </Col>
       </Row>
 
@@ -88,7 +98,7 @@ const Filter = styled.h1`
   font-family: "Aeonik Regular";
 `;
 
-const CategoryTitle = styled.h4``;
+const Title = styled.h4``;
 
 const ProductContainer = styled.div`
 display: flex;
