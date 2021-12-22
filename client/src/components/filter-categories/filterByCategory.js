@@ -55,6 +55,11 @@ const FilterByCategory = () => {
             Astronomie
           </Title>
         </Col>
+        <Col>
+          <Title>
+            Astrofotografie
+          </Title>
+        </Col>
       </Row>
 
         
@@ -89,8 +94,8 @@ height: auto;
 `;
 
 const Filter = styled.h1`
+  font-size: 5em;
   font-family: "Aeonik Regular";
-  font-size: 6vw;
 `;
 
 const Title = styled.h4``;
