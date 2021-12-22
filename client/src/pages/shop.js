@@ -4,16 +4,18 @@ import { Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import FilterByCategory from "../components/filter-categories/filterByCategory";
 import Layout from "../components/layout";
+import ProductGrid from "../components/products/productGrid";
 
 const Shop = ({data: {allMdx: {edges}}}) => {
-  console.log(edges);
+  const products = edges
   return (
     <Layout>
-      <Container style={{padding: "0px 100px"}}>
+      <ShopContainer style={{}}>
         <Row>
-          <FilterByCategory />
+          <FilterByCategory />        
         </Row>
-      </Container>
+          <ProductGrid products={products}/>
+      </ShopContainer>
     </Layout>
   );
 };
@@ -21,13 +23,11 @@ const Shop = ({data: {allMdx: {edges}}}) => {
 export default Shop;
 
 const ShopContainer = styled.main`
-  display: flex;
+  padding: 0px 125px;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  max-width: 100%;
-  height: calc(100vh - 80px);
 `;
+
 
 export const query = graphql`
 query allProducts {
@@ -44,7 +44,7 @@ query allProducts {
           featuredProduct
           featuredImage {
             childrenImageSharp {
-              gatsbyImageData
+              gatsbyImageData(height: 500)
             }
           }
         }
