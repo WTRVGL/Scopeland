@@ -48,7 +48,7 @@ export const query = graphql`
             featuredProduct
             featuredImage {
               childrenImageSharp {
-                gatsbyImageData
+                gatsbyImageData(height: 500)
               }
             }
           }
