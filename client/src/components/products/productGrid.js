@@ -8,15 +8,18 @@ const ProductGrid = ({ products }) => {
       {products.map(
         ({
           node: {
-            frontmatter: { featuredImage },
+            slug,
+            id,
+            frontmatter: { featuredImage, productName, price },
           },
         }) => {
           console.log(featuredImage.childrenImageSharp[0].gatsbyImageData);
           return (
-            <Card>
+            <Card key={id}>
               <GatsbyImage
                 image={featuredImage.childrenImageSharp[0].gatsbyImageData}
               />
+              {productName}
             </Card>
           );
         }
@@ -31,12 +34,12 @@ const Grid = styled.div`
   display: grid;
   column-gap: 15px;
   row-gap: 15px;
-
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 `;
 
 const Card = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
