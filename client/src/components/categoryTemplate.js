@@ -1,51 +1,47 @@
 import { graphql } from "gatsby";
 import React from "react";
-import styled from "styled-components";
+import { Container } from "react-bootstrap";
 import FilterByCategory from "./filter-categories/filterByCategory";
+import ProductGrid from "./products/productGrid";
 import Layout from "./layout";
 
-const CategoryTemplate = ({data: {allMdx: {edges}}}) => {
-  console.log(edges);
+const CategoryTemplate = ({
+  data: {
+    allMdx: { edges },
+  },
+}) => {
   return (
     <Layout>
-      <CategoryPageWrapper>
+      <Container>
         <FilterByCategory />
-      </CategoryPageWrapper>
+        <ProductGrid products={edges} />
+      </Container>
     </Layout>
   );
 };
 
 export default CategoryTemplate;
 
-const CategoryPageWrapper = styled.section`
-  margin: 15px 0px;
-  padding: 0px 50px;
-`;
-
 export const query = graphql`
-query productsByCategory($category: String) {
-  allMdx(filter: {frontmatter: {productCategory: {eq: $category}}}) {
-    edges {
-      node {
-        slug
-        frontmatter {
-          productName
-          productType
-          productCategory
-          price
-          featuredProduct
-          featuredImage {
-            childrenImageSharp {
-              gatsbyImageData
+  query productsByCategory($category: String) {
+    allMdx(filter: { frontmatter: { productCategory: { eq: $category } } }) {
+      edges {
+        node {
+          slug
+          frontmatter {
+            productName
+            productType
+            productCategory
+            price
+            featuredProduct
+            featuredImage {
+              childrenImageSharp {
+                gatsbyImageData
+              }
             }
           }
         }
       }
     }
   }
-}
-
-
-
-
-`
+`;

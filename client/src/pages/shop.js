@@ -1,7 +1,6 @@
 import { graphql } from "gatsby";
 import React from "react";
-import { Container, Row } from "react-bootstrap";
-import styled from "styled-components";
+import { Container } from "react-bootstrap";
 import FilterByCategory from "../components/filter-categories/filterByCategory";
 import Layout from "../components/layout";
 import ProductGrid from "../components/products/productGrid";
