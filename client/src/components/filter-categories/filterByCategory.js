@@ -39,12 +39,12 @@ const FilterByCategory = () => {
               {edges.map(({ node: { category, image } }) => {
                 const img = getImage(image);
                 return (
-                  <ProductContainer>
-                    <Link to={`/shop/${category.toLowerCase()}`}>
+                  <Link to={`/shop/${category.toLowerCase()}`}>
+                    <ProductContainer>
                       <GatsbyImage image={img} />
                       {category}
-                    </Link>
-                  </ProductContainer>
+                    </ProductContainer>
+                  </Link>
                 );
               })}
             </FilterContainer>
@@ -76,8 +76,9 @@ const query = graphql`
 
 const FilterContainer = styled(motion.div)`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   height: auto;
+  margin-bottom: 25px;
 `;
 
 const Filter = styled.h1`
@@ -90,4 +91,5 @@ const Title = styled.h4``;
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0px 15px;
 `;

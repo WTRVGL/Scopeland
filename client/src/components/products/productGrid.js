@@ -22,8 +22,10 @@ const ProductGrid = ({ products }) => {
                   image={featuredImage.childrenImageSharp[0].gatsbyImageData}
                 />
               </Link>
-              {productName}
-              {price}
+              <ProductDescription>
+                <h5>{productName}</h5>
+                <h6>€{price}</h6>
+              </ProductDescription>
             </Card>
           );
         }
@@ -43,6 +45,11 @@ const Grid = styled.div`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+`;
+
+const ProductDescription = styled.div`
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0px 25px;
 `;
