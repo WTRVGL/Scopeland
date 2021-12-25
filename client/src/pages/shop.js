@@ -14,7 +14,7 @@ const Shop = ({
   console.log(edges);
   return (
     <Layout>
-      <Container >
+      <Container>
         <FilterByCategory />
         <ProductGrid products={edges} />
       </Container>
@@ -23,15 +23,6 @@ const Shop = ({
 };
 
 export default Shop;
-
-const ShopContainer = styled.main`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  max-width: 100%;
-  height: calc(100vh - 80px);
-`;
 
 export const query = graphql`
   query allProducts {
@@ -48,7 +39,7 @@ export const query = graphql`
             featuredProduct
             featuredImage {
               childrenImageSharp {
-                gatsbyImageData(width: 700 )
+                gatsbyImageData(width: 700)
               }
             }
           }
