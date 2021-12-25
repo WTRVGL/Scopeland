@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React, { useState } from "react";
@@ -40,8 +40,10 @@ const FilterByCategory = () => {
                 const img = getImage(image);
                 return (
                   <ProductContainer>
-                    <GatsbyImage image={img} />
-                    {category}
+                    <Link to={`/shop/${category.toLowerCase()}`}>
+                      <GatsbyImage image={img} />
+                      {category}
+                    </Link>
                   </ProductContainer>
                 );
               })}
