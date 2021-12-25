@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
@@ -16,10 +17,13 @@ const ProductGrid = ({ products }) => {
           console.log(featuredImage.childrenImageSharp[0].gatsbyImageData);
           return (
             <Card key={id}>
-              <GatsbyImage
-                image={featuredImage.childrenImageSharp[0].gatsbyImageData}
-              />
+              <Link to={`/products/${slug}`}>
+                <GatsbyImage
+                  image={featuredImage.childrenImageSharp[0].gatsbyImageData}
+                />
+              </Link>
               {productName}
+              {price}
             </Card>
           );
         }
@@ -27,7 +31,6 @@ const ProductGrid = ({ products }) => {
     </Grid>
   );
 };
-
 export default ProductGrid;
 
 const Grid = styled.div`
@@ -42,10 +45,4 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const Img = styled.div`
-  background-color: yellow;
-  width: 430px;
-  height: 370px;
 `;
