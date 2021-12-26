@@ -45,6 +45,13 @@ module.exports = {
         name: `categories`,
         path: `./src/data/categories/`,
       },
+      {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/uploads`,
+        name: `uploads`,
+      },
     },
+    
   ],
 };
