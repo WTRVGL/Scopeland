@@ -387,3 +387,6 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 .forestry/settings.yml
+
+# Local Netlify folder
+.netlify
