@@ -6,6 +6,10 @@ webhook_url:
 sections:
 - type: document
   path: client/src/data/products
+  label: df
+  match: "**/*"
+- type: document
+  path: client/src/data/products
   label: Prd
 upload_dir: client/src/images
 public_path: "/uploads"
