@@ -13,7 +13,7 @@ sections:
   - product
 upload_dir: client/src/images
 public_path: "/uploads"
-front_matter_path: client/src/images
+front_matter_path: "../../images"
 use_front_matter_path: true
 file_template: ":filename:"
 build:
