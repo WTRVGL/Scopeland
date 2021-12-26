@@ -4,10 +4,13 @@ auto_deploy: false
 admin_path: "/client/static/admin"
 webhook_url: 
 sections:
-- type: document
+- type: directory
   path: client/src/data/products
-  label: Prd
+  label: Products
+  create: all
   match: "**/*"
+  templates:
+  - prdct
 upload_dir: client/src/images
 public_path: "/uploads"
 front_matter_path: ''
