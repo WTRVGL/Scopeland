@@ -5,6 +5,12 @@ admin_path: "/client/static/admin"
 webhook_url: 
 sections:
 - type: directory
+  path: client/src/data/categories
+  label: Categories
+  create: all
+  match: "**/*"
+  new_doc_ext: ".mdx"
+- type: directory
   path: client/src/data/products
   label: Products
   create: all
