@@ -36,7 +36,11 @@ export const query = graphql`
             featuredProduct
             featuredImage {
               childrenImageSharp {
-                gatsbyImageData
+                gatsbyImageData(
+                  width: 1000
+                  height: 800
+                  transformOptions: { cropFocus: CENTER }
+                )
               }
             }
           }
