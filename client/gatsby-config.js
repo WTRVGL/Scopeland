@@ -6,14 +6,13 @@ module.exports = {
     title: "gatsby-client",
   },
   plugins: [
-    "gatsby-plugin-netlify-cms",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
     "gatsby-plugin-mdx",
-   `gatsby-transformer-json`,
+    `gatsby-transformer-json`,
     "gatsby-transformer-sharp",
 
     {
