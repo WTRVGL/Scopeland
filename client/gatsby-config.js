@@ -23,13 +23,13 @@ module.exports = {
       },
       __key: "images",
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/uploads`,
-        name: `uploads`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/uploads`,
+    //     name: `uploads`,
+    //   },
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
