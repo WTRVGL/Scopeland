@@ -9,6 +9,7 @@ sections:
   label: Products
   create: all
   match: "**/*"
+  new_doc_ext: ".mdx"
   templates:
   - product
 upload_dir: client/src/images
