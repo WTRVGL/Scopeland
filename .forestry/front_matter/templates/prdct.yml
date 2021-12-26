@@ -1,4 +1,13 @@
 ---
 label: prdct
 hide_body: false
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: title
+- name: fotoyo
+  type: image_gallery
+  config: {}
+  label: foto
