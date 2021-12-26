@@ -16,3 +16,11 @@ build:
   mount_path: "/srv"
   working_dir: "/srv"
   instant_preview_command: npm run develop
+sections:
+  - type: directory
+    path: src/data/products
+    label: Products
+    create: documents
+    match: "**/*"
+    templates:
+      - product
