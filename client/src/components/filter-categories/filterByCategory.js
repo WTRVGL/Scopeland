@@ -18,7 +18,7 @@ const FilterByCategory = () => {
       query={query}
       render={({ allCatJson: { edges } }) => (
         <>
-          <Container>
+          <Container fluid>
             <Row style={{ alignItems: "center", justifyContent: "center" }}>
               <Col lg={6}>
                 <Filter>Sorteer</Filter>
@@ -30,7 +30,7 @@ const FilterByCategory = () => {
                 <Title>Astronomie</Title>
               </Col>
               <Col>
-                <Title>Astrofotografie</Title>
+                <Title>Fotografie</Title>
               </Col>
             </Row>
           </Container>

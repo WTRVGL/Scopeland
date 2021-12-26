@@ -100,6 +100,7 @@ const CartInfo = styled.div`
   width: 100vw;
 
   @media screen and (max-width: 768px) {
+    padding: 0px 15px;
   }
 `;
 

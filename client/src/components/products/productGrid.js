@@ -40,6 +40,10 @@ const Grid = styled.div`
   column-gap: 15px;
   row-gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+  @media screen and (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Card = styled.div`
