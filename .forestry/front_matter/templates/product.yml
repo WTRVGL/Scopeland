@@ -27,4 +27,5 @@ fields:
   name: images
   label: images
 pages:
+- client/src/data/products/test-ori.mdx
 - client/src/data/products/test-product.md
