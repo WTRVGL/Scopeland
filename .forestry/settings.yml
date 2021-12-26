@@ -10,7 +10,7 @@ sections:
   create: all
   match: "**/*"
   templates:
-  - prdct
+  - product
 upload_dir: client/src/images
 public_path: "/uploads"
 front_matter_path: ''
