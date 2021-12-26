@@ -34,11 +34,12 @@ export const query = graphql`
             productName
             productType
             productCategory
+            secondaryProductType
             price
             featuredProduct
             featuredImage {
               childrenImageSharp {
-                gatsbyImageData(width: 700)
+                gatsbyImageData(height: 700)
               }
             }
           }
