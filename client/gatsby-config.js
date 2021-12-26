@@ -24,6 +24,13 @@ module.exports = {
       __key: "images",
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/uploads`,
+        name: `uploads`,
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
@@ -45,13 +52,6 @@ module.exports = {
         name: `categories`,
         path: `./src/data/categories/`,
       },
-      {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/uploads`,
-        name: `uploads`,
-      },
     },
-    
   ],
 };
