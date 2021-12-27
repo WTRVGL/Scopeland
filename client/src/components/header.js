@@ -20,7 +20,7 @@ const Header = () => {
   };
   return (
     
-    <Container>
+    <HeaderContainer>
       <Row style={{justifyContent: "space-between"}}>
         <NavItem>
           <LinkItem to="/shop">Shop</LinkItem>
@@ -34,7 +34,7 @@ const Header = () => {
           {cart.length}
         </NavItem>
      </Row>
-    </Container>
+    </HeaderContainer>
   );
 };
 
@@ -51,6 +51,11 @@ const NavItem = styled(Col)`
   &:nth-child(3) {
         justify-content: flex-end;
     }
+`
+
+const HeaderContainer = styled(Container)`
+  position: sticky;
+  top: 0;
 `
 // const HeaderContainer = styled.nav`
 //   display: grid;
