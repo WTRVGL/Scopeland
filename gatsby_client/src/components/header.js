@@ -5,6 +5,7 @@ import { GoTelescope } from "react-icons/go";
 import { CartState } from "../context/cartContext";
 import { CartModalState } from "../context/cartModalContext";
 import { motion } from "framer-motion";
+import { Col, Container, Row } from "react-bootstrap";
 
 const Header = () => {
   const {
@@ -18,38 +19,60 @@ const Header = () => {
     setModalVisibility(true);
   };
   return (
+    
     <HeaderContainer>
-      <LinkNav>
-        <LinkItem to="/shop">Shop</LinkItem>
-        <LinkItem to="/login">Account</LinkItem>
-      </LinkNav>
-      <Logo to="/">Scopeland</Logo>
-      <NavIcons>
-        <GoTelescope size={25} onClick={openModal} />
-        {cart.length}
-      </NavIcons>
+      <Row style={{justifyContent: "space-between"}}>
+        <NavItem>
+          <LinkItem to="/shop">Shop</LinkItem>
+          <LinkItem to="/login">Account</LinkItem>
+        </NavItem>
+        <NavItem>
+          <Logo to="/">Scopeland</Logo>
+        </NavItem>
+        <NavItem>
+          <GoTelescope size={25} onClick={openModal} />
+          {cart.length}
+        </NavItem>
+     </Row>
     </HeaderContainer>
   );
 };
 
 export default Header;
 
-const HeaderContainer = styled.nav`
-  display: grid;
-  color: ${({ theme }) => theme.colors.primaryColor};
-  grid-template-columns: repeat(3, 1fr);
-  height: 80px;
+const NavItem = styled(Col)`
+  display: flex;
+  align-items: center; 
+  
+  &:nth-child(2) {
+        justify-content: center;
+    }
+
+  &:nth-child(3) {
+        justify-content: flex-end;
+    }
+`
+
+const HeaderContainer = styled(Container)`
   position: sticky;
   top: 0;
-  z-index: 10;
-  padding-left: 50px;
-  padding-right: 50px;
-  background-color: white;
+`
+// const HeaderContainer = styled.nav`
+//   display: grid;
+//   color: ${({ theme }) => theme.colors.primaryColor};
+//   grid-template-columns: repeat(3, 1fr);
+//   height: 80px;
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   padding-left: 50px;
+//   padding-right: 50px;
+//   background-color: white;
 
-  @media screen and (max-width: 768px) {
-    padding: 0;
-  }
-`;
+//   @media screen and (max-width: 768px) {
+//     padding: 0;
+//   }
+// `;
 
 const LinkNav = styled.ul`
   display: flex;
@@ -63,7 +86,7 @@ const LinkNav = styled.ul`
 `;
 
 const LinkItem = styled(Link)`
-  margin-right: 10px;
+  margin: 0px 25px;
 `;
 
 const Logo = styled(Link)`
