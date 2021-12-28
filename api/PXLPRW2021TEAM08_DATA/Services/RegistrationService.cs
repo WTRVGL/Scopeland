@@ -1,8 +1,9 @@
-﻿using System;
+﻿using PXLPRW2021Team08_CORE.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Services
+namespace PXLPRW2021Team08_CORE.Services
 {
     public class RegistrationService
     {

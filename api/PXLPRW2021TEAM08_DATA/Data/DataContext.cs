@@ -1,11 +1,10 @@
-﻿using Library.Services;
+﻿using PXLPRW2021Team08_CORE.Models;
+using PXLPRW2021Team08_CORE.Services;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
-namespace Library
+namespace PXLPRW2021Team08_CORE.Data
 {
     public class DataContext : IDataContext
     {

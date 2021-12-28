@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library
+namespace PXLPRW2021Team08_CORE.Models
 {
     public class Product
     {

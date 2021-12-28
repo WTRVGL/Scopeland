@@ -1,6 +1,8 @@
-﻿using System.Security;
+﻿using PXLPRW2021Team08_CORE.Data;
+using PXLPRW2021Team08_CORE.Models;
+using System.Security;
 
-namespace Library.Services
+namespace PXLPRW2021Team08_CORE.Services
 {
     public class LoginService
     {

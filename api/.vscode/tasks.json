@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj",
+                "${workspaceFolder}/PXLPRW2021TEAM08_DATA/PXLPRW2021TEAM08_CORE.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj",
+                "${workspaceFolder}/PXLPRW2021TEAM08_DATA/PXLPRW2021TEAM08_CORE.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj",
+                "${workspaceFolder}/PXLPRW2021TEAM08_DATA/PXLPRW2021TEAM08_CORE.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -45,14 +45,14 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "pxlprw2021team08:dev",
+                "tag": "api:dev",
                 "target": "base",
-                "dockerfile": "${workspaceFolder}/api/PXLPRW2021Team08_API/Dockerfile",
+                "dockerfile": "${workspaceFolder}/PXLPRW2021Team08_API/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
+                "appProject": "${workspaceFolder}/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
             }
         },
         {
@@ -62,13 +62,13 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "pxlprw2021team08:latest",
-                "dockerfile": "${workspaceFolder}/api/PXLPRW2021Team08_API/Dockerfile",
+                "tag": "api:latest",
+                "dockerfile": "${workspaceFolder}/PXLPRW2021Team08_API/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
+                "appProject": "${workspaceFolder}/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
             }
         },
         {
@@ -81,7 +81,7 @@
                 "os": "Windows"
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj",
+                "appProject": "${workspaceFolder}/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj",
                 "enableDebugging": true
             }
         },
@@ -95,7 +95,7 @@
                 "os": "Windows"
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/api/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
+                "appProject": "${workspaceFolder}/PXLPRW2021Team08_API/PXLPRW2021Team08_API.csproj"
             }
         }
     ]

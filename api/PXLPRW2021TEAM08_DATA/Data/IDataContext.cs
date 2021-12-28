@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PXLPRW2021Team08_CORE.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library
+namespace PXLPRW2021Team08_CORE.Data
 {
-    interface IDataContext
+    public interface IDataContext
     {
         List<Product> GetProducts();
         Product GetProduct(int id);

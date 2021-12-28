@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Library.Services
+namespace PXLPRW2021Team08_CORE.Services
 {
     public class HashPasswordService
     {
