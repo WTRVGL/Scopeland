@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PXLPRW2021Team08_CORE.Models
 {
@@ -24,7 +23,7 @@ namespace PXLPRW2021Team08_CORE.Models
         public DateTime DateLastSale { get; set; }
         public DateTime DateFirstStockage { get; set; }
 
-
+        [JsonIgnore]
         public object Clone => this.MemberwiseClone();
     }
 }
