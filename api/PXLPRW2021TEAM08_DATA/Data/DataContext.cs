@@ -12,10 +12,10 @@ namespace PXLPRW2021Team08_CORE.Data
 
         public DataContext()
         {
-            sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+            sqlConnection = new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts() 
         {
             var command = new SqlCommand($"SELECT * FROM Products", sqlConnection);
             command.Connection.Open();
