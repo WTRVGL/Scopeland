@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PXLPRW2021Team08_API.Data;
 using PXLPRW2021Team08_CORE.Data;
 
 namespace PXLPRW2021Team08_API
@@ -26,8 +28,13 @@ namespace PXLPRW2021Team08_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddTransient<IDataContext, DataContext>();
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer("Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
