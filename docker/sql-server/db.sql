@@ -1,8 +1,10 @@
-DROP DATABASE PXLDigital_PRWA_WPL2_DB
+USE master
+GO
+
 CREATE DATABASE PXLDigital_PRWA_WPL2_DB
+GO
 
 USE PXLDigital_PRWA_WPL2_DB
-GO
 
 CREATE TABLE Products (
 	ProductID int identity(1,1) not null,

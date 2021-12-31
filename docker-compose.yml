@@ -6,11 +6,12 @@ services:
   ms-sql-server:
     image: sqlserver
     build:
-      dockerfile: docker/sql-server/Dockerfile
-    environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: Enterpasswordhere123#
-      MSSQL_PID: Express
+      context: ./docker/sql-server
+      dockerfile: Dockerfile
+    # environment:
+    #   ACCEPT_EULA: "Y"
+    #   SA_PASSWORD: Enterpasswordhere123#
+    #   MSSQL_PID: Express
     ports:
       - 1000:1433
   pxlprw2021team08api:
