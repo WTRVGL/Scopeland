@@ -12,7 +12,7 @@ namespace PXLPRW2021Team08_CORE.Data
 
         public DataContext()
         {
-            sqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
+            sqlConnection = new SqlConnection(@"Server=ms-sql-server, 1000;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Password=Enterpasswordhere123#;");
         }
 
         public List<Product> GetProducts()
@@ -84,7 +84,7 @@ namespace PXLPRW2021Team08_CORE.Data
         public Product CreateProduct(Product product)
         {
             var dateFirstStockage = product.DateFirstStockage.Date.ToString("yyyy-MM-dd HH:mm:ss");
-            var dateFirstSale= product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateFirstSale = product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
             var command = new SqlCommand(
                 $"INSERT INTO Products(ProductName, ProductPrice, ProductDescription, ProductBrand, ProductCategory, ProductType, ProductStock, ProductAmountSold, ProductFocalLength, ProductPriceSold, ProductResolution, ProductAperture, ProductWeight, ProductDifficulty, ProductDateLastSale, ProductDateFirstStockage) " +
                 $"VALUES('{product.ProductNaam}','{product.ProductPrijs}', '{product.ProductOmschrijving}', '{product.ProductMerk}', '{product.ProductCategory}', '{product.ProductType}', '{product.Stock}', '{product.AmountSold}', '{product.FocalLength}', '{product.PriceSold}', '{product.Resolution}', '{product.Aperture}', '{product.Weight}', '{product.Difficulty}', '{dateFirstSale}', '{dateFirstStockage}')", sqlConnection);
@@ -223,6 +223,6 @@ namespace PXLPRW2021Team08_CORE.Data
             return gebruiker;
         }
 
-        
+
     }
 }
