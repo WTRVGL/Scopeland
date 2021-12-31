@@ -17,6 +17,6 @@ services:
     image: pxlprw2021team08api
     build:
       context: .
-      dockerfile: api/PXLPRW2021Team08_API/Dockerfile.api
+      dockerfile: docker/api/Dockerfile
     ports:
       - 5000:5000
