@@ -8,12 +8,16 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "forestry:preview": "gatsby develop -p 8080 -H 0.0.0.0"
+    "forestry:preview": "gatsby develop -p 8080 -H 0.0.0.0",
+    "start:dev": "docker compose -f ../docker/gatsby/docker-compose-dev.yml up --remove-orphans -d",
+    "stop:dev": "docker compose -f ../docker/gatsby/docker-compose-dev.yml stop",
+    "build:dev": "docker compose -f ../docker/gatsby/docker-compose-dev.yml build",
+    "clean:dev": "docker compose -f ../docker/gatsby/docker-compose-dev.yml down --rmi local --volumes --remove-orphans"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
