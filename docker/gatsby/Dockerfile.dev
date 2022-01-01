@@ -1,0 +1,15 @@
+FROM node:14-alpine
+RUN apk update && apk upgrade && apk add python3 make g++
+WORKDIR /app
+COPY gatsby_client/package.json ./
+RUN npm install
+
+RUN npm install --global gatsby-cli
+
+ENV NODE_ENV=development
+ENV CHOKIDAR_USEPOLLING=1
+
+COPY gatsby_client/ .
+
+EXPOSE 8000
+CMD ["npm", "run", "develop"]

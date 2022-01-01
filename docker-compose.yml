@@ -3,10 +3,21 @@
 version: '3.4'
 
 services:
+  ms-sql-server:
+    image: sqlserver
+    build:
+      context: ./docker/sql-server
+      dockerfile: Dockerfile
+    # environment:
+    #   ACCEPT_EULA: "Y"
+    #   SA_PASSWORD: Enterpasswordhere123#
+    #   MSSQL_PID: Express
+    ports:
+      - 1000:1433
   pxlprw2021team08api:
     image: pxlprw2021team08api
     build:
       context: .
-      dockerfile: api/PXLPRW2021Team08_API/Dockerfile
+      dockerfile: docker/api/Dockerfile
     ports:
       - 5000:5000
