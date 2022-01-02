@@ -31,8 +31,8 @@ namespace PXLPRW2021Team08_API.Services
             };
 
             var token = new JwtSecurityToken(
-                issuer: "issuer",
-                audience: "audience",
+                issuer: "localhost",
+                audience: "localhost",
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(30),
                 notBefore: DateTime.UtcNow,
