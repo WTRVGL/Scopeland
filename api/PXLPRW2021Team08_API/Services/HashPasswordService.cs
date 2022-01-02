@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using PXLPRW2021Team08_API.Services;
 
-namespace PXLPRW2021Team08_CORE.Services
+namespace PXLPRW2021Team08_API.Services
 {
     public partial class HashPasswordService : IHashPasswordService
     {
