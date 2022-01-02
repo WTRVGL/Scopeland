@@ -24,6 +24,7 @@ namespace PXLPRW2021Team08_API.Controllers
 
 
         // GET: api/<ProductsController>
+        //[Authorize(Roles = "admin")]
         [HttpGet]
         public IEnumerable<Product> Get()
         {
