@@ -21,7 +21,7 @@ namespace PXLPRW2021Team08_API.Services
 
 
     /// <summary>
-    /// Authenticates the user and returns True if succesful.
+    /// Authenticates the user 
     /// </summary>
     /// <returns></returns>
     public AuthenticateResponse AuthenticateUser(AuthenticateRequest model)
@@ -32,6 +32,8 @@ namespace PXLPRW2021Team08_API.Services
         {
             return null;
         }
+        
+        
 
         var authenticated =
             _hashPasswordService.checkHash(model.Password, currentUser.PasswoordHash, currentUser.PasswoordSalt);
