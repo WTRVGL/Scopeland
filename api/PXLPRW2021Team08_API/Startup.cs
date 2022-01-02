@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,9 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using PXLPRW2021Team08_API.Repositories;
 using PXLPRW2021Team08_API.Services;
-using PXLPRW2021Team08_CORE.Services;
 
 namespace PXLPRW2021Team08_API
 {
@@ -34,12 +36,37 @@ namespace PXLPRW2021Team08_API
             services.AddTransient<IUserRepository, UserRepositorySql>();
 
             services.AddTransient<IAuthService, AuthService>();
-            services.AddTransient<ITokenService, TokenService>();
+            services.AddSingleton<ITokenService, TokenService>();
             services.AddSingleton<IHashPasswordService, HashPasswordService>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        RequireExpirationTime = false,
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Convert.FromBase64String("eW93YXNzdXBwb3Bpc2VwaWNyZWVlZWVlZWVlZWVlZWU=")),
+                        ValidateIssuerSigningKey = true
+
+                    };
+                });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                }); 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -49,13 +76,17 @@ namespace PXLPRW2021Team08_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("AllowAll");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }
