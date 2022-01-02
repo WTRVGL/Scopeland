@@ -1,5 +1,4 @@
 ﻿using PXLPRW2021Team08_CORE.Models;
-using PXLPRW2021Team08_CORE.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,9 +11,7 @@ namespace PXLPRW2021Team08_API.Repositories
 
         public ProductRepositorySql()
         {
-            // sqlConnection = new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-            sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-
+            sqlConnection = new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
         }
 
         public List<Product> GetProducts() 
