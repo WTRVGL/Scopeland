@@ -418,7 +418,8 @@ VALUES
 		FirstName nvarchar(150),
 		LastName nvarchar(150),
 		PasswoordHash nvarchar(100),
-		PasswoordSalt nvarchar(100)
+		PasswoordSalt nvarchar(100),
+		Role nvarchar(100)
 	)
 INSERT INTO
 	Gebruikers (
@@ -426,7 +427,8 @@ INSERT INTO
 		FirstName,
 		LastName,
 		PasswoordHash,
-		PasswoordSalt
+		PasswoordSalt,
+		Role
 	)
 VALUES
 	(
@@ -434,5 +436,6 @@ VALUES
 		'Wouter',
 		'Vangeel',
 		'ctKkmklm0np0eEDEb++B1sQ7s9E=',
-		'yr9pE4iaDi4JmcLwsP0='
+		'yr9pE4iaDi4JmcLwsP0=',
+		'admin'
 	)
