@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PXLPRW2021Team08_CORE.Data;
+using PXLPRW2021Team08_API.Repositories;
 using PXLPRW2021Team08_CORE.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,18 +15,19 @@ namespace PXLPRW2021Team08_API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IDataContext _context;
+        private readonly IProductRepository _repository;
 
-        public ProductsController(IDataContext context)
+        public ProductsController(IProductRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
+
 
         // GET: api/<ProductsController>
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return _context.GetProducts();
+            return _repository.GetProducts();
         }
 
         // GET api/<ProductsController>/5
@@ -35,7 +37,9 @@ namespace PXLPRW2021Team08_API.Controllers
             return "value";
         }
 
+
         // POST api/<ProductsController>
+        
         [HttpPost]
         public void Post([FromBody] string value)
         {
