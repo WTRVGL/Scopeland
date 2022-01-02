@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PXLPRW2021Team08_CORE.Data;
+using PXLPRW2021Team08_API.Repositories;
+using PXLPRW2021Team08_API.Services;
+using PXLPRW2021Team08_CORE.Services;
 
 namespace PXLPRW2021Team08_API
 {
@@ -28,7 +30,12 @@ namespace PXLPRW2021Team08_API
         {
 
             services.AddControllers();
-            services.AddTransient<IDataContext, DataContext>();
+            services.AddTransient<IProductRepository, ProductRepositorySql>();
+            services.AddTransient<IUserRepository, UserRepositorySql>();
+
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<ITokenService, TokenService>();
+            services.AddSingleton<IHashPasswordService, HashPasswordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
