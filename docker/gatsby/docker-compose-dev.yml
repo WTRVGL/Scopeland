@@ -9,5 +9,7 @@ services:
       dockerfile: docker/gatsby/Dockerfile.dev
     ports:
       - "8000:8000"
+    environment: 
+      - CHOKIDAR_USEPOLLING=1
 volumes:
   src:
