@@ -439,3 +439,22 @@ VALUES
 		'yr9pE4iaDi4JmcLwsP0=',
 		'admin'
 	)
+	
+INSERT INTO
+	Gebruikers (
+		Email,
+		FirstName,
+		LastName,
+		PasswoordHash,
+		PasswoordSalt,
+		Role
+	)
+VALUES
+	(
+		'user',
+		'Bart',
+		'Peeters',
+		'4YPedBpwyJ6NMB4PpWl4ghLRp/k=',
+		'U1qrrFoTtJgLItuLG1U=',
+		'user'
+	)
