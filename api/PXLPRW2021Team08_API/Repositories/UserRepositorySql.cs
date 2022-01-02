@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using PXLPRW2021Team08_API.Models;
-using PXLPRW2021Team08_CORE.Services;
+using PXLPRW2021Team08_API.Services;
 
 namespace PXLPRW2021Team08_API.Repositories
 {
@@ -16,10 +16,9 @@ namespace PXLPRW2021Team08_API.Repositories
 
     public UserRepositorySql()
     {
-         
-        //sqlConnection =new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-        sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-        }
+        sqlConnection =new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+
+    }
 
 
 
@@ -109,7 +108,7 @@ namespace PXLPRW2021Team08_API.Repositories
             gebruiker.PasswoordHash = (string) reader["PasswoordHash"];
             gebruiker.PasswoordSalt = (string) reader["PasswoordSalt"];
             gebruiker.Role = (string)reader["Role"];
-            }
+        }
 
         reader.Close();
 
