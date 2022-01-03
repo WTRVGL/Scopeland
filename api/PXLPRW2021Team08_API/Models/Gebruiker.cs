@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PXLPRW2021Team08_CORE.Models
+namespace PXLPRW2021Team08_API.Models
 {
     public class Gebruiker
     {
@@ -12,6 +12,7 @@ namespace PXLPRW2021Team08_CORE.Models
         public string FirstName { get; set; }
         public string PasswoordHash { get; set; }
         public string PasswoordSalt { get; set; }
+        public string Role { get; set; }
 
     }
 }

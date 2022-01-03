@@ -1,22 +1,19 @@
-﻿using PXLPRW2021Team08_CORE.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PXLPRW2021Team08_API.Repositories;
 
-namespace PXLPRW2021Team08_CORE.Services
+namespace PXLPRW2021Team08_API.Services
 {
     public class RegistrationService
     {
-        public DataContext Data { get; set; }
+        private readonly IUserRepository _repository;
 
-        public RegistrationService()
+        public RegistrationService(IUserRepository repository)
         {
-            Data = new DataContext();
+            _repository = repository;
         }
 
         public bool userAlreadyExists(string username)
         {
-            var user = Data.GetUserByUserName(username);
+            var user = _repository.GetUserByUserName(username);
             if (user.GebruikerID == 0)
             {
                 return false;
@@ -32,7 +29,7 @@ namespace PXLPRW2021Team08_CORE.Services
             }
 
 
-            var createdUser = Data.CreateUser(username, voornaam, achternaam, passwoord);
+            var createdUser = _repository.CreateUser(username, voornaam, achternaam, passwoord);
             return true;
         }
     }

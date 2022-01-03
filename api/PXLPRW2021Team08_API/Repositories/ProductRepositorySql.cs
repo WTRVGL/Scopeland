@@ -1,21 +1,20 @@
 ﻿using PXLPRW2021Team08_CORE.Models;
-using PXLPRW2021Team08_CORE.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace PXLPRW2021Team08_CORE.Data
+namespace PXLPRW2021Team08_API.Repositories
 {
-    public class DataContext : IDataContext
+    public class ProductRepositorySql : IProductRepository
     {
         private readonly SqlConnection sqlConnection;
 
-        public DataContext()
+        public ProductRepositorySql()
         {
-            sqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
+            sqlConnection = new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts() 
         {
             var command = new SqlCommand($"SELECT * FROM Products", sqlConnection);
             command.Connection.Open();
@@ -84,7 +83,7 @@ namespace PXLPRW2021Team08_CORE.Data
         public Product CreateProduct(Product product)
         {
             var dateFirstStockage = product.DateFirstStockage.Date.ToString("yyyy-MM-dd HH:mm:ss");
-            var dateFirstSale= product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateFirstSale = product.DateLastSale.Date.ToString("yyyy-MM-dd HH:mm:ss");
             var command = new SqlCommand(
                 $"INSERT INTO Products(ProductName, ProductPrice, ProductDescription, ProductBrand, ProductCategory, ProductType, ProductStock, ProductAmountSold, ProductFocalLength, ProductPriceSold, ProductResolution, ProductAperture, ProductWeight, ProductDifficulty, ProductDateLastSale, ProductDateFirstStockage) " +
                 $"VALUES('{product.ProductNaam}','{product.ProductPrijs}', '{product.ProductOmschrijving}', '{product.ProductMerk}', '{product.ProductCategory}', '{product.ProductType}', '{product.Stock}', '{product.AmountSold}', '{product.FocalLength}', '{product.PriceSold}', '{product.Resolution}', '{product.Aperture}', '{product.Weight}', '{product.Difficulty}', '{dateFirstSale}', '{dateFirstStockage}')", sqlConnection);
@@ -135,94 +134,5 @@ namespace PXLPRW2021Team08_CORE.Data
             throw new NotImplementedException();
         }
 
-
-        public Gebruiker GetUser(int id)
-        {
-            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Id = {id}", sqlConnection);
-            command.Connection.Open();
-            var reader = command.ExecuteReader();
-            var gebruiker = new Gebruiker();
-            while (reader.Read())
-            {
-                gebruiker.GebruikerID = (int)reader["UserId"];
-                gebruiker.Email = (string)reader["Email"];
-                gebruiker.FirstName = (string)reader["FirstName"];
-                gebruiker.LastName = (string)reader["LastName"];
-                gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
-                gebruiker.PasswoordSalt = (string)reader["PasswoordSalt"];
-            }
-
-            reader.Close();
-            return gebruiker;
-        }
-
-        //NEEDS TEST
-        public List<Gebruiker> GetUsers()
-        {
-            var command = new SqlCommand($"SELECT * FROM Gebruikers", sqlConnection);
-            command.Connection.Open();
-            var reader = command.ExecuteReader();
-            var users = new List<Gebruiker>();
-            while (reader.Read())
-            {
-                users.Add(
-                    new Gebruiker
-                    {
-                        GebruikerID = (int)reader["UserId"],
-                        Email = (string)reader["Email"],
-                        FirstName = (string)reader["FirstName"],
-                        LastName = (string)reader["LastName"],
-                        PasswoordHash = (string)reader["PasswoordHash"],
-                        PasswoordSalt = (string)reader["PasswoordSalt"]
-                    });
-            }
-            reader.Close();
-            return users;
-        }
-
-        public Gebruiker CreateUser(string username, string voornaam, string achternaam, string passwoord)
-        {
-            var service = new HashPasswordService();
-
-            Tuple<string, string> passwordHashSaltTuple = service.generateHashAndSalt(passwoord);
-
-            var passwoordHash = passwordHashSaltTuple.Item1;
-            var passwoordSalt = passwordHashSaltTuple.Item2;
-
-            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", sqlConnection);
-            command.Connection.Close();
-            command.Connection.Open();
-            var reader = command.ExecuteReader();
-            reader.Close();
-
-            return GetUserByUserName(username);
-
-        }
-
-        public Gebruiker GetUserByUserName(string username)
-        {
-
-            var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Email = '{username}'", sqlConnection);
-            command.Connection.Close();
-            command.Connection.Open();
-            var reader = command.ExecuteReader();
-            var gebruiker = new Gebruiker();
-            while (reader.Read())
-            {
-                gebruiker.GebruikerID = (int)reader["UserId"];
-                gebruiker.Email = (string)reader["Email"];
-                gebruiker.FirstName = (string)reader["FirstName"];
-                gebruiker.LastName = (string)reader["LastName"];
-                gebruiker.PasswoordHash = (string)reader["PasswoordHash"];
-                gebruiker.PasswoordSalt = (string)reader["PasswoordSalt"];
-            }
-
-            reader.Close();
-
-
-            return gebruiker;
-        }
-
-        
     }
 }

@@ -13,7 +13,7 @@ namespace Library
 
         public DataContext()
         {
-            sqlConnection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=PXLDigital_PRWA_WPL2_DB;Integrated Security=True;");
+            sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
         }
 
         public List<Product> GetProducts()
