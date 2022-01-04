@@ -19,9 +19,8 @@ const Header = () => {
     setModalVisibility(true);
   };
   return (
-    
     <HeaderContainer>
-      <Row style={{justifyContent: "space-between"}}>
+      <Row style={{ justifyContent: "space-between" }}>
         <NavItem>
           <LinkItem to="/shop">Shop</LinkItem>
           <LinkItem to="/login">Account</LinkItem>
@@ -33,7 +32,7 @@ const Header = () => {
           <GoTelescope size={25} onClick={openModal} />
           {cart.length}
         </NavItem>
-     </Row>
+      </Row>
     </HeaderContainer>
   );
 };
@@ -42,21 +41,24 @@ export default Header;
 
 const NavItem = styled(Col)`
   display: flex;
-  align-items: center; 
-  
+  align-items: center;
+
   &:nth-child(2) {
-        justify-content: center;
-    }
+    justify-content: center;
+  }
 
   &:nth-child(3) {
-        justify-content: flex-end;
-    }
-`
+    justify-content: flex-end;
+  }
+`;
 
 const HeaderContainer = styled(Container)`
   position: sticky;
   top: 0;
-`
+  z-index: 50;
+  position: sticky;
+  top: 0;
+`;
 // const HeaderContainer = styled.nav`
 //   display: grid;
 //   color: ${({ theme }) => theme.colors.primaryColor};

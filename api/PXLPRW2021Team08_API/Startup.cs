@@ -52,6 +52,14 @@ namespace PXLPRW2021Team08_API
                         ValidateIssuerSigningKey = true
 
                     };
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            context.Token = context.Request.Cookies["JWTkoek"];
+                            return Task.CompletedTask;
+                        }
+                    };
                 });
 
             services.AddCors(options =>
