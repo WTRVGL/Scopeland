@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PXLPRW2021Team08_API.Models;
 using PXLPRW2021Team08_API.Services;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,6 +31,15 @@ namespace PXLPRW2021Team08_API.Controllers
             {
                 return Unauthorized("username or password incorrect");
             }
+
+            Response.Cookies.Append("JWTkoek", $"{response.Token}", new CookieOptions()
+            {
+                Expires = DateTimeOffset.Now.AddHours(4),
+                Path = "/",
+                HttpOnly = true,
+                Secure = true,
+            });
+
 
             return Ok(response);
         }
