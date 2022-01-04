@@ -31,6 +31,7 @@ namespace PXLPRW2021Team08_API.Controllers
             return _repository.GetProducts();
         }
 
+        [Authorize(Roles = "admin")]
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
         public string Get(int id)
