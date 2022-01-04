@@ -33,7 +33,6 @@ namespace PXLPRW2021Team08_API.Services
             return null;
         }
         
-        
 
         var authenticated =
             _hashPasswordService.checkHash(model.Password, currentUser.PasswoordHash, currentUser.PasswoordSalt);
@@ -46,7 +45,7 @@ namespace PXLPRW2021Team08_API.Services
         var authResult = _tokenService.getJwtSecurityToken((currentUser));
 
             
-        return new AuthenticateResponse(currentUser, $"{authResult}");
+        return new AuthenticateResponse(currentUser, authResult);
 
     }
 
