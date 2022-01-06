@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { ThemeProvider } from "styled-components";
 import CartContext from "../context/cartContext";
 import CartModalContext from "../context/cartModalContext";
 import { ProvideAuth } from "../lib/auth";
+import AuthProvider from "../context/authContext";
 
 const lightTheme = {
   colors: {
@@ -14,13 +15,13 @@ const lightTheme = {
 
 const RootLayout = ({ children }) => {
   return (
-    <ProvideAuth>
-    <CartModalContext>
-      <CartContext>
-        <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
-      </CartContext>
-    </CartModalContext>
-    </ProvideAuth>
+    <AuthProvider>
+        <CartModalContext>
+          <CartContext>
+            <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
+          </CartContext>
+        </CartModalContext>
+    </AuthProvider>
   );
 };
 
