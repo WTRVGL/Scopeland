@@ -38,10 +38,11 @@ namespace PXLPRW2021Team08_API.Controllers
                 Path = "/",
                 HttpOnly = true,
                 Secure = true,
+                SameSite= SameSiteMode.None
             });
 
 
-            return Ok(response);
+            return Ok(response.User);
         }
 
     }
