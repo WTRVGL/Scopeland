@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using PXLPRW2021Team08_API.Models;
+using PXLPRW2021Team08_API.Repositories;
+using PXLPRW2021Team08_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PXLPRW2021Team08_API.Models;
-using PXLPRW2021Team08_API.Services;
-using Microsoft.AspNetCore.Http;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PXLPRW2021Team08_API.Controllers
 {
@@ -15,34 +14,29 @@ namespace PXLPRW2021Team08_API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IUserRepository _userRepository;
+        private readonly ITokenService _tokenService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IUserRepository userRepository, ITokenService tokenService)
         {
-            _authService = authService;
+            _userRepository = userRepository;
+            _tokenService = tokenService;
         }
 
-        // POST api/<AuthController>
-        [HttpPost]
-        public IActionResult Authenticate([FromBody] AuthenticateRequest request)
+        [HttpGet]
+        public IActionResult CheckAuthentication()
         {
-            var response =  _authService.AuthenticateUser(request);
-            if (response == null)
-            {
-                return Unauthorized("username or password incorrect");
-            }
+            var token = HttpContext.Request.Cookies["JWTkoek"];
 
-            Response.Cookies.Append("JWTkoek", $"{response.Token}", new CookieOptions()
-            {
-                Expires = DateTimeOffset.Now.AddHours(4),
-                Path = "/",
-                HttpOnly = true,
-                Secure = true,
-            });
+            if (token == null) return Ok(new Gebruiker { Email = null});
+
+            var decodedToken = _tokenService.decodeJwtSecurityToken(token);
+            var id = decodedToken.Claims.FirstOrDefault(claim => claim.Type == "id");
+
+            var user = _userRepository.GetUser(Convert.ToInt32(id.Value));
 
 
-            return Ok(response);
+            return Ok(user);
         }
-
     }
 }
