@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace PXLPRW2021Team08_API.Repositories
 
     public Gebruiker GetUser(int id)
     {
-        var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE Id = {id}", sqlConnection);
+        var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE UserId = {id}", sqlConnection);
         command.Connection.Open();
         var reader = command.ExecuteReader();
         var gebruiker = new Gebruiker();
