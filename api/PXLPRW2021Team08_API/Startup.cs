@@ -66,9 +66,10 @@ namespace PXLPRW2021Team08_API
             {
                 options.AddPolicy(name: "AllowAll", builder =>
                 {
-                    builder.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
+                    builder.WithOrigins("http://localhost:8000", "http://localhost:9000")
+                         .AllowAnyMethod()
+                         .AllowAnyHeader()
+                         .AllowCredentials();
                 }); 
             });
         }
