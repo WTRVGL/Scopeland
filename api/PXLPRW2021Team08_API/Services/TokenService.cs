@@ -25,20 +25,27 @@ namespace PXLPRW2021Team08_API.Services
             var claims = new List<Claim>
             {
                 new Claim("username", user.Email),
-                new Claim("first_name", user.FirstName),
-                new Claim("last_name", user.LastName),
+                new Claim("id", user.GebruikerID.ToString()),
                 new Claim("role", user.Role)
             };
 
             var token = new JwtSecurityToken(
-                issuer: "localhost",
-                audience: "localhost",
+                issuer: "http://localhost:5001",
+                audience: "http://localhost:8000",
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(30),
                 notBefore: DateTime.UtcNow,
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Convert.FromBase64String(securityKey)), SecurityAlgorithms.HmacSha256));
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return tokenString;
+        }
+
+        public JwtSecurityToken decodeJwtSecurityToken(string token)
+        {
+            return new JwtSecurityTokenHandler().ReadJwtToken(token);
         }
     }
 }

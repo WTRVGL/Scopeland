@@ -9,6 +9,7 @@ namespace PXLPRW2021Team08_API.Services
     public interface ITokenService
     {
         string getJwtSecurityToken(Gebruiker user);
+        JwtSecurityToken decodeJwtSecurityToken(string token);
 
     }
 }
