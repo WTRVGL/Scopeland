@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using PXLPRW2021Team08_API.Middleware;
 using PXLPRW2021Team08_API.Repositories;
 using PXLPRW2021Team08_API.Services;
 
@@ -89,7 +90,7 @@ namespace PXLPRW2021Team08_API
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
