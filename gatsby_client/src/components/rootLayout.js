@@ -2,7 +2,6 @@ import React, { useEffect} from "react";
 import { ThemeProvider } from "styled-components";
 import CartContext from "../context/cartContext";
 import CartModalContext from "../context/cartModalContext";
-import { ProvideAuth } from "../lib/auth";
 import AuthProvider from "../context/authContext";
 
 const lightTheme = {
