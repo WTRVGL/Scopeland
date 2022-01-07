@@ -37,13 +37,26 @@ const AuthProvider = ({ children }) => {
       });
   }
 
+  function logout() {
+    axios
+      .get(
+        "https://localhost:5001/api/logout"
+      )
+      .then((response) => {
+        setUser({});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     console.log("start auth");
     getUser();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
