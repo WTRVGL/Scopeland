@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using PXLPRW2021Team08_API.Models;
@@ -46,6 +47,12 @@ namespace PXLPRW2021Team08_API.Services
         public JwtSecurityToken decodeJwtSecurityToken(string token)
         {
             return new JwtSecurityTokenHandler().ReadJwtToken(token);
+        }
+
+        public int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken)
+        {
+            var idClaim =  securityToken.Claims.FirstOrDefault(claim => claim.Type == "id");
+            return int.Parse(idClaim.Value);
         }
     }
 }

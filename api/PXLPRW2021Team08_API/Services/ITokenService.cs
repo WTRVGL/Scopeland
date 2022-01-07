@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 using PXLPRW2021Team08_API.Models;
 
 namespace PXLPRW2021Team08_API.Services
@@ -10,6 +11,7 @@ namespace PXLPRW2021Team08_API.Services
     {
         string getJwtSecurityToken(Gebruiker user);
         JwtSecurityToken decodeJwtSecurityToken(string token);
+        int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken);
 
     }
 }
