@@ -5,37 +5,33 @@ import Layout from "../components/layout";
 import { useAuth } from "../context/authContext";
 
 const Login = () => {
-  const [formData, setFormData]= useState({username: "", password: ""}) 
+  const [formData, setFormData] = useState({ username: "", password: "" });
 
-  const {login} = useAuth();
+  const { login, logout } = useAuth();
 
-  async function submit(e){
+  async function submit(e) {
     e.preventDefault();
     login("admin", "admin");
   }
 
-  async function checkAuth(e){
-    e.preventDefault()
-
-  }
   return (
     <Layout>
       <LoginContainer>
-      <form onSubmit={submit}>
-  <label>
-    Name:
-    <input type="text" name="name" />
-  </label>
-  <input type="submit" value={formData.username} />
-  <label>
-    Password:
-    <input type="text" name="name" />
-  </label>
-  <input type="submit" value={formData.password} />
-  <button>submit</button>
-</form>
+        <form onSubmit={submit}>
+          <label>
+            Name:
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value={formData.username} />
+          <label>
+            Password:
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value={formData.password} />
+          <button>submit</button>
+        </form>
 
-      <button onClick={checkAuth}>auth</button>
+        <button onClick={logout}>logout</button>
       </LoginContainer>
     </Layout>
   );

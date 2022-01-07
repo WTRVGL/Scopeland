@@ -23,7 +23,7 @@ const Header = () => {
       <Row style={{ justifyContent: "space-between" }}>
         <NavItem>
           <LinkItem to="/shop">Shop</LinkItem>
-          <LinkItem to="/login">Account</LinkItem>
+          <LinkItem to="/account">Account</LinkItem>
         </NavItem>
         <NavItem>
           <Logo to="/">Scopeland</Logo>

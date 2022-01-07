@@ -1,15 +1,12 @@
-import { Redirect, Router } from "@reach/router";
 import React from "react";
-import Layout from "../../components/layout";
-import Yo from "../../components/yo";
+import { Router } from "@reach/router";
+import PrivateAccount from "../../components/privateAccount";
 
 const Account = () => {
   return (
-    <Layout>
-      <Router basepath="/account">
-        <Yo path="/yo" />
-      </Router>
-    </Layout>
+    <Router basepath="/account">
+      <PrivateAccount path="/" />
+    </Router>
   );
 };
 
