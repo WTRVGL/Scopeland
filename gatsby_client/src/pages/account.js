@@ -12,16 +12,17 @@ const Account = () => {
   const [componentHasMounted, setComponentHasMounted] = useState(false);
 
   useEffect(() => {
-    getUser().then(() => {
-      console.log(user)
-      if (!user) {
-        navigate("/");  
-        console.log("no user");
-        setLoginModalVisibility(true);
-      } else {
-        setComponentHasMounted(true);
-      }
-    });
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+      console.log("no user");
+      setLoginModalVisibility(true);
+    } else {
+      setComponentHasMounted(true);
+    }
   }, []);
 
   if (!componentHasMounted) {
@@ -31,7 +32,11 @@ const Account = () => {
   return (
     <Layout>
       <PageContainer fullPage>
-        <h1>{user.firstName}</h1>
+        <h1>{user.firstName}</h1> <span>{user.lastName}</span>
+        <h2>id:</h2> <span>{user.gebruikerID}</span>
+        <h2>rol:</h2><span>{user.role}</span>
+        <h2>passwoord hash:</h2><span>{user.passwoordHash}</span>
+        <h2>passwoord salt:</h2><span>{user.passwoordSalt}</span>
       </PageContainer>
     </Layout>
   );

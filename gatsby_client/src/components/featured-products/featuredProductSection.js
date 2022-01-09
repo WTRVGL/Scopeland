@@ -19,7 +19,9 @@ export const FeaturedProductSection = ({ products, title }) => {
   );
 };
 
-const FeaturedContainer = styled(PageContainer)``;
+const FeaturedContainer = styled(PageContainer)`
+  margin-bottom: 25px;
+`;
 
 const FeaturedTitle = styled.h1`
   text-align: left;

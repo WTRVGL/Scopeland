@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Typography, Box, ClickAwayListener } from "@mui/material";
 import { LoginModalState } from "../context/loginModalContext";
 import { Form, Button } from "react-bootstrap";
@@ -6,9 +6,11 @@ import styled from "styled-components";
 import { useAuth } from "../context/authContext";
 
 const LoginModal = () => {
-  const { loginModalVisibility, setLoginModalVisibility } = LoginModalState();
-  const { login } = useAuth();
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { setLoginModalVisibility } = LoginModalState();
+  const { login, succesfulStatus, setSuccesfulStatus, user } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const style = {
     position: "absolute",
@@ -17,10 +19,15 @@ const LoginModal = () => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+    border: "1px solid #000",
     boxShadow: 24,
     p: 4,
+    borderRadius: "5px",
   };
+
+  useEffect(() => {
+    setSuccesfulStatus(true);
+  }, []);
 
   function handleClose() {
     setLoginModalVisibility(false);
@@ -28,8 +35,14 @@ const LoginModal = () => {
 
   function submitLogin(e) {
     e.preventDefault();
-    login("admin", "admin");
+    setIsLoading(true);
+    login(username, password).then((data) => {
+      console.log(data);
+      user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
+    });
+    setIsLoading(false);
   }
+
   return (
     <Modal
       open={true}
@@ -48,8 +61,8 @@ const LoginModal = () => {
               <Form.Control
                 type="email"
                 placeholder="Typ email in"
-                value={formData.email}
-                onChange={() => setFormData({email: formData.email})}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
 
@@ -58,13 +71,18 @@ const LoginModal = () => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={formData.password}
-                onChange={(e) => setFormData()}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" onClick={submitLogin}>
-              Submit
+            <Button
+              variant={succesfulStatus ? "primary" : "danger"}
+              onClick={submitLogin}
+              disabled={isLoading}
+            >
+              login
             </Button>
+            {!succesfulStatus && <p>login mislukt</p>}
           </Form>
         </Box>
       </ClickAwayListener>

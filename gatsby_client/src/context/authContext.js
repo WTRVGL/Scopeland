@@ -5,10 +5,11 @@ const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [succesfulStatus, setSuccesfulStatus] = useState(true);
 
-  async function getUser() {
+  function getUser() {
     axios
-      .get("https://localhost:5001/api/auth", { withCredentials: true })
+      .get("http://localhost:5000/api/auth", { withCredentials: true })
       .then((response) => {
         const user = response.data;
         console.log(user);
@@ -21,26 +22,26 @@ const AuthProvider = ({ children }) => {
       });
   }
 
-  function login(username, password) {
-    console.log("login");
+  async function login(username, password) {
     axios
       .post(
-        "https://localhost:5001/api/login",
+        "http://localhost:5000/api/login",
         { username, password },
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response);
         setUser(response.data);
+        setSuccesfulStatus(true);
       })
       .catch((error) => {
-        console.log(error);
+        setUser(null);
+        setSuccesfulStatus(false);
       });
   }
 
   async function logout() {
     axios
-      .get("https://localhost:5001/api/logout", { withCredentials: true })
+      .get("http://localhost:5000/api/logout", { withCredentials: true })
       .then((response) => {
         setUser(null);
       })
@@ -55,7 +56,16 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, getUser }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        getUser,
+        setSuccesfulStatus,
+        succesfulStatus,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
