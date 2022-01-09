@@ -53,11 +53,16 @@ const HeroContainer = styled.main`
   display: flex;
   position: relative;
   height: calc(100vh - 80px);
-  padding: 0px 30px;
+  padding: 0px 200px;
   width: 100vw;
   max-width: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1200px) {
+    padding: 0px 70px;
+  }
+
+  @media screen and (max-width: 992px) {
+    padding: 0px 50px;
     flex-direction: column;
   }
 `;
@@ -69,7 +74,7 @@ const HeroTextContainer = styled.div`
   align-items: flex-start;
   width: 50%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     width: 100%;
     height: 50%;
     align-items: center;
@@ -81,7 +86,7 @@ const HeroTitle = styled.h1`
   margin-bottom: 25px;
   color: ${({ theme }) => theme.colors.primaryColor};
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     text-align: center;
   }
 `;
@@ -90,7 +95,7 @@ const HeroSubtitle = styled.h2`
   font-size: calc(0.5em + 1vw);
   margin-bottom: 25px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     text-align: center;
   }
 `;
@@ -102,7 +107,7 @@ const HeroImageContainer = styled.div`
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     display: flex;
     flex: 1;
     width: 100%;

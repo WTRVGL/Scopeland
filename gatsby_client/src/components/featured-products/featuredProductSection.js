@@ -30,11 +30,8 @@ const FeaturedTitle = styled.h1`
 
 const FeaturedProductList = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   column-gap: 25px;
-  max-width: 100%;
-  margin-bottom: 10em;
-  z-index: 5;
 
   @media screen and (max-width: 768px) {
     grid-template-rows: repeat(3, 1fr);

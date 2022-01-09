@@ -1,38 +1,85 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Link } from "gatsby";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { navigate } from "@reach/router";
 import { GoTelescope } from "react-icons/go";
+import { AiOutlineUser } from "react-icons/ai";
 import { CartState } from "../context/cartContext";
 import { CartModalState } from "../context/cartModalContext";
-import { motion } from "framer-motion";
 import { Col, Container, Row } from "react-bootstrap";
+import { LoginModalState } from "../context/loginModalContext";
+import { isAuthenticated } from "../lib/checkCookie";
+import { useAuth } from "../context/authContext";
 
 const Header = () => {
+  const { logout } = useAuth();
+
   const {
     state: { cart },
   } = CartState();
 
-  const { modalVisibility, setModalVisibility } = CartModalState();
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const { setModalVisibility } = CartModalState();
+  const { setLoginModalVisibility } = LoginModalState();
 
-  console.log(modalVisibility);
-  const openModal = () => {
-    setModalVisibility(true);
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: 250 },
   };
+
+  function openCartModal() {
+    setModalVisibility(true);
+  }
+
+  function openLoginModal() {
+    if (!isAuthenticated()) {
+      setLoginModalVisibility(true);
+      return;
+    }
+    navigate("/account/");
+  }
+
+  function handleLogout() {
+    logout();
+    setShowUserDropdown(false);
+    navigate("/");
+  }
+
+  function handleDropdownModal() {
+    if (!isAuthenticated()) {
+      openLoginModal();
+      return;
+    }
+    setShowUserDropdown((showUserDropdown) => !showUserDropdown);
+  }
+
   return (
     <HeaderContainer>
       <Row style={{ justifyContent: "space-between" }}>
         <NavItem>
           <LinkItem to="/shop">Shop</LinkItem>
-          <LinkItem to="/account">Account</LinkItem>
         </NavItem>
         <NavItem>
           <Logo to="/">Scopeland</Logo>
         </NavItem>
         <NavItem>
-          <GoTelescope size={25} onClick={openModal} />
+          <GoTelescope size={25} onClick={openCartModal} />
           {cart.length}
+          <DropdownUser
+            size={25}
+            style={{ marginLeft: "20px" }}
+            onClick={handleDropdownModal}
+          ></DropdownUser>
         </NavItem>
       </Row>
+      <DropdownList
+        animate={showUserDropdown ? "open" : "closed"}
+        variants={variants}
+      >
+        <DropdownItem onClick={openLoginModal}>Mijn account</DropdownItem>
+        <DropdownItem onClick={handleLogout}>Log uit</DropdownItem>
+      </DropdownList>
     </HeaderContainer>
   );
 };
@@ -57,34 +104,7 @@ const HeaderContainer = styled(Container)`
   top: 0;
   z-index: 50;
   position: sticky;
-  top: 0;
-`;
-// const HeaderContainer = styled.nav`
-//   display: grid;
-//   color: ${({ theme }) => theme.colors.primaryColor};
-//   grid-template-columns: repeat(3, 1fr);
-//   height: 80px;
-//   position: sticky;
-//   top: 0;
-//   z-index: 10;
-//   padding-left: 50px;
-//   padding-right: 50px;
-//   background-color: white;
-
-//   @media screen and (max-width: 768px) {
-//     padding: 0;
-//   }
-// `;
-
-const LinkNav = styled.ul`
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  background-color: #f5f3eb;
 `;
 
 const LinkItem = styled(Link)`
@@ -104,12 +124,17 @@ const Logo = styled(Link)`
   }
 `;
 
-const NavIcons = styled(motion.div)`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+const DropdownUser = styled(AiOutlineUser)``;
 
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-  }
+const DropdownList = styled(motion.div)`
+  position: absolute;
+  right: 0;
+  background: #f5f3eb;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 150px;
+  padding: 15px;
+  opacity: 0;
 `;
+
+const DropdownItem = styled.div``;

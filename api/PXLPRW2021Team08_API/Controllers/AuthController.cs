@@ -14,29 +14,29 @@ namespace PXLPRW2021Team08_API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
+        private readonly ITokenService _tokenService;
+
+        public AuthController(IUserRepository userRepository, ITokenService tokenService)
+        {
+            _userRepository = userRepository;
+            _tokenService = tokenService;
+        }
+
         [HttpGet]
         public IActionResult CheckAuthentication()
         {
-            Gebruiker user = (Gebruiker)HttpContext.Items["User"];
-            if (user == null)
-            {
-                return (Forbid());
-            }
+            var token = HttpContext.Request.Cookies["JWTkoek"];
 
+            if (token == null) return Ok(new Gebruiker { Email = null});
 
-            Response.Cookies.Append("scopelandId", $"{user.GebruikerID}", new CookieOptions()
-            {
-                Expires = DateTimeOffset.Now.AddHours(24),
-                Path = "/",
-                HttpOnly = false,
-                Secure = true,
-                SameSite = SameSiteMode.None
-            });
+            var decodedToken = _tokenService.decodeJwtSecurityToken(token);
+            var id = decodedToken.Claims.FirstOrDefault(claim => claim.Type == "id");
+
+            var user = _userRepository.GetUser(Convert.ToInt32(id.Value));
 
 
             return Ok(user);
-
-
         }
     }
 }
