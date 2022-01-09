@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Box, ClickAwayListener } from "@mui/icons-material";
+import { Modal, Box, ClickAwayListener } from "@mui/material"
 import { LoginModalState } from "../context/loginModalContext";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
