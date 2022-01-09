@@ -50,7 +50,7 @@ export const pageQuery = graphql`
             featuredImage {
               childImageSharp {
                 gatsbyImageData(
-                  height: 400
+                  height: 700
                   placeholder: BLURRED
                   transformOptions: { cropFocus: CENTER }
                 )

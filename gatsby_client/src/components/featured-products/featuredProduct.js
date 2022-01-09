@@ -23,11 +23,8 @@ export const FeaturedProduct = ({ product }) => {
 };
 
 const ProductContainer = styled(Link)`
-  display: flex;
   flex-direction: column;
-  position: relative;
   justify-content: center;
-  flex: 1;
   margin: 10px;
 
   @media screen and (max-width: 768px) {
@@ -36,9 +33,6 @@ const ProductContainer = styled(Link)`
 `;
 
 const Image = styled(GatsbyImage)`
-  width: 100%;
-  max-height: 100%;
-
   z-index: 1;
 
   &:hover {

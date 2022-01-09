@@ -41,6 +41,15 @@ namespace PXLPRW2021Team08_API.Controllers
                 SameSite= SameSiteMode.None
             });
 
+            Response.Cookies.Append("scopelandId", $"{response.User.GebruikerID}", new CookieOptions()
+            {
+                Expires = DateTimeOffset.Now.AddHours(24),
+                Path = "/",
+                HttpOnly = false,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
+
 
             return Ok(response.User);
         }

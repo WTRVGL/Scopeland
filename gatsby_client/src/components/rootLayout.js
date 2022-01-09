@@ -1,8 +1,9 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import CartContext from "../context/cartContext";
 import CartModalContext from "../context/cartModalContext";
 import AuthProvider from "../context/authContext";
+import LoginModalProvider from "../context/loginModalContext";
 
 const lightTheme = {
   colors: {
@@ -15,11 +16,13 @@ const lightTheme = {
 const RootLayout = ({ children }) => {
   return (
     <AuthProvider>
+      <LoginModalProvider>
         <CartModalContext>
           <CartContext>
             <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
           </CartContext>
         </CartModalContext>
+      </LoginModalProvider>
     </AuthProvider>
   );
 };

@@ -16,15 +16,17 @@ namespace PXLPRW2021Team08_API.Repositories
 
     public UserRepositorySql()
     {
-        sqlConnection =new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+            //sqlConnection =new SqlConnection(@"Server=ms-sql-server; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+            sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
 
-    }
+        }
 
 
 
-    public Gebruiker GetUser(int id)
+        public Gebruiker GetUser(int id)
     {
         var command = new SqlCommand($"SELECT * FROM Gebruikers WHERE UserId = {id}", sqlConnection);
+        command.Connection.Close();
         command.Connection.Open();
         var reader = command.ExecuteReader();
         var gebruiker = new Gebruiker();

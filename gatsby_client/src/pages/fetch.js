@@ -3,9 +3,10 @@ import Layout from "../components/layout";
 
 const Yo = () => {
     useEffect(() => {
-        fetch('http://localhost:5000/api/products')
+        fetch('http://localhost:5001/api/products')
   .then(response => response.json())
-  .then(data => console.log(data));
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
     }, [])
   return (
     <Layout>

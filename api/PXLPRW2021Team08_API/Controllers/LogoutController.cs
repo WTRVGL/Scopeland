@@ -22,6 +22,17 @@ namespace PXLPRW2021Team08_API.Controllers
                 Secure = true,
                 SameSite = SameSiteMode.None
             });
+
+            
+
+            Response.Cookies.Append("scopelandId", $"", new CookieOptions()
+            {
+                Expires = DateTimeOffset.Now.AddHours(-1),
+                Path = "/",
+                HttpOnly = false,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
             return Ok();
         }
     }

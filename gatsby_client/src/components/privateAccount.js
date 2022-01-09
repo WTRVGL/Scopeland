@@ -1,19 +1,23 @@
 import React from "react";
 import { useAuth } from "../context/authContext";
-import { navigate } from "gatsby";
+import { LoginModalState } from "../context/loginModalContext";
 import Layout from "./layout";
-
+import PageContainer from "./pageContainer";
+import { navigate } from "@reach/router";
 const PrivateAccount = () => {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  const { setLoginModalVisibility } = LoginModalState();
 
-  if (Object.keys(user).length === 0) {
-    navigate("/login");
+  if (!isAuthenticated()) {
+    navigate("/");
+    console.log("no user")
+    setLoginModalVisibility(true);
     return null;
   }
 
   return (
     <Layout>
-      <div>PRIVE YOOOOOO</div>
+      <PageContainer fullPage>private route</PageContainer>
     </Layout>
   );
 };
