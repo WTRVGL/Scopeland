@@ -32,11 +32,12 @@ const Account = () => {
   return (
     <Layout>
       <PageContainer fullPage>
-        <h1>{user.firstName}</h1> <span>{user.lastName}</span>
+        <h1>
+          {user.firstName} {user.lastName}
+        </h1>
         <h2>id:</h2> <span>{user.gebruikerID}</span>
-        <h2>rol:</h2><span>{user.role}</span>
-        <h2>passwoord hash:</h2><span>{user.passwoordHash}</span>
-        <h2>passwoord salt:</h2><span>{user.passwoordSalt}</span>
+        <h2>rol:</h2>
+        <span>{user.role}</span>
       </PageContainer>
     </Layout>
   );
