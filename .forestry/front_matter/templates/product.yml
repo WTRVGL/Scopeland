@@ -26,3 +26,5 @@ fields:
 - type: image_gallery
   name: images
   label: images
+pages:
+- gatsby_client/src/data/products/redcat-wo.mdx
