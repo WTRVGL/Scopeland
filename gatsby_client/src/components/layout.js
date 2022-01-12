@@ -10,13 +10,13 @@ const Layout = ({ children }) => {
   const { modalVisibility, setmodalVisibility } = CartModalState();
   const { loginModalVisibility, setLoginModalVisibility } = LoginModalState();
   return (
-    <>
+    <div style={{ overflowX: "hidden" }}>
       {modalVisibility && <ShoppingCartModal />}
       {loginModalVisibility && <LoginModal />}
       <Header />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 
