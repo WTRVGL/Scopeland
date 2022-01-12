@@ -3,19 +3,22 @@
 version: '3.4'
 
 services:
-  ms-sql-server:
+  gatsby:
+    image: gatsby
+    build:
+      context: .
+      dockerfile: docker/gatsby/Dockerfile
+    ports:
+      - "9000:9000"
+  sqlserver:
     image: sqlserver
     build:
       context: ./docker/sql-server
       dockerfile: Dockerfile
-    # environment:
-    #   ACCEPT_EULA: "Y"
-    #   SA_PASSWORD: Enterpasswordhere123#
-    #   MSSQL_PID: Express
     ports:
       - 1000:1433
-  pxlprw2021team08api:
-    image: pxlprw2021team08api
+  webapi:
+    image: webapi
     build:
       context: .
       dockerfile: docker/api/Dockerfile
