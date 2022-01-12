@@ -190,7 +190,7 @@ namespace Library
             var passwoordHash = passwordHashSaltTuple.Item1;
             var passwoordSalt = passwordHashSaltTuple.Item2;
 
-            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')", sqlConnection);
+            var command = new SqlCommand($"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt, Role) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}', 'user')", sqlConnection);
             command.Connection.Close();
             command.Connection.Open();
             var reader = command.ExecuteReader();
