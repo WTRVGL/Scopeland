@@ -38,7 +38,7 @@ const Footer = () => {
               </NavContainer>
               <NavContainer>
                 <NavTitle>Links</NavTitle>
-                <NavItem>Account</NavItem>
+                <NavItem to="/account">Account</NavItem>
               </NavContainer>
             </Row>
           </Container>

@@ -108,7 +108,7 @@ const HeaderContainer = styled(Container)`
 `;
 
 const LinkItem = styled(Link)`
-  margin: 0px 25px;
+  font-family: Aeonik Bold;
 `;
 
 const Logo = styled(Link)`
@@ -120,7 +120,7 @@ const Logo = styled(Link)`
   text-decoration: none;
 
   @media screen and (max-width: 768px) {
-    grid-column: 2;
+    font-size: 2rem;
   }
 `;
 
