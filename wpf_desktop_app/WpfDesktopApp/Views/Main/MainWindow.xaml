@@ -115,13 +115,7 @@
                                     FontWeight="Medium"
                                     Text="Producten"/>
                     </Button>
-                    <Button Command="{Binding ShowUsersCommand}" Height="50"
-                            Background="Transparent"
-                            HorizontalContentAlignment="Left">
-                            <TextBlock FontSize="24" 
-                               FontWeight="Medium"
-                               Text="Gebruikers"/>
-                    </Button>
+                    
                 </StackPanel>
                 
             </StackPanel>
