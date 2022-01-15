@@ -16,10 +16,8 @@ namespace PXLPRW2021Team08_API.Repositories
 
     public UserRepositorySql()
     {
-            sqlConnection =new SqlConnection(@"Server=sqlserver; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-            //sqlConnection = new SqlConnection(@"Server=localhost,1000; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
-
-        }
+            sqlConnection = new SqlConnection(@"Server=sqlserver; Initial Catalog=PXLDigital_PRWA_WPL2_DB;User ID=SA; Password=Enterpasswordhere123#");
+    }
 
 
 
@@ -73,6 +71,11 @@ namespace PXLPRW2021Team08_API.Repositories
 
     public Gebruiker CreateUser(string username, string voornaam, string achternaam, string passwoord)
     {
+        var userIfExists = GetUserByUserName(username);
+        if (userIfExists.GebruikerID != 0)
+        {
+            return null;
+        }
         var service = new HashPasswordService();
 
         Tuple<string, string> passwordHashSaltTuple = service.generateHashAndSalt(passwoord);
@@ -82,7 +85,7 @@ namespace PXLPRW2021Team08_API.Repositories
 
         var command =
             new SqlCommand(
-                $"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}')",
+                $"INSERT INTO Gebruikers(Email, FirstName, LastName, PasswoordHash, PasswoordSalt, Role) VALUES('{username}','{voornaam}', '{achternaam}', '{passwoordHash}', '{passwoordSalt}', 'User')",
                 sqlConnection);
         command.Connection.Close();
         command.Connection.Open();

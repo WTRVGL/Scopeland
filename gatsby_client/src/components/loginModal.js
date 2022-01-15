@@ -7,7 +7,8 @@ import { useAuth } from "../context/authContext";
 
 const LoginModal = () => {
   const { setLoginModalVisibility } = LoginModalState();
-  const { login, succesfulStatus, setSuccesfulStatus, user } = useAuth();
+  const { login, createUser, succesfulStatus, setSuccesfulStatus, user } =
+    useAuth();
   const [userFormData, setUserFormData] = useState({
     username: "",
     password: "",
@@ -17,7 +18,6 @@ const LoginModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [modalPage, setModalPage] = useState(1);
 
-  console.log(userFormData);
   const renderPage = React.useCallback(() => {
     switch (modalPage) {
       case 1:
@@ -142,7 +142,7 @@ const LoginModal = () => {
               </Form.Group>
               <Button
                 variant={succesfulStatus ? "primary" : "danger"}
-                onClick={submitLogin}
+                onClick={submitRegistration}
                 disabled={isLoading}
               >
                 registreer
@@ -188,16 +188,15 @@ const LoginModal = () => {
     setIsLoading(false);
   }
 
-  function submitRegister(e) {
+  async function submitRegistration(e) {
     e.preventDefault();
     setIsLoading(true);
-    register(
+    createUser(
       userFormData.username,
       userFormData.password,
       userFormData.firstName,
       userFormData.lastName
     ).then((data) => {
-      console.log(data);
       user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
     });
     setIsLoading(false);

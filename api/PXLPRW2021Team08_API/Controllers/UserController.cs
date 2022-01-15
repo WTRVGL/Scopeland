@@ -44,9 +44,19 @@ namespace PXLPRW2021Team08_API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post([FromBody] Gebruiker user)
+        public IActionResult CreateUser([FromBody] CreateUserModel user)
         {
-            return Ok();
+            try
+            {
+                var createdUser =
+                    _userRepository.CreateUser(user.Username, user.FirstName, user.LastName, user.Password);
+                return Ok(createdUser);
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.ToString());
+            }
+            
         }
 
         // PUT api/<UserController>/5
