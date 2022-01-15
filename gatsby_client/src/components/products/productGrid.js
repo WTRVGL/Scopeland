@@ -14,7 +14,6 @@ const ProductGrid = ({ products }) => {
             frontmatter: { featuredImage, productName, price },
           },
         }) => {
-          console.log(featuredImage.childrenImageSharp[0].gatsbyImageData);
           return (
             <Card key={id}>
               <Link to={`/products/${slug}`}>

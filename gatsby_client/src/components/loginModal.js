@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Box, ClickAwayListener } from "@mui/material"
+import { Modal, Box, ClickAwayListener } from "@mui/material";
 import { LoginModalState } from "../context/loginModalContext";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
@@ -7,10 +7,155 @@ import { useAuth } from "../context/authContext";
 
 const LoginModal = () => {
   const { setLoginModalVisibility } = LoginModalState();
-  const { login, succesfulStatus, setSuccesfulStatus, user } = useAuth();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { login, createUser, succesfulStatus, setSuccesfulStatus, user } =
+    useAuth();
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const [modalPage, setModalPage] = useState(1);
+
+  const renderPage = React.useCallback(() => {
+    switch (modalPage) {
+      case 1:
+        return (
+          <Box sx={style}>
+            <Form>
+              <LoginTitle>
+                <h1>Log in</h1>
+                <h4 onClick={handleClose}>x</h4>
+              </LoginTitle>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Typ email in"
+                  value={userFormData.username}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      username: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={userFormData.password}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      password: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+              <Button
+                variant={succesfulStatus ? "primary" : "danger"}
+                onClick={submitLogin}
+                disabled={isLoading}
+              >
+                login
+              </Button>
+              <Button
+                onClick={() => setModalPage(2)}
+                style={{ marginLeft: "60px" }}
+              >
+                Registreer
+              </Button>
+              {!succesfulStatus && <p>login mislukt</p>}
+            </Form>
+          </Box>
+        );
+
+      case 2:
+        return (
+          <Box sx={style}>
+            <Form>
+              <LoginTitle>
+                <h1>Registreer</h1>
+                <h4 onClick={handleClose}>x</h4>
+              </LoginTitle>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Typ email in"
+                  value={userFormData.username}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      username: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={userFormData.password}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      password: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicFirstName">
+                <Form.Label>Voornaam</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Voornaam"
+                  value={userFormData.firstName}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      firstName: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicLastName">
+                <Form.Label>Achternaam</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Achternaam"
+                  value={userFormData.lastName}
+                  onChange={(e) =>
+                    setUserFormData({
+                      ...userFormData,
+                      lastName: e.target.value,
+                    })
+                  }
+                />
+              </Form.Group>
+              <Button
+                variant={succesfulStatus ? "primary" : "danger"}
+                onClick={submitRegistration}
+                disabled={isLoading}
+              >
+                registreer
+              </Button>
+              {!succesfulStatus && <p>login mislukt</p>}
+            </Form>
+          </Box>
+        );
+
+      default:
+        return null;
+    }
+  }, [modalPage, userFormData]);
 
   const style = {
     position: "absolute",
@@ -36,8 +181,22 @@ const LoginModal = () => {
   function submitLogin(e) {
     e.preventDefault();
     setIsLoading(true);
-    login(username, password).then((data) => {
+    login(userFormData.username, userFormData.password).then((data) => {
       console.log(data);
+      user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
+    });
+    setIsLoading(false);
+  }
+
+  async function submitRegistration(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    createUser(
+      userFormData.username,
+      userFormData.password,
+      userFormData.firstName,
+      userFormData.lastName
+    ).then((data) => {
       user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
     });
     setIsLoading(false);
@@ -50,41 +209,7 @@ const LoginModal = () => {
       aria-describedby="modal-modal-description"
     >
       <ClickAwayListener onClickAway={handleClose}>
-        <Box sx={style}>
-          <Form>
-            <LoginTitle>
-              <h1>Log in</h1>
-              <h4 onClick={handleClose}>x</h4>
-            </LoginTitle>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Typ email in"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              variant={succesfulStatus ? "primary" : "danger"}
-              onClick={submitLogin}
-              disabled={isLoading}
-            >
-              login
-            </Button>
-            {!succesfulStatus && <p>login mislukt</p>}
-          </Form>
-        </Box>
+        {renderPage()}
       </ClickAwayListener>
     </Modal>
   );

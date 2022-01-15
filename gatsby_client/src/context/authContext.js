@@ -39,6 +39,26 @@ const AuthProvider = ({ children }) => {
       });
   }
 
+  async function createUser(username, password, firstName, lastName) {
+    axios
+      .post(
+        "http://localhost:5000/api/user",
+        { username, password, firstName, lastName },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        setUser(response.data);
+        setSuccesfulStatus(true);
+      })
+      .catch((error) => {
+        setUser(null);
+        setSuccesfulStatus(false);
+      })
+      .then(() => {
+        login(username, password)
+      });
+  }
+
   async function logout() {
     axios
       .get("http://localhost:5000/api/logout", { withCredentials: true })
@@ -62,6 +82,7 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         getUser,
+        createUser,
         setSuccesfulStatus,
         succesfulStatus,
       }}
