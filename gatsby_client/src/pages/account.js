@@ -16,7 +16,7 @@ const Account = () => {
   }, []);
 
   useEffect(() => {
-    if (!user) {
+    if (!user || user.gebruikerID === 0) {
       navigate("/");
       console.log("no user");
       setLoginModalVisibility(true);
