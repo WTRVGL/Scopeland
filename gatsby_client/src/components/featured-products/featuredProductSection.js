@@ -26,7 +26,7 @@ const FeaturedContainer = styled(PageContainer)`
 const FeaturedTitle = styled.h1`
   text-align: left;
   margin-bottom: 0.5em;
-  font-family: "Aeonik Light";
+  font-family: "Aeonik";
   font-size: calc(1em + 3.5vw);
 `;
 

@@ -63,7 +63,7 @@ const AboutContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: "Aeonik Light";
+  font-family: "Aeonik";
   font-size: calc(1em + 3.5vw);
   margin-bottom: 2em;
 `;
