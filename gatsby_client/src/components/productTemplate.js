@@ -21,7 +21,6 @@ export default function ProductTemplate({ data: { mdx } }) {
     frontmatter: { productName, images, price },
   } = mdx;
 
-  console.log(mdx);
   const addProduct = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -36,7 +35,6 @@ export default function ProductTemplate({ data: { mdx } }) {
         <StyledCarousel fade variant="dark">
           {images.map((image) => {
             const gatsbyImg = getImage(image);
-            console.log(image);
             return (
               <Carousel.Item>
                 <GatsbyImage image={gatsbyImg} />

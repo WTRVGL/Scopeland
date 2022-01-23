@@ -188,7 +188,6 @@ const LoginModal = () => {
     e.preventDefault();
     setIsLoading(true);
     login(userFormData.username, userFormData.password).then((data) => {
-      console.log(data);
       user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
     });
     setIsLoading(false);

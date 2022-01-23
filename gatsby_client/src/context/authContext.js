@@ -12,7 +12,6 @@ const AuthProvider = ({ children }) => {
       .get("http://localhost:5000/api/auth", { withCredentials: true })
       .then((response) => {
         const user = response.data;
-        console.log(user);
         if (!user) {
           setUser(null);
         } else setUser(user);
@@ -71,7 +70,6 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    console.log("start auth");
     getUser();
   }, []);
 
