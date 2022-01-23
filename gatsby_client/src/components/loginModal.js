@@ -17,12 +17,14 @@ const LoginModal = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [modalPage, setModalPage] = useState(1);
+  const [isWindow, setIsWindow] = useState(false);
 
   const renderPage = React.useCallback(() => {
     switch (modalPage) {
       case 1:
         return (
           <Box sx={style}>
+            {isWindow && <p>Sorry, Backend niet beschikbaar online!</p>}
             <Form>
               <LoginTitle>
                 <h1>Log in</h1>
@@ -78,6 +80,7 @@ const LoginModal = () => {
       case 2:
         return (
           <Box sx={style}>
+            {isWindow && <p>Sorry, Backend niet beschikbaar online!</p>}
             <Form>
               <LoginTitle>
                 <h1>Registreer</h1>
@@ -172,6 +175,9 @@ const LoginModal = () => {
 
   useEffect(() => {
     setSuccesfulStatus(true);
+    if (typeof window === "undefined") {
+      setIsWindow(false);
+    }
   }, []);
 
   function handleClose() {

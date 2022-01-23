@@ -4,7 +4,6 @@ import { LoginModalState } from "../context/loginModalContext";
 import Layout from "../components/layout";
 import PageContainer from "../components/pageContainer";
 import { navigate } from "@reach/router";
-import styled from "styled-components";
 
 const Account = () => {
   const { setLoginModalVisibility } = LoginModalState();
@@ -44,9 +43,3 @@ const Account = () => {
 };
 
 export default Account;
-
-const Red = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: red;
-`;

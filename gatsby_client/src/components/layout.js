@@ -7,8 +7,8 @@ import LoginModal from "./loginModal";
 import { LoginModalState } from "../context/loginModalContext";
 
 const Layout = ({ children }) => {
-  const { modalVisibility, setmodalVisibility } = CartModalState();
-  const { loginModalVisibility, setLoginModalVisibility } = LoginModalState();
+  const { modalVisibility } = CartModalState();
+  const { loginModalVisibility } = LoginModalState();
   return (
     <div style={{ overflowX: "hidden" }}>
       {modalVisibility && <ShoppingCartModal />}

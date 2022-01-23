@@ -56,8 +56,3 @@ const Title = styled.h1`
     font-size: 1.5em;
   }
 `;
-
-const Price = styled.h2`
-  font-weight: normal;
-  font-size: 1.5em;
-`;

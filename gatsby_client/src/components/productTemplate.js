@@ -18,8 +18,7 @@ export default function ProductTemplate({ data: { mdx } }) {
 
   const {
     body,
-    id,
-    frontmatter: { productName, images, price, productCategory, productType },
+    frontmatter: { productName, images, price },
   } = mdx;
 
   console.log(mdx);
