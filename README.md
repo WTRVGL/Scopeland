@@ -3,6 +3,14 @@
 
 Full stack applicatie virtuele webshop met ingebouwde CMS.
 
+
+https://user-images.githubusercontent.com/73450465/150662546-9f68b3d6-880b-40c0-8f17-ba9360e492cc.mp4
+
+
+
+
+
+
 ## Info
 ### Opdracht
 Project in kader van "Werkplekleren" tijdens het tweede jaar Graduaat Programmeren aan PXL in Hasselt. 
