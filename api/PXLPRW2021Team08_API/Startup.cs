@@ -61,7 +61,7 @@ namespace PXLPRW2021Team08_API
             {
                 options.AddPolicy(name: "AllowAll", builder =>
                 {
-                    builder.WithOrigins("http://localhost:8000", "http://localhost:9000", "http://194.233.160.171")
+                    builder.WithOrigins("http://localhost:8000", "http://localhost:9000", "http://194.233.160.171:9000")
                          .AllowAnyMethod()
                          .AllowAnyHeader()
                          .AllowCredentials();
