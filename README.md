@@ -3,6 +3,8 @@
 
 Full stack applicatie virtuele webshop met ingebouwde CMS.
 
+Gatsby build @ [Netlify]( https://scopeland.netlify.app) (backend niet beschikbaar).
+
 
 https://user-images.githubusercontent.com/73450465/150662546-9f68b3d6-880b-40c0-8f17-ba9360e492cc.mp4
 
