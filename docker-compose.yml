@@ -4,21 +4,21 @@ version: '3.4'
 
 services:
   gatsby:
-    image: gatsby
+    image: wtrvgl/gatsby
     build:
       context: .
       dockerfile: docker/gatsby/Dockerfile
     ports:
       - "9000:9000"
   sqlserver:
-    image: sqlserver
+    image: wtrvgl/sqlserver
     build:
       context: ./docker/sql-server
       dockerfile: Dockerfile
     ports:
       - 1000:1433
   webapi:
-    image: webapi
+    image: wtrvgl/webapi
     build:
       context: .
       dockerfile: docker/api/Dockerfile
