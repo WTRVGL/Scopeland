@@ -6,11 +6,10 @@ RUN npm install
 
 RUN npm install --global gatsby-cli
 
-ENV NODE_ENV=development
 ENV CHOKIDAR_USEPOLLING=1
 
 COPY gatsby_client/ .
 
-RUN gatsby build
+RUN gatsby build --prefix-paths
 EXPOSE 9000
-CMD gatsby serve --host 0.0.0.0
+CMD gatsby serve --host 0.0.0.0 --prefix-paths

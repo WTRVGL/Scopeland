@@ -2,6 +2,7 @@ const path = require("path");
 
 module.exports = {
   siteMetadata: {
+    pathPrefix: `/scopeland`,
     siteUrl: "https://www.yourdomain.tld",
     title: "gatsby-client",
   },
