@@ -61,7 +61,12 @@ namespace PXLPRW2021Team08_API
             {
                 options.AddPolicy(name: "AllowAll", builder =>
                 {
-                    builder.WithOrigins("http://localhost:8000", "http://localhost:9000", "https://www.wouter.land", "http://www.wouter.land" )
+                    builder.WithOrigins(
+                        "http://localhost:8000", 
+                        "http://localhost:9000", 
+                        "https://www.wouter.land", 
+                        "http://www.wouter.land",
+                        "https://scopeland.netlify.app/" )
                          .AllowAnyMethod()
                          .AllowAnyHeader()
                          .AllowCredentials();
