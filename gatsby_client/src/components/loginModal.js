@@ -27,7 +27,6 @@ const LoginModal = () => {
       case 1:
         return (
           <Box sx={style}>
-            <p>Sorry, Backend niet beschikbaar online!</p>
             <Form>
               <LoginTitle>
                 <h1>Log in</h1>
