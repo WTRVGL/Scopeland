@@ -34,6 +34,7 @@ const FeaturedProductList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   column-gap: 25px;
+  margin-bottom: 7.5em;
 
   @media screen and (max-width: 768px) {
     grid-template-rows: repeat(3, 1fr);
