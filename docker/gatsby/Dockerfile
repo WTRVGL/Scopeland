@@ -6,7 +6,6 @@ RUN npm install
 
 RUN npm install --global gatsby-cli
 
-ENV NODE_ENV=development
 ENV CHOKIDAR_USEPOLLING=1
 
 COPY gatsby_client/ .
