@@ -10,7 +10,6 @@ const Shop = ({
     allMdx: { edges },
   },
 }) => {
-  console.log(edges);
   return (
     <Layout>
       <Container>

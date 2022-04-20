@@ -1,8 +1,8 @@
 const path = require("path");
 
 module.exports = {
+  pathPrefix: '/scopeland',
   siteMetadata: {
-    pathPrefix: `/scopeland`,
     siteUrl: "https://www.yourdomain.tld",
     title: "gatsby-client",
   },

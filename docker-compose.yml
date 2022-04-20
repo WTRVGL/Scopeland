@@ -7,9 +7,9 @@ services:
     image: wtrvgl/gatsby
     build:
       context: .
-      dockerfile: docker/gatsby/Dockerfile
+      dockerfile: docker/gatsby/Dockerfile.prod
     ports:
-      - "9000:9000"
+      - "9000:80"
   sqlserver:
     image: wtrvgl/sqlserver
     build:

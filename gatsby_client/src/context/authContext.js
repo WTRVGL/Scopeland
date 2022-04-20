@@ -9,10 +9,9 @@ const AuthProvider = ({ children }) => {
 
   function getUser() {
     axios
-      .get("https://wouter.land/api/auth", { withCredentials: true })
+      .get("https://sl.wouter.land/api/auth", { withCredentials: true })
       .then((response) => {
         const user = response.data;
-        console.log(user);
         if (!user) {
           setUser(null);
         } else setUser(user);
@@ -25,7 +24,7 @@ const AuthProvider = ({ children }) => {
   async function login(username, password) {
     axios
       .post(
-        "https://wouter.land/api/login",
+        "https://sl.wouter.land/api/login",
         { username, password },
         { withCredentials: true }
       )
@@ -42,7 +41,7 @@ const AuthProvider = ({ children }) => {
   async function createUser(username, password, firstName, lastName) {
     axios
       .post(
-        "https://wouter.land/api/user",
+        "https:/sl.wouter.land/api/user",
         { username, password, firstName, lastName },
         { withCredentials: true }
       )
@@ -61,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
   async function logout() {
     axios
-      .get("https://wouter.land/api/logout", { withCredentials: true })
+      .get("https://sl.wouter.land/api/logout", { withCredentials: true })
       .then((response) => {
         setUser(null);
       })
@@ -71,7 +70,6 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    console.log("start auth");
     getUser();
   }, []);
 

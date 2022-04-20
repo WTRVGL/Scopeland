@@ -82,7 +82,6 @@ const LoginModal = () => {
       case 2:
         return (
           <Box sx={style}>
-            <p>Sorry, Backend niet beschikbaar online!</p>
             <Form>
               <LoginTitle>
                 <h1>Registreer</h1>
@@ -185,7 +184,6 @@ const LoginModal = () => {
     e.preventDefault();
     setIsLoading(true);
     login(userFormData.username, userFormData.password).then((data) => {
-      console.log(data);
       user ? setLoginModalVisibility(false) : setLoginModalVisibility(true);
     });
     setIsLoading(false);

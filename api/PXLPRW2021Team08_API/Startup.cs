@@ -64,9 +64,9 @@ namespace PXLPRW2021Team08_API
                     builder.WithOrigins(
                         "http://localhost:8000", 
                         "http://localhost:9000", 
-                        "https://www.wouter.land", 
-                        "http://www.wouter.land",
-                        "https://scopeland.netlify.app/" )
+                        "https://sl.wouter.land", 
+                        "http://sl.wouter.land",
+                        "https://scopeland.netlify.app" )
                          .AllowAnyMethod()
                          .AllowAnyHeader()
                          .AllowCredentials();
