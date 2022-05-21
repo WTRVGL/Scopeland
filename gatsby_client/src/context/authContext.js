@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
   async function createUser(username, password, firstName, lastName) {
     axios
       .post(
-        "https:/sl.wouter.land/api/user",
+        "https://sl.wouter.land/api/user",
         { username, password, firstName, lastName },
         { withCredentials: true }
       )
